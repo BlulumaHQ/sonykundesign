@@ -61,26 +61,32 @@ const Index = () => {
         );
       });
 
-      // Pinned philosophy chapter — large text grows in
+      // Pinned philosophy chapter — lines reveal + progress bar + counter
       const phil = document.querySelector<HTMLElement>(".js-philosophy");
       if (phil) {
         const lines = phil.querySelectorAll<HTMLElement>(".js-philosophy-line");
-        gsap.fromTo(
-          lines,
-          { opacity: 0.15 },
-          {
-            opacity: 1,
-            stagger: 0.5,
-            ease: "none",
-            scrollTrigger: {
-              trigger: phil,
-              start: "top top",
-              end: "+=120%",
-              pin: true,
-              scrub: 0.5,
+        const cards = phil.querySelectorAll<HTMLElement>(".js-phil-card");
+        const progress = phil.querySelector<HTMLElement>(".js-phil-progress");
+        const counter = phil.querySelector<HTMLElement>(".js-phil-counter");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: phil,
+            start: "top top",
+            end: "+=160%",
+            pin: true,
+            scrub: 0.5,
+            onUpdate: (self) => {
+              if (progress) progress.style.width = `${self.progress * 100}%`;
+              if (counter) {
+                const step = Math.min(3, Math.floor(self.progress * 3) + 1);
+                counter.textContent = `0${step} / 03`;
+              }
             },
-          }
-        );
+          },
+        });
+        tl.fromTo(lines, { opacity: 0.12, y: 30 }, { opacity: 1, y: 0, stagger: 0.6, ease: "power2.out" })
+          .fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.15, ease: "power2.out" }, "-=0.4");
       }
 
       // Horizontal capability ribbon (desktop only)
@@ -116,10 +122,10 @@ const Index = () => {
     <div ref={root}>
       <Header />
       <main>
-        {/* ─────────── CINEMATIC HERO ─────────── */}
-        <section className="relative pt-40 md:pt-52 pb-16 md:pb-28">
-          <div className="container-wide">
-            <div className="flex items-end justify-between mb-10 md:mb-16">
+        {/* ─────────── CINEMATIC HERO (shorter) ─────────── */}
+        <section className="relative pt-28 md:pt-36 pb-12 md:pb-16 min-h-[88vh] md:min-h-[92vh] flex flex-col justify-center">
+          <div className="container-wide w-full">
+            <div className="flex items-end justify-between mb-8 md:mb-12">
               <span className="eyebrow !mb-0">{c.hero.eyebrow[lang]}</span>
               <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                 {isZh ? "溫哥華 · 自 2005" : "Vancouver · Est. 2005"}
@@ -144,7 +150,7 @@ const Index = () => {
               delay={0.3}
             />
 
-            <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 md:gap-20 items-end">
+            <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-end">
               <p
                 data-reveal
                 className="text-subtitle max-w-xl text-foreground/70"
@@ -154,26 +160,30 @@ const Index = () => {
               <div data-reveal className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/pricing"
-                  className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-6 py-4 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-foreground/85 transition-colors"
+                  className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-6 py-4 text-[12px] uppercase tracking-[0.22em] hover:bg-foreground/85 transition-colors"
                 >
                   {c.hero.ctaPrimary[lang]}
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 <Link
                   to="/portfolio"
-                  className="group inline-flex items-center justify-between gap-6 border border-foreground/25 px-6 py-4 rounded-full text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
+                  className="group inline-flex items-center justify-between gap-6 border border-foreground/25 px-6 py-4 text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
                 >
                   {c.hero.ctaSecondary[lang]}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
+          </div>
 
-            <div className="mt-16 pt-6 border-t border-border flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          {/* Mouse scroll cue (bottom-centered) */}
+          <div className="container-wide w-full mt-12 md:mt-16">
+            <div className="pt-6 border-t border-border flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
               <span>{c.hero.trust[lang]}</span>
-              <span className="hidden md:inline animate-pulse">
-                ↓ {isZh ? "向下捲動" : "Scroll"}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="hidden sm:inline">{isZh ? "向下捲動" : "Scroll"}</span>
+                <span className="scroll-cue-mouse text-foreground/60" aria-hidden />
+              </div>
             </div>
           </div>
         </section>
@@ -239,34 +249,59 @@ const Index = () => {
           </section>
         )}
 
-        {/* ─────────── PINNED PHILOSOPHY (3-line scroll-grow) ─────────── */}
-        <section className="js-philosophy bg-foreground text-background min-h-screen flex items-center">
-          <div className="container-wide py-24">
-            <span className="eyebrow !text-background/45">
-              {c.process.eyebrow[lang]}
-            </span>
+        {/* ─────────── PINNED PHILOSOPHY (richer scroll choreography) ─────────── */}
+        <section className="js-philosophy bg-foreground text-background min-h-screen flex items-center relative overflow-hidden">
+          {/* Faint scroll progress bar — animated by GSAP */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-white/10">
+            <div className="js-phil-progress h-full bg-[#5B7189] w-0" />
+          </div>
+
+          <div className="container-wide py-24 relative">
+            <div className="flex items-end justify-between mb-10">
+              <span className="eyebrow !text-background/45 !mb-0">
+                {c.process.eyebrow[lang]}
+              </span>
+              <span className="js-phil-counter text-[11px] uppercase tracking-[0.22em] text-background/45 tabular-nums">
+                01 / 03
+              </span>
+            </div>
+
             <p className="font-display text-[36px] sm:text-[56px] md:text-[80px] lg:text-[112px] leading-[1.05] tracking-[-0.025em]">
-              <span className="js-philosophy-line block">
-                {c.process.steps[0].title[lang]}.
-              </span>
-              <span className="js-philosophy-line block">
-                {c.process.steps[1].title[lang]}.
-              </span>
-              <span className="js-philosophy-line block">
-                {c.process.steps[2].title[lang]}.
-              </span>
+              {c.process.steps.map((step, i) => (
+                <span key={i} className="js-philosophy-line block relative">
+                  <span className="inline-block align-baseline text-[#5B7189]/70 text-[0.35em] tracking-[0.22em] mr-4 md:mr-6 tabular-nums">
+                    0{i + 1}
+                  </span>
+                  {step.title[lang]}.
+                </span>
+              ))}
             </p>
+
             <div className="mt-16 grid md:grid-cols-3 gap-10 text-background/65">
               {c.process.steps.map((step, i) => (
-                <div key={i}>
-                  <span className="text-[11px] uppercase tracking-[0.22em] text-background/45">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-3 text-sm leading-[1.7]">
+                <div key={i} className="js-phil-card border-t border-white/15 pt-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-background/45">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-[#5B7189]">
+                      {isZh ? "步驟" : "Step"}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-lg md:text-xl text-white mb-3 tracking-tight">
+                    {step.title[lang]}
+                  </h3>
+                  <p className="text-sm leading-[1.7]">
                     {step.body[lang]}
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* Mouse scroll cue */}
+            <div className="mt-16 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-background/55">
+              <span className="scroll-cue-mouse text-white/70" aria-hidden />
+              <span>{isZh ? "繼續向下捲動" : "Keep scrolling"}</span>
             </div>
           </div>
         </section>
@@ -400,26 +435,43 @@ const Index = () => {
           </div>
         </section>
 
-        {/* ─────────── FINAL OVERSIZED CTA ─────────── */}
-        <section className="bg-foreground text-background py-32 md:py-48">
+        {/* ─────────── FINAL OVERSIZED CTA (high contrast, editorial) ─────────── */}
+        <section className="relative bg-muted border-t border-border py-24 md:py-36 overflow-hidden">
           <div className="container-wide">
-            <span className="eyebrow !text-background/45">
-              {isZh ? "下一步" : "Next step"}
-            </span>
-            <h2 className="font-display text-[40px] sm:text-[64px] md:text-[96px] lg:text-[140px] leading-[0.95] tracking-[-0.035em] mb-12">
+            <div className="flex items-center justify-between mb-10 md:mb-14">
+              <span className="eyebrow !mb-0">
+                <span className="inline-block w-8 h-px bg-[#5B7189] align-middle mr-3" />
+                {isZh ? "下一步" : "Next step"}
+              </span>
+              <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-foreground/55">
+                {isZh ? "01 — 索取免費預覽" : "01 — Request a free preview"}
+              </span>
+            </div>
+
+            <h2 className="font-display font-medium text-foreground text-[40px] sm:text-[64px] md:text-[96px] lg:text-[128px] leading-[0.95] tracking-[-0.035em] mb-14">
               {c.finalCta.title[lang]}
             </h2>
-            <div className="grid md:grid-cols-[1fr_auto] gap-10 items-end max-w-5xl">
-              <p className="text-lg md:text-xl text-background/65 max-w-xl leading-[1.6]">
+
+            <div className="grid grid-cols-12 gap-8 md:gap-12 items-end pt-10 border-t border-foreground/15">
+              <p className="col-span-12 md:col-span-6 text-base md:text-lg text-foreground/75 leading-[1.7] max-w-xl">
                 {c.finalCta.body[lang]}
               </p>
-              <Link
-                to="/contact"
-                className="group inline-flex items-center gap-4 bg-background text-foreground px-8 py-5 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-background/90"
-              >
-                {c.finalCta.cta[lang]}
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
+              <div className="col-span-12 md:col-span-6 flex flex-col sm:flex-row md:justify-end gap-3">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-7 py-5 text-[12px] uppercase tracking-[0.22em] hover:bg-[#5B7189] transition-colors"
+                >
+                  {c.finalCta.cta[lang]}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+                <a
+                  href="tel:6042621168"
+                  className="group inline-flex items-center justify-between gap-6 border border-foreground/30 px-7 py-5 text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
+                >
+                  {isZh ? "或致電 (604) 262-1168" : "Or call (604) 262-1168"}
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              </div>
             </div>
           </div>
         </section>

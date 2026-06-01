@@ -23,7 +23,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/60">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/85 backdrop-blur-md border-b border-border/60">
       {/* Announcement bar */}
       <div className="border-b border-border/40 text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
         <div className="container-wide flex items-center justify-between py-2">
