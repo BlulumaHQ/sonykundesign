@@ -82,8 +82,8 @@
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Editorial: clean off-white, no texture overlay */
-    background-color: #fafaf8;
+    /* 米白 — soft off-white (not beige) */
+    background-color: #FAFAFA;
   }
 
   p {
