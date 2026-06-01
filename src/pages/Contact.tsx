@@ -3,12 +3,9 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import ContactSection from "@/components/ContactSection";
-import { motion } from "framer-motion";
+import SplitTextReveal from "@/components/SplitTextReveal";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { fadeUp, inViewProps, staggerContainer } from "@/lib/animations";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 const Contact = () => {
   const { lang } = useLanguage();
@@ -39,105 +36,97 @@ const Contact = () => {
     <>
       <ScrollProgress />
       <Header />
-      <main className="pt-32 md:pt-40">
-        {/* HERO */}
-        <section className="pb-12 md:pb-20">
-          <div className="container-wide max-w-5xl">
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              className="eyebrow"
-            >
-              {isZh ? "聯絡我們" : "Get In Touch"}
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="heading-hero mb-6"
-            >
-              {isZh ? "開始一個專案。" : "Start a Project."}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.15 }}
-              className="text-subtitle max-w-xl"
+      <main>
+        {/* CINEMATIC HERO */}
+        <section className="pt-40 md:pt-52 pb-12 md:pb-20">
+          <div className="container-wide">
+            <div className="flex items-end justify-between mb-10">
+              <span className="eyebrow !mb-0">
+                {isZh ? "聯絡我們" : "Get in touch"}
+              </span>
+              <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                {isZh ? "免費預覽 · 不收訂金" : "Free preview · no deposit"}
+              </span>
+            </div>
+            <SplitTextReveal
+              as="h1"
+              text={isZh ? "開始一個\n專案。" : "Start a\nproject."}
+              className="heading-hero"
+            />
+            <p
+              data-reveal
+              className="text-subtitle max-w-2xl mt-10 text-foreground/70"
             >
               {isZh
                 ? "告訴我們您的業務與需求。我們會在 1–2 個工作天內回覆。"
-                : "Tell us about your business and what you're looking for. We'll get back to you within 1–2 business days."}
-            </motion.p>
+                : "Tell us about your business and what you're looking for. We'll respond within 1–2 business days."}
+            </p>
           </div>
         </section>
 
-        {/* TWO-COLUMN: details + form */}
-        <section className="pb-20 md:pb-32">
-          <div className="container-wide max-w-6xl">
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20">
-              {/* Left: details */}
-              <motion.div
-                variants={staggerContainer}
-                {...inViewProps}
-                className="flex flex-col gap-8"
-              >
+        {/* ASYMMETRIC FORM + DETAILS */}
+        <section className="py-16 md:py-24 border-t border-border">
+          <div className="container-wide">
+            <div className="grid grid-cols-12 gap-8 md:gap-16">
+              <aside className="col-span-12 md:col-span-4 md:sticky md:top-32 md:self-start space-y-10">
                 {details.map((d) => (
-                  <motion.div key={d.label} variants={fadeUp}>
-                    <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[hsl(0_0%_53%)] mb-2">
+                  <div key={d.label} className="border-t border-border pt-4">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground mb-2">
                       {d.label}
                     </p>
                     {d.href ? (
                       <a
                         href={d.href}
-                        className="text-base text-foreground hover:opacity-60 transition-opacity"
+                        className="font-display text-xl md:text-2xl tracking-tight hover:opacity-60 transition-opacity inline-flex items-center gap-2 group"
                       >
                         {d.value}
+                        <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                     ) : (
-                      <p className="text-base text-foreground">{d.value}</p>
+                      <p className="font-display text-xl md:text-2xl tracking-tight">
+                        {d.value}
+                      </p>
                     )}
-                  </motion.div>
+                  </div>
                 ))}
-                <motion.p
-                  variants={fadeUp}
-                  className="text-sm text-[hsl(0_0%_33%)] leading-[1.75] max-w-xs pt-4 border-t border-border"
-                >
+                <p className="text-sm text-muted-foreground leading-[1.7] max-w-xs pt-6 border-t border-border">
                   {isZh
                     ? "自 2005 年起，我們為小型企業打造網站。每個專案都從免費預覽開始 — 您在付款前就能看到網站。"
-                    : "We've been building websites for small businesses since 2005. Every project starts with a free preview — you see your website before you pay anything."}
-                </motion.p>
-              </motion.div>
+                    : "Building websites for small businesses since 2005. Every project starts with a free preview — you see your website before you pay."}
+                </p>
+              </aside>
 
-              {/* Right: form (existing logic preserved) */}
-              <div id="contact-form">
+              <div id="contact-form" className="col-span-12 md:col-span-8">
                 <ContactSection source="sonykun.ca contact page form" />
               </div>
             </div>
           </div>
         </section>
 
-        {/* DARK BOTTOM CTA */}
-        <section className="bg-charcoal py-20 md:py-32">
-          <div className="container-wide text-center">
-            <motion.h2 {...fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="font-display text-[28px] sm:text-[36px] md:text-[48px] font-bold leading-[1.1] tracking-[-0.02em] mb-5 text-white">
+        {/* BOTTOM CTA */}
+        <section className="bg-foreground text-background py-32 md:py-48">
+          <div className="container-wide">
+            <h2 className="font-display text-[40px] sm:text-[64px] md:text-[96px] lg:text-[120px] leading-[0.95] tracking-[-0.035em] mb-12">
               {isZh ? "準備好看到您的網站了嗎？" : "Ready to see your website?"}
-            </motion.h2>
-            <motion.p {...fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-base md:text-lg text-white/65 mb-9 max-w-xl mx-auto">
-              {isZh
-                ? "填寫上方表單，我們會為您打造免費預覽。"
-                : "Fill out the form above and we'll build you a free preview."}
-            </motion.p>
-            <Button
-              onClick={() =>
-                document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" })
-              }
-              size="lg"
-              className="h-12 px-8 text-sm font-medium bg-white text-foreground hover:bg-white/90 rounded"
-            >
-              {isZh ? "獲取免費預覽" : "Get Your Free Preview"}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            </h2>
+            <div className="grid md:grid-cols-[1fr_auto] gap-10 items-end max-w-5xl">
+              <p className="text-lg md:text-xl text-background/65 max-w-xl leading-[1.6]">
+                {isZh
+                  ? "填寫上方表單，我們會為您打造免費預覽。"
+                  : "Fill out the form above and we'll build you a free preview."}
+              </p>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("contact-form")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+                className="group inline-flex items-center gap-4 bg-background text-foreground px-8 py-5 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-background/90"
+              >
+                {isZh ? "獲取免費預覽" : "Get Your Free Preview"}
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </button>
+            </div>
           </div>
         </section>
       </main>

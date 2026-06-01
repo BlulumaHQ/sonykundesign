@@ -1,5 +1,7 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContactButton from "@/components/FloatingContactButton";
@@ -8,21 +10,20 @@ import PortfolioGrid from "@/components/PortfolioGrid";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import ImageMarquee from "@/components/ImageMarquee";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Globe, Diamond, Package, Server } from "lucide-react";
+import SplitTextReveal from "@/components/SplitTextReveal";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeContent, pageMeta, localBusinessJsonLd } from "@/i18n/pageContent";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { projects } from "@/data/projects";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-};
+gsap.registerPlugin(ScrollTrigger);
+
+const featured = [...projects].filter((p) => p.featured).slice(0, 1)[0];
 
 const Index = () => {
   const { lang } = useLanguage();
+  const isZh = lang === "zh";
   usePageMeta({
     title: pageMeta.home.title,
     description: pageMeta.home.description,
@@ -31,254 +32,402 @@ const Index = () => {
   });
 
   const c = homeContent;
-  const serviceIcons = [Globe, Diamond, Package, Server];
+  const root = useRef<HTMLDivElement>(null);
+
+  // GSAP scroll choreography: pinned philosophy, parallax featured image,
+  // and horizontal capabilities ribbon.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    const ctx = gsap.context(() => {
+      // Featured image parallax
+      gsap.utils.toArray<HTMLElement>(".js-feature-img").forEach((img) => {
+        gsap.fromTo(
+          img,
+          { scale: 1.15, yPercent: -6 },
+          {
+            scale: 1,
+            yPercent: 6,
+            ease: "none",
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      });
+
+      // Pinned philosophy chapter — large text grows in
+      const phil = document.querySelector<HTMLElement>(".js-philosophy");
+      if (phil) {
+        const lines = phil.querySelectorAll<HTMLElement>(".js-philosophy-line");
+        gsap.fromTo(
+          lines,
+          { opacity: 0.15 },
+          {
+            opacity: 1,
+            stagger: 0.5,
+            ease: "none",
+            scrollTrigger: {
+              trigger: phil,
+              start: "top top",
+              end: "+=120%",
+              pin: true,
+              scrub: 0.5,
+            },
+          }
+        );
+      }
+
+      // Horizontal capability ribbon (desktop only)
+      if (window.innerWidth >= 1024) {
+        const ribbon = document.querySelector<HTMLElement>(".js-ribbon");
+        const track = ribbon?.querySelector<HTMLElement>(".js-ribbon-track");
+        if (ribbon && track) {
+          const distance = track.scrollWidth - window.innerWidth + 96;
+          gsap.to(track, {
+            x: -distance,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ribbon,
+              start: "top top",
+              end: () => `+=${distance}`,
+              pin: true,
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+            },
+          });
+        }
+      }
+    }, root);
+
+    return () => ctx.revert();
+  }, [lang]);
+
+  const heroLine1 = isZh ? "為小型企業" : "Websites that";
+  const heroLine2 = isZh ? "打造的網站。" : "earn trust —";
+  const heroLine3 = isZh ? "3 天交付。" : "in 3 days.";
 
   return (
-    <>
+    <div ref={root}>
       <Header />
       <main>
-        {/* HERO */}
-        <section className="relative bg-background pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden">
-          <div className="container-wide relative z-10">
-            <div className="max-w-4xl">
-              <motion.span
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45 }}
-                className="eyebrow"
-              >
-                {c.hero.eyebrow[lang]}
-              </motion.span>
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="heading-hero mb-6"
-              >
-                {c.hero.headline[lang]}
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.15 }}
-                className="text-subtitle max-w-2xl mb-10"
+        {/* ─────────── CINEMATIC HERO ─────────── */}
+        <section className="relative pt-40 md:pt-52 pb-16 md:pb-28">
+          <div className="container-wide">
+            <div className="flex items-end justify-between mb-10 md:mb-16">
+              <span className="eyebrow !mb-0">{c.hero.eyebrow[lang]}</span>
+              <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                {isZh ? "溫哥華 · 自 2005" : "Vancouver · Est. 2005"}
+              </span>
+            </div>
+
+            <SplitTextReveal
+              as="h1"
+              text={heroLine1}
+              className="heading-hero block"
+            />
+            <SplitTextReveal
+              as="h1"
+              text={heroLine2}
+              className="heading-hero block text-muted-foreground"
+              delay={0.15}
+            />
+            <SplitTextReveal
+              as="h1"
+              text={heroLine3}
+              className="heading-hero block"
+              delay={0.3}
+            />
+
+            <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 md:gap-20 items-end">
+              <p
+                data-reveal
+                className="text-subtitle max-w-xl text-foreground/70"
               >
                 {c.hero.subhead[lang]}
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 mb-8"
-              >
-                <Link to="/pricing">
-                  <Button
-                    size="lg"
-                    className="h-12 px-7 text-sm font-medium tracking-wide btn-cta btn-fill rounded-full w-full sm:w-auto"
-                  >
-                    {c.hero.ctaPrimary[lang]}
-                  </Button>
+              </p>
+              <div data-reveal className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  to="/pricing"
+                  className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-6 py-4 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-foreground/85 transition-colors"
+                >
+                  {c.hero.ctaPrimary[lang]}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
-                <Link to="/portfolio">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-12 px-7 text-sm font-medium tracking-wide border-foreground/20 text-foreground hover:bg-foreground hover:text-background rounded-full w-full sm:w-auto"
-                  >
-                    {c.hero.ctaSecondary[lang]}
-                  </Button>
+                <Link
+                  to="/portfolio"
+                  className="group inline-flex items-center justify-between gap-6 border border-foreground/25 px-6 py-4 rounded-full text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
+                >
+                  {c.hero.ctaSecondary[lang]}
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
-              </motion.div>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.55, duration: 0.5 }}
-                className="text-sm text-muted-foreground"
-              >
-                {c.hero.trust[lang]}
-              </motion.p>
+              </div>
+            </div>
+
+            <div className="mt-16 pt-6 border-t border-border flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+              <span>{c.hero.trust[lang]}</span>
+              <span className="hidden md:inline animate-pulse">
+                ↓ {isZh ? "向下捲動" : "Scroll"}
+              </span>
             </div>
           </div>
         </section>
 
-        {/* IMAGE MARQUEE STRIP */}
+        {/* ─────────── MARQUEE STRIP (kept) ─────────── */}
         <ImageMarquee />
 
-        {/* HOW IT WORKS */}
-        <section className="section-padding bg-muted">
-          <div className="container-wide">
-            <motion.div {...fadeUp} className="max-w-2xl mb-14">
-              <span className="eyebrow">{c.process.eyebrow[lang]}</span>
-              <h2 className="heading-section mb-4">{c.process.title[lang]}</h2>
-              <p className="text-body">{c.process.subtext[lang]}</p>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        {/* ─────────── FEATURED PROJECT (parallax + asymmetric) ─────────── */}
+        {featured && (
+          <section className="py-20 md:py-32 border-t border-border">
+            <div className="container-wide">
+              <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
+                <div className="col-span-12 md:col-span-3 md:sticky md:top-32">
+                  <span className="eyebrow">
+                    {isZh ? "近期作品 / 01" : "Recent work / 01"}
+                  </span>
+                  <h2
+                    data-reveal
+                    className="font-display text-3xl md:text-5xl leading-[1.05] tracking-tight mb-6"
+                  >
+                    {featured.name}
+                  </h2>
+                  <p
+                    data-reveal
+                    className="text-sm text-muted-foreground leading-[1.7] mb-6"
+                  >
+                    {featured.description}
+                  </p>
+                  <dl className="grid grid-cols-2 gap-y-3 text-[11px] uppercase tracking-[0.18em]">
+                    <dt className="text-muted-foreground">
+                      {isZh ? "產業" : "Industry"}
+                    </dt>
+                    <dd>{featured.industry}</dd>
+                    <dt className="text-muted-foreground">
+                      {isZh ? "年份" : "Year"}
+                    </dt>
+                    <dd>{featured.year}</dd>
+                  </dl>
+                  {featured.liveUrl && (
+                    <a
+                      href={featured.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-8 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1 hover:opacity-70"
+                    >
+                      {isZh ? "查看上線網站" : "View live"}{" "}
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+
+                <div className="col-span-12 md:col-span-9">
+                  <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10] bg-muted">
+                    <img
+                      src={featured.image}
+                      alt={featured.alt}
+                      className="js-feature-img absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ─────────── PINNED PHILOSOPHY (3-line scroll-grow) ─────────── */}
+        <section className="js-philosophy bg-foreground text-background min-h-screen flex items-center">
+          <div className="container-wide py-24">
+            <span className="eyebrow !text-background/45">
+              {c.process.eyebrow[lang]}
+            </span>
+            <p className="font-display text-[36px] sm:text-[56px] md:text-[80px] lg:text-[112px] leading-[1.05] tracking-[-0.025em]">
+              <span className="js-philosophy-line block">
+                {c.process.steps[0].title[lang]}.
+              </span>
+              <span className="js-philosophy-line block">
+                {c.process.steps[1].title[lang]}.
+              </span>
+              <span className="js-philosophy-line block">
+                {c.process.steps[2].title[lang]}.
+              </span>
+            </p>
+            <div className="mt-16 grid md:grid-cols-3 gap-10 text-background/65">
               {c.process.steps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative"
-                >
-                  <span className="font-display text-5xl md:text-6xl font-bold text-primary/20 block mb-3 leading-none">
+                <div key={i}>
+                  <span className="text-[11px] uppercase tracking-[0.22em] text-background/45">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="font-display text-xl font-bold text-foreground mb-3">{step.title[lang]}</h3>
-                  <p className="text-muted-foreground leading-[1.7]">{step.body[lang]}</p>
-                </motion.div>
+                  <p className="mt-3 text-sm leading-[1.7]">
+                    {step.body[lang]}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* SERVICES OVERVIEW */}
-        <section className="section-padding relative overflow-hidden">
-          <span className="bg-word left-[-2vw] top-6 md:top-10" aria-hidden="true">SERVICE</span>
-          <div className="container-wide relative">
-            <motion.div {...fadeUp} className="max-w-2xl mb-14">
-              <span className="eyebrow">{c.services.eyebrow[lang]}</span>
-              <h2 className="heading-section">{c.services.title[lang]}</h2>
-            </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {c.services.cards.map((rawCard, i) => {
-                const card = rawCard as typeof rawCard & { badge?: { en: string; zh: string } };
-                const Icon = serviceIcons[i];
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    className="relative border-t border-border bg-transparent pt-8 pr-4 flex flex-col h-full transition-colors hover:border-secondary"
-                  >
-                    {card.badge && (
-                      <span className="absolute -top-3 left-0 bg-secondary text-secondary-foreground text-[10px] font-medium uppercase tracking-[0.2em] px-2.5 py-1">
-                        {card.badge[lang]}
-                      </span>
-                    )}
-                    <Icon className="w-6 h-6 text-secondary mb-5" strokeWidth={1.25} />
-                    <h3 className="font-display text-lg font-semibold text-foreground mb-2">{card.title[lang]}</h3>
-                    <p className="text-sm text-muted-foreground leading-[1.75] mb-5 flex-1">{card.body[lang]}</p>
-                    <p className="text-sm font-medium text-foreground mb-3">{card.price[lang]}</p>
-                    <Link
-                      to={card.href}
-                      className="text-[11px] uppercase tracking-[0.2em] font-medium text-secondary hover:text-foreground inline-flex items-center gap-1.5 transition-colors"
-                    >
-                      <span className="marker-line" />
-                      {card.link[lang]}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </div>
+        {/* ─────────── HORIZONTAL CAPABILITIES RIBBON ─────────── */}
+        <section className="js-ribbon py-24 md:py-32 overflow-hidden">
+          <div className="container-wide mb-12">
+            <span className="eyebrow">{c.services.eyebrow[lang]}</span>
+            <h2 className="heading-section max-w-3xl">
+              {c.services.title[lang]}
+            </h2>
+          </div>
+          <div className="js-ribbon-track flex gap-6 lg:gap-10 pl-6 sm:pl-8 md:pl-12 lg:pl-16">
+            {c.services.cards.map((rawCard, i) => {
+              const card = rawCard as typeof rawCard & {
+                badge?: { en: string; zh: string };
+              };
+              return (
+                <Link
+                  key={i}
+                  to={card.href}
+                  className="group shrink-0 w-[82vw] sm:w-[60vw] md:w-[48vw] lg:w-[36vw] xl:w-[30vw] border-t border-foreground pt-6 hover:bg-muted/40 transition-colors px-1"
+                >
+                  <div className="flex items-baseline justify-between mb-8">
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                      {card.badge ? ` · ${card.badge[lang]}` : ""}
+                    </span>
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                  <h3 className="font-display text-3xl md:text-4xl leading-[1.05] tracking-tight mb-8 min-h-[2.2em]">
+                    {card.title[lang]}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-[1.7] mb-10 max-w-md">
+                    {card.body[lang]}
+                  </p>
+                  <span className="text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1">
+                    {card.price[lang]}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
-        {/* PORTFOLIO PREVIEW */}
-        <section className="relative overflow-hidden border-t border-border">
-          <span className="bg-word right-[-2vw] top-10" aria-hidden="true">PORTFOLIO</span>
-          <div className="container-wide pt-16 md:pt-24 relative">
-            <motion.div {...fadeUp} className="text-center mb-2">
+        {/* ─────────── PORTFOLIO PREVIEW SYSTEM (protected) ─────────── */}
+        <section className="relative py-20 md:py-32 border-t border-border">
+          <div className="container-wide mb-12 md:mb-16 flex items-end justify-between flex-wrap gap-6">
+            <div>
               <span className="eyebrow">{c.portfolio.eyebrow[lang]}</span>
-              <h2 className="heading-section">{c.portfolio.title[lang]}</h2>
-            </motion.div>
-          </div>
-          <PortfolioGrid />
-          <div className="container-wide pb-16 md:pb-24 -mt-6 text-center">
-            <Link to="/portfolio">
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-12 px-7 text-[11px] uppercase tracking-[0.2em] font-medium border-foreground/20 text-foreground hover:bg-foreground hover:text-background rounded-none"
-              >
-                {c.portfolio.cta[lang]}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <h2 className="heading-section max-w-2xl">
+                {c.portfolio.title[lang]}
+              </h2>
+            </div>
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1 hover:opacity-70"
+            >
+              {c.portfolio.cta[lang]} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+          {/* Protected component — scrollable preview interaction preserved */}
+          <PortfolioGrid />
         </section>
 
-
-        {/* BUNDLE BANNER (DARK) */}
-        <section className="charcoal-section section-padding">
+        {/* ─────────── BUNDLE (dark editorial) ─────────── */}
+        <section className="bg-foreground text-background py-24 md:py-40">
           <div className="container-wide">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-center">
-              <motion.div {...fadeUp}>
-                <span className="eyebrow !text-white/55">{c.bundle.eyebrow[lang]}</span>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.05] tracking-tight mb-6">
+            <div className="grid grid-cols-12 gap-8 md:gap-16">
+              <div className="col-span-12 md:col-span-5">
+                <span className="eyebrow !text-background/45">
+                  {c.bundle.eyebrow[lang]}
+                </span>
+                <h2
+                  data-reveal
+                  className="font-display text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] leading-[1.02] tracking-[-0.025em]"
+                >
                   {c.bundle.title[lang]}
                 </h2>
-                <p className="text-base md:text-lg text-white/65 leading-[1.7] mb-7 max-w-xl">{c.bundle.body[lang]}</p>
-                <ul className="space-y-3 max-w-xl">
+              </div>
+              <div className="col-span-12 md:col-span-7 md:pt-8">
+                <p
+                  data-reveal
+                  className="text-base md:text-lg text-background/70 leading-[1.7] mb-10 max-w-xl"
+                >
+                  {c.bundle.body[lang]}
+                </p>
+                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-4 mb-12 max-w-xl">
                   {c.bundle.checklist[lang].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-white/85">
-                      <Check className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
+                    <li
+                      key={i}
+                      className="flex items-baseline gap-3 text-background/85 text-sm"
+                    >
+                      <span className="text-background/40 tabular-nums text-[11px]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {item}
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-              <motion.div {...fadeUp} className="lg:text-right">
-                <Link to="/pricing">
-                  <Button
-                    size="lg"
-                    className="h-12 px-7 text-sm font-medium tracking-wide bg-white text-foreground hover:bg-white/90 rounded-full"
-                  >
-                    {c.bundle.cta[lang]}
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                <Link
+                  to="/pricing"
+                  className="group inline-flex items-center gap-4 bg-background text-foreground px-6 py-4 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-background/90"
+                >
+                  {c.bundle.cta[lang]}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* TESTIMONIALS */}
+        {/* ─────────── TESTIMONIALS (kept) ─────────── */}
         <TestimonialsSection />
 
-        {/* FAQ */}
-        <section className="section-padding">
-          <div className="container-wide">
-            <motion.div {...fadeUp} className="text-center mb-12">
+        {/* ─────────── FAQ ─────────── */}
+        <section className="py-24 md:py-32 border-t border-border">
+          <div className="container-wide grid grid-cols-12 gap-8 md:gap-16">
+            <div className="col-span-12 md:col-span-4 md:sticky md:top-32 md:self-start">
               <span className="eyebrow">{c.faq.eyebrow[lang]}</span>
               <h2 className="heading-section">{c.faq.title[lang]}</h2>
-            </motion.div>
-            <FaqAccordion
-              items={c.faq.items.map((item) => ({ q: item.q[lang], a: item.a[lang] }))}
-            />
+            </div>
+            <div className="col-span-12 md:col-span-8">
+              <FaqAccordion
+                items={c.faq.items.map((item) => ({
+                  q: item.q[lang],
+                  a: item.a[lang],
+                }))}
+              />
+            </div>
           </div>
         </section>
 
-        {/* FINAL CTA */}
-        <section className="charcoal-section section-padding">
-          <div className="container-wide text-center">
-            <motion.h2 {...fadeUp} className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight mb-5">
+        {/* ─────────── FINAL OVERSIZED CTA ─────────── */}
+        <section className="bg-foreground text-background py-32 md:py-48">
+          <div className="container-wide">
+            <span className="eyebrow !text-background/45">
+              {isZh ? "下一步" : "Next step"}
+            </span>
+            <h2 className="font-display text-[40px] sm:text-[64px] md:text-[96px] lg:text-[140px] leading-[0.95] tracking-[-0.035em] mb-12">
               {c.finalCta.title[lang]}
-            </motion.h2>
-            <motion.p {...fadeUp} className="text-lg text-white/65 mb-9 max-w-xl mx-auto">
-              {c.finalCta.body[lang]}
-            </motion.p>
-            <motion.div {...fadeUp}>
-              <Link to="/contact">
-                <Button
-                  size="lg"
-                  className="h-13 px-10 text-base font-semibold bg-white text-foreground hover:bg-white/90 rounded-full"
-                >
-                  {c.finalCta.cta[lang]}
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+            </h2>
+            <div className="grid md:grid-cols-[1fr_auto] gap-10 items-end max-w-5xl">
+              <p className="text-lg md:text-xl text-background/65 max-w-xl leading-[1.6]">
+                {c.finalCta.body[lang]}
+              </p>
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-4 bg-background text-foreground px-8 py-5 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-background/90"
+              >
+                {c.finalCta.cta[lang]}
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>
       <Footer />
       <FloatingContactButton />
       <ScrollToTop />
-    </>
+    </div>
   );
 };
 
