@@ -1,48 +1,53 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { homeContent } from "@/i18n/pageContent";
+import { projects } from "@/data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-  {
-    title: "Atelier Nord",
-    tag: "Brand Identity · 2025",
-    img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    title: "Maison Verre",
-    tag: "Digital Experience · 2025",
-    img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    title: "Form & Field",
-    tag: "Art Direction · 2024",
-    img: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    title: "Onda Studio",
-    tag: "E-commerce · 2024",
-    img: "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    title: "North & Co.",
-    tag: "Editorial · 2024",
-    img: "https://images.unsplash.com/photo-1517292987719-0369a794ec0f?auto=format&fit=crop&w=1600&q=80",
-  },
-];
+const testimonials = {
+  en: [
+    { quote: "Working with Sony was very straightforward. We needed a simple professional website and he delivered exactly what we were looking for.", name: "Dr. Lee", company: "Friendly Dental" },
+    { quote: "Our old website looked outdated and Sony helped modernize it quickly. The new site looks far more professional.", name: "Kevin Chen", company: "KChen Construction" },
+    { quote: "I appreciated the transparency about pricing. There were no hidden costs and the process was smooth from start to finish.", name: "Michael Tran", company: "Small Business Owner" },
+  ],
+  zh: [
+    { quote: "與 Sony 合作非常順利。我們需要一個簡單專業的網站，他完全做到了我們期望的效果。", name: "Dr. Lee", company: "Friendly Dental" },
+    { quote: "我們的舊網站看起來很過時，Sony 很快就幫我們完成了現代化。新網站看起來專業多了。", name: "Kevin Chen", company: "KChen Construction" },
+    { quote: "我很欣賞定價方面的透明度。沒有任何隱藏費用，整個過程從頭到尾都很順利。", name: "Michael Tran", company: "小型企業主" },
+  ],
+};
 
-const capabilities = [
-  { k: "01", t: "Brand Identity", d: "Names, marks, systems, and the language between them." },
-  { k: "02", t: "Digital Product", d: "Editorial websites, commerce, and considered interfaces." },
-  { k: "03", t: "Art Direction", d: "Photography, motion, and visual systems with intent." },
-  { k: "04", t: "Strategy", d: "Positioning that gives the work somewhere to stand." },
-  { k: "05", t: "Motion", d: "Restrained, purposeful movement across surfaces." },
-  { k: "06", t: "Print", d: "Books, lookbooks, packaging — built to be held." },
-];
+const capabilities = {
+  en: [
+    { k: "01", t: "Website Design", d: "Professional, mobile-friendly websites built for small businesses. From single-page sites to full multi-page builds." },
+    { k: "02", t: "Logo & Brand Identity", d: "Logos, colour palettes, typography systems, and brand guidelines that make your business look established." },
+    { k: "03", t: "Website + Brand Bundle", d: "Website and logo designed together. Our most popular option for businesses launching from scratch." },
+    { k: "04", t: "Hosting & Maintenance", d: "We handle all the technical side — hosting, domain setup, transfers, and ongoing maintenance." },
+  ],
+  zh: [
+    { k: "01", t: "網站設計", d: "為小型企業打造的專業、手機友善網站。從單頁網站到完整多頁建置。" },
+    { k: "02", t: "Logo 與品牌識別", d: "Logo、配色、字體系統與品牌規範，讓您的業務看起來專業且值得信賴。" },
+    { k: "03", t: "網站 + 品牌套裝", d: "網站與 Logo 一起設計。從零開始的客戶最常選擇的方案。" },
+    { k: "04", t: "主機與維護", d: "主機、網域、轉移與維護所有技術細節由我們處理，您完全不需要動手。" },
+  ],
+};
 
 const Studio = () => {
+  const { lang, setLang } = useLanguage();
+  const c = homeContent;
+  const isZh = lang === "zh";
+
+  // Real Sonykun projects
+  const featured = projects.find((p) => p.slug === "one-park-home")!;
+  const grid = ["presotea", "btn-real-estate", "helen-lam-real-estate", "little-mountain-dental", "friendly-dental"]
+    .map((s) => projects.find((p) => p.slug === s)!)
+    .filter(Boolean);
+
   const root = useRef<HTMLDivElement>(null);
   const heroHeadline = useRef<HTMLHeadingElement>(null);
   const featuredImg = useRef<HTMLDivElement>(null);
@@ -59,7 +64,6 @@ const Studio = () => {
     if (reduce) return;
 
     const ctx = gsap.context(() => {
-      // Hero per-letter reveal on scroll
       const chars = heroHeadline.current?.querySelectorAll<HTMLSpanElement>("[data-char]");
       if (chars && chars.length) {
         gsap.from(chars, {
@@ -76,7 +80,6 @@ const Studio = () => {
         });
       }
 
-      // Featured: mask reveal + parallax + text rise
       if (featuredMask.current && featuredImg.current) {
         gsap.to(featuredMask.current, {
           scaleY: 0,
@@ -110,9 +113,7 @@ const Studio = () => {
         });
       }
 
-      // Project grid: fade + scale + rise
-      const cards = gridRef.current?.querySelectorAll<HTMLElement>("[data-card]");
-      cards?.forEach((card) => {
+      gridRef.current?.querySelectorAll<HTMLElement>("[data-card]").forEach((card) => {
         gsap.from(card, {
           opacity: 0,
           y: 60,
@@ -123,13 +124,12 @@ const Studio = () => {
         });
       });
 
-      // Philosophy: pinned, word-by-word + bg transition
       if (philosophy.current && philosophyWords.current.length) {
         gsap.fromTo(
           philosophy.current,
           { backgroundColor: "#ffffff", color: "#0a0a0a" },
           {
-            backgroundColor: "#0a0a0a",
+            backgroundColor: "#192943",
             color: "#fafafa",
             ease: "none",
             scrollTrigger: {
@@ -154,7 +154,6 @@ const Studio = () => {
         });
       }
 
-      // Horizontal scroll on desktop only
       const mm = gsap.matchMedia();
       mm.add("(min-width: 1024px)", () => {
         if (!horizontal.current || !horizontalTrack.current) return;
@@ -175,7 +174,7 @@ const Studio = () => {
     }, root);
 
     return () => ctx.revert();
-  }, []);
+  }, [lang]);
 
   const splitChars = (text: string) =>
     text.split("").map((ch, i) => (
@@ -186,31 +185,48 @@ const Studio = () => {
       </span>
     ));
 
-  const philosophyText =
-    "We believe restraint is a feature. We design slow, deliberate work that earns attention and keeps it.";
-  const philosophyTokens = philosophyText.split(" ");
+  // Bilingual headline
+  const headline = isZh
+    ? { l1: "3 個工作天內", l2: "獲得專業網站", italic: "獲得專業網站" }
+    : { l1: "Get a professional", l2: "website in 3 days.", italic: "professional" };
+
+  const philosophyText = isZh
+    ? "付款前先看到網站預覽。確認方向後，3 個工作天內讓您的網站乾淨、清晰、可信地上線。"
+    : "You see your website preview before you pay. Then we ship — clean, clear, and credible — in three business days.";
+  const philosophyTokens = isZh ? Array.from(philosophyText) : philosophyText.split(" ");
 
   return (
-    <div ref={root} className="bg-neutral-50 text-neutral-950 font-[Inter,system-ui,sans-serif] antialiased">
+    <div ref={root} className="bg-neutral-50 text-neutral-950 font-body antialiased">
       {/* Announcement */}
       <div className="w-full border-b border-neutral-200 bg-neutral-50 text-[11px] tracking-[0.18em] uppercase">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-2.5">
-          <span className="text-neutral-500">New — Studio Index, Vol. 04 now shipping</span>
-          <span className="hidden sm:inline text-neutral-400">Vancouver · Available Q3 2026</span>
+          <span className="text-neutral-500">{c.hero.trust[lang]}</span>
+          <button
+            onClick={() => setLang(isZh ? "en" : "zh")}
+            className="text-neutral-500 hover:text-neutral-950 transition"
+            aria-label="Toggle language"
+          >
+            {isZh ? "EN" : "中文"}
+          </button>
         </div>
       </div>
 
       {/* Nav */}
       <header className="sticky top-0 z-40 backdrop-blur-md bg-neutral-50/80 border-b border-neutral-200/60">
         <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5">
-          <a href="#" className="text-sm font-medium tracking-tight">Studio Index</a>
+          <Link to="/" className="font-display text-sm font-semibold tracking-tight">Sonykun Design</Link>
           <ul className="hidden md:flex items-center gap-10 text-sm text-neutral-600">
-            <li><a href="#work" className="hover:text-neutral-950 transition">Work</a></li>
-            <li><a href="#philosophy" className="hover:text-neutral-950 transition">Studio</a></li>
-            <li><a href="#capabilities" className="hover:text-neutral-950 transition">Capabilities</a></li>
-            <li><a href="#contact" className="hover:text-neutral-950 transition">Contact</a></li>
+            <li><Link to="/work" className="hover:text-neutral-950 transition">{isZh ? "作品" : "Work"}</Link></li>
+            <li><Link to="/services" className="hover:text-neutral-950 transition">{isZh ? "服務內容" : "Services"}</Link></li>
+            <li><Link to="/pricing" className="hover:text-neutral-950 transition">{isZh ? "價格" : "Pricing"}</Link></li>
+            <li><Link to="/contact" className="hover:text-neutral-950 transition">{isZh ? "聯絡我" : "Contact"}</Link></li>
           </ul>
-          <a href="#contact" className="text-sm border border-neutral-950 px-4 py-2 rounded-full hover:bg-neutral-950 hover:text-neutral-50 transition">Start a project</a>
+          <Link
+            to="/contact"
+            className="text-sm border border-neutral-950 px-4 py-2 rounded-full hover:bg-neutral-950 hover:text-neutral-50 transition"
+          >
+            {c.finalCta.cta[lang]}
+          </Link>
         </nav>
       </header>
 
@@ -222,18 +238,16 @@ const Studio = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-neutral-500"
         >
-          <span>Index · 001</span>
-          <span>Est. 2014</span>
+          <span>{c.hero.eyebrow[lang]}</span>
+          <span>{isZh ? "自 2005 年" : "Est. 2005"}</span>
         </motion.div>
 
         <h1
           ref={heroHeadline}
-          className="font-serif text-[clamp(2.75rem,11vw,12rem)] leading-[0.95] tracking-[-0.03em] mt-12"
-          style={{ fontFamily: '"Cormorant Garamond", "Times New Roman", serif' }}
+          className="font-display text-[clamp(2.75rem,11vw,12rem)] leading-[0.95] tracking-[-0.03em] mt-12 font-medium"
         >
-          <span className="block">{splitChars("We create")}</span>
-          <span className="block italic text-neutral-500">{splitChars("memorable")}</span>
-          <span className="block">{splitChars("digital experiences.")}</span>
+          <span className="block">{splitChars(headline.l1)}</span>
+          <span className="block italic text-neutral-500">{splitChars(headline.l2)}</span>
         </h1>
 
         <motion.div
@@ -243,86 +257,96 @@ const Studio = () => {
           className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-end"
         >
           <p className="md:col-span-2 max-w-xl text-neutral-600 text-base leading-relaxed">
-            An independent design studio working with ambitious brands on identity, digital product, and art direction.
+            {c.hero.subhead[lang]}
           </p>
           <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 md:text-right">
-            Scroll to begin ↓
+            {isZh ? "向下捲動 ↓" : "Scroll to begin ↓"}
           </div>
         </motion.div>
       </section>
 
-      {/* Featured Project */}
+      {/* Featured Project — One Park Home */}
       <section className="px-6 py-32 mx-auto max-w-[1600px]">
         <div className="flex items-end justify-between mb-10">
-          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">Featured · 2025</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+            {isZh ? "精選作品 · 2026" : "Featured · 2026"}
+          </span>
           <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">Case 001</span>
         </div>
 
         <div ref={featuredImg} className="relative w-full aspect-[16/9] overflow-hidden bg-neutral-200">
           <img
-            src="https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=2000&q=80"
-            alt="Featured project — Maison Verre"
+            src={featured.image}
+            alt={featured.alt}
             className="w-full h-[115%] object-cover"
             loading="lazy"
           />
-          <div
-            ref={featuredMask}
-            className="absolute inset-0 bg-neutral-50"
-            style={{ transformOrigin: "top center" }}
-          />
+          <div ref={featuredMask} className="absolute inset-0 bg-neutral-50" style={{ transformOrigin: "top center" }} />
         </div>
 
         <div ref={featuredText} className="grid md:grid-cols-2 gap-10 mt-12">
           <div className="overflow-hidden">
-            <h2
-              data-rise
-              className="text-4xl md:text-6xl tracking-tight leading-[1.05]"
-              style={{ fontFamily: '"Cormorant Garamond", serif' }}
-            >
-              Maison Verre — a quiet new chapter for a 40-year-old atelier.
+            <h2 data-rise className="font-display text-4xl md:text-6xl tracking-tight leading-[1.05] font-medium">
+              {featured.name} — {featured.industry}
             </h2>
           </div>
           <div className="space-y-6 text-neutral-600 max-w-md">
-            <div className="overflow-hidden"><p data-rise>Identity system, editorial site, and seasonal campaign for the Paris-based glassware house.</p></div>
-            <div className="overflow-hidden"><p data-rise className="text-sm uppercase tracking-[0.2em] text-neutral-500">View case study →</p></div>
+            <div className="overflow-hidden"><p data-rise>{featured.description}</p></div>
+            <div className="overflow-hidden">
+              <Link
+                to={`/work/${featured.slug}`}
+                data-rise
+                className="inline-block text-xs uppercase tracking-[0.2em] text-neutral-950 border-b border-neutral-950 pb-1 hover:opacity-60 transition"
+              >
+                {isZh ? "查看案例 →" : "View case study →"}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Work Grid */}
+      {/* Work Grid — real projects */}
       <section id="work" className="px-6 py-32 mx-auto max-w-[1600px]">
         <div className="flex items-end justify-between mb-16">
-          <h2
-            className="text-3xl md:text-5xl tracking-tight"
-            style={{ fontFamily: '"Cormorant Garamond", serif' }}
-          >
-            Selected work
+          <h2 className="font-display text-3xl md:text-5xl tracking-tight font-medium">
+            {c.portfolio.title[lang]}
           </h2>
-          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">2024 — 2025</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">2024 — 2026</span>
         </div>
 
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">
-          {projects.map((p, i) => (
-            <a
-              key={p.title}
+          {grid.map((p, i) => (
+            <Link
+              key={p.slug}
               data-card
-              href="#"
-              className={`group block cursor-pointer ${i % 2 === 1 ? "md:mt-24" : ""}`}
+              to={`/work/${p.slug}`}
+              className={`group block ${i % 2 === 1 ? "md:mt-24" : ""}`}
             >
-              <div className="overflow-hidden bg-neutral-200 aspect-[4/5]">
+              <div className="overflow-hidden bg-neutral-200 aspect-[4/3]">
                 <img
-                  src={p.img}
-                  alt={p.title}
+                  src={p.image}
+                  alt={p.alt}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
                 />
               </div>
-              <div className="mt-5 flex items-baseline justify-between">
-                <h3 className="text-xl tracking-tight" style={{ fontFamily: '"Cormorant Garamond", serif' }}>{p.title}</h3>
-                <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">{p.tag}</span>
+              <div className="mt-5 flex items-baseline justify-between gap-4">
+                <h3 className="font-display text-xl tracking-tight font-medium">{p.name}</h3>
+                <span className="text-xs uppercase tracking-[0.2em] text-neutral-500 text-right">
+                  {p.industry} · {p.year}
+                </span>
               </div>
-            </a>
+            </Link>
           ))}
+        </div>
+
+        <div className="mt-20 text-center">
+          <Link
+            to="/work"
+            className="inline-block text-xs uppercase tracking-[0.2em] border border-neutral-950 px-7 py-4 hover:bg-neutral-950 hover:text-neutral-50 transition"
+          >
+            {c.portfolio.cta[lang]}
+          </Link>
         </div>
       </section>
 
@@ -333,20 +357,15 @@ const Studio = () => {
         className="min-h-[100svh] flex items-center px-6"
       >
         <div className="mx-auto max-w-[1400px]">
-          <span className="block text-xs uppercase tracking-[0.2em] text-current/60 mb-10">
-            Philosophy
+          <span className="block text-xs uppercase tracking-[0.2em] mb-10 opacity-60">
+            {isZh ? "我們的理念" : "Philosophy"}
           </span>
-          <p
-            className="text-3xl md:text-6xl lg:text-7xl leading-[1.15] tracking-tight"
-            style={{ fontFamily: '"Cormorant Garamond", serif' }}
-          >
+          <p className="font-display text-3xl md:text-6xl lg:text-7xl leading-[1.15] tracking-tight font-medium">
             {philosophyTokens.map((w, i) => (
               <span
                 key={i}
-                ref={(el) => {
-                  if (el) philosophyWords.current[i] = el;
-                }}
-                className="inline-block mr-[0.25em]"
+                ref={(el) => { if (el) philosophyWords.current[i] = el; }}
+                className={`inline-block ${isZh ? "" : "mr-[0.25em]"}`}
               >
                 {w}
               </span>
@@ -358,26 +377,24 @@ const Studio = () => {
       {/* Horizontal capabilities */}
       <section id="capabilities" ref={horizontal} className="relative bg-neutral-50 overflow-hidden">
         <div className="lg:h-screen lg:flex lg:items-center">
-          {/* desktop horizontal track */}
           <div ref={horizontalTrack} className="hidden lg:flex items-stretch gap-8 pl-[8vw] pr-[20vw]">
             <div className="shrink-0 w-[40vw] flex flex-col justify-center pr-12">
-              <span className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6">Capabilities</span>
-              <h2
-                className="text-5xl xl:text-7xl tracking-tight leading-[1.02]"
-                style={{ fontFamily: '"Cormorant Garamond", serif' }}
-              >
-                Six disciplines, one studio.
+              <span className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6">
+                {c.services.eyebrow[lang]}
+              </span>
+              <h2 className="font-display text-5xl xl:text-7xl tracking-tight leading-[1.02] font-medium">
+                {c.services.title[lang]}
               </h2>
             </div>
-            {capabilities.map((c) => (
+            {capabilities[lang].map((cap) => (
               <article
-                key={c.k}
+                key={cap.k}
                 className="shrink-0 w-[28vw] h-[60vh] bg-white border border-neutral-200 p-10 flex flex-col justify-between"
               >
-                <span className="text-xs uppercase tracking-[0.2em] text-neutral-400">{c.k}</span>
+                <span className="text-xs uppercase tracking-[0.2em] text-neutral-400">{cap.k}</span>
                 <div>
-                  <h3 className="text-3xl mb-4" style={{ fontFamily: '"Cormorant Garamond", serif' }}>{c.t}</h3>
-                  <p className="text-neutral-600 leading-relaxed">{c.d}</p>
+                  <h3 className="font-display text-3xl mb-4 font-medium">{cap.t}</h3>
+                  <p className="text-neutral-600 leading-relaxed">{cap.d}</p>
                 </div>
               </article>
             ))}
@@ -385,16 +402,18 @@ const Studio = () => {
 
           {/* mobile stack */}
           <div className="lg:hidden px-6 py-24">
-            <span className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6 block">Capabilities</span>
-            <h2 className="text-4xl tracking-tight mb-12" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
-              Six disciplines, one studio.
+            <span className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6 block">
+              {c.services.eyebrow[lang]}
+            </span>
+            <h2 className="font-display text-4xl tracking-tight mb-12 font-medium">
+              {c.services.title[lang]}
             </h2>
             <div className="space-y-4">
-              {capabilities.map((c) => (
-                <article key={c.k} className="border border-neutral-200 bg-white p-8">
-                  <span className="text-xs uppercase tracking-[0.2em] text-neutral-400">{c.k}</span>
-                  <h3 className="text-2xl mt-3 mb-2" style={{ fontFamily: '"Cormorant Garamond", serif' }}>{c.t}</h3>
-                  <p className="text-neutral-600">{c.d}</p>
+              {capabilities[lang].map((cap) => (
+                <article key={cap.k} className="border border-neutral-200 bg-white p-8">
+                  <span className="text-xs uppercase tracking-[0.2em] text-neutral-400">{cap.k}</span>
+                  <h3 className="font-display text-2xl mt-3 mb-2 font-medium">{cap.t}</h3>
+                  <p className="text-neutral-600">{cap.d}</p>
                 </article>
               ))}
             </div>
@@ -402,34 +421,77 @@ const Studio = () => {
         </div>
       </section>
 
+      {/* Testimonials — minimal editorial */}
+      <section className="px-6 py-32 mx-auto max-w-[1600px]">
+        <div className="flex items-end justify-between mb-16">
+          <h2 className="font-display text-3xl md:text-5xl tracking-tight font-medium">
+            {c.reviews.title[lang]}
+          </h2>
+          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">{c.reviews.eyebrow[lang]}</span>
+        </div>
+        <div className="grid md:grid-cols-3 gap-10 border-t border-neutral-200 pt-12">
+          {testimonials[lang].map((t, i) => (
+            <figure key={i} className="space-y-6">
+              <blockquote className="font-display text-xl leading-snug">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <figcaption className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                {t.name} · {t.company}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
       {/* Contact */}
       <section id="contact" className="bg-neutral-950 text-neutral-50 px-6 py-32">
         <div className="mx-auto max-w-[1600px]">
-          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">Contact · 2026</span>
-          <h2
-            className="mt-8 text-[clamp(2.5rem,9vw,9rem)] leading-[0.95] tracking-[-0.02em]"
-            style={{ fontFamily: '"Cormorant Garamond", serif' }}
-          >
-            Let's build <span className="italic text-neutral-400">something</span> worth remembering.
+          <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+            {isZh ? "聯絡 · 2026" : "Contact · 2026"}
+          </span>
+          <h2 className="font-display mt-8 text-[clamp(2.5rem,9vw,9rem)] leading-[0.95] tracking-[-0.02em] font-medium">
+            {c.finalCta.title[lang]}
           </h2>
-          <div className="mt-16 grid md:grid-cols-3 gap-10 border-t border-neutral-800 pt-10">
+          <p className="mt-8 text-lg text-neutral-400 max-w-xl">{c.finalCta.body[lang]}</p>
+          <div className="mt-12">
+            <Link
+              to="/contact"
+              className="inline-block bg-neutral-50 text-neutral-950 px-8 py-4 rounded-full text-sm hover:bg-neutral-200 transition"
+            >
+              {c.finalCta.cta[lang]}
+            </Link>
+          </div>
+          <div className="mt-20 grid md:grid-cols-3 gap-10 border-t border-neutral-800 pt-10">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">New business</p>
-              <a href="mailto:hello@studioindex.co" className="text-lg hover:text-neutral-400 transition">hello@studioindex.co</a>
+              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">
+                {isZh ? "電子郵件" : "Email"}
+              </p>
+              <a href="mailto:hello@sonykundesign.com" className="text-lg hover:text-neutral-400 transition">
+                hello@sonykundesign.com
+              </a>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">Studio</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">
+                {isZh ? "電話 / 簡訊" : "Call / Text"}
+              </p>
+              <a href="tel:+17786535353" className="text-lg hover:text-neutral-400 transition">
+                (778) 653-5353
+              </a>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">
+                {isZh ? "工作室" : "Studio"}
+              </p>
               <p className="text-lg">Vancouver, BC</p>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-3">Index</p>
-              <p className="text-lg">Instagram · Are.na · Read.cv</p>
             </div>
           </div>
         </div>
         <footer className="mx-auto max-w-[1600px] mt-24 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs uppercase tracking-[0.2em] text-neutral-500">
-          <span>© 2026 Studio Index</span>
-          <span>All rights reserved</span>
+          <span>Sonykun Design © 2026</span>
+          <div className="flex gap-6">
+            <Link to="/privacy" className="hover:text-neutral-50 transition">{isZh ? "隱私政策" : "Privacy"}</Link>
+            <Link to="/terms" className="hover:text-neutral-50 transition">{isZh ? "服務條款" : "Terms"}</Link>
+          </div>
         </footer>
       </section>
     </div>
