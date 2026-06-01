@@ -13,30 +13,30 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 7%;
 
-    /* Primary: keep brand Navy for buttons / CTA / footer (hybrid). */
-    --primary: 215 47% 18%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 215 47% 24%;
+    /* Editorial: neutral charcoal palette (black/white/charcoal/neutrals) */
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 0 0% 18%;
 
-    --secondary: 213 21% 45%;
-    --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 213 24% 37%;
+    --secondary: 0 0% 35%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-hover: 0 0% 22%;
 
-    --muted: 0 0% 97%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 30 12% 96%;
+    --muted-foreground: 0 0% 42%;
 
     /* Editorial charcoal for dark sections. */
-    --charcoal: 0 0% 7%;
+    --charcoal: 0 0% 8%;
 
-    --accent: 213 21% 45%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 35%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 213 21% 45%;
+    --border: 30 8% 88%;
+    --input: 30 8% 88%;
+    --ring: 0 0% 25%;
 
     --radius: 0px;
 
