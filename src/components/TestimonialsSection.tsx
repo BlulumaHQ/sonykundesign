@@ -1,5 +1,4 @@
 import { Star, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Marquee from "./Marquee";
 import { useLanguage } from "@/i18n/LanguageContext";
 
