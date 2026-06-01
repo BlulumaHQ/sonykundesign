@@ -243,34 +243,59 @@ const Index = () => {
           </section>
         )}
 
-        {/* ─────────── PINNED PHILOSOPHY (3-line scroll-grow) ─────────── */}
-        <section className="js-philosophy bg-foreground text-background min-h-screen flex items-center">
-          <div className="container-wide py-24">
-            <span className="eyebrow !text-background/45">
-              {c.process.eyebrow[lang]}
-            </span>
+        {/* ─────────── PINNED PHILOSOPHY (richer scroll choreography) ─────────── */}
+        <section className="js-philosophy bg-foreground text-background min-h-screen flex items-center relative overflow-hidden">
+          {/* Faint scroll progress bar — animated by GSAP */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-white/10">
+            <div className="js-phil-progress h-full bg-[#5B7189] w-0" />
+          </div>
+
+          <div className="container-wide py-24 relative">
+            <div className="flex items-end justify-between mb-10">
+              <span className="eyebrow !text-background/45 !mb-0">
+                {c.process.eyebrow[lang]}
+              </span>
+              <span className="js-phil-counter text-[11px] uppercase tracking-[0.22em] text-background/45 tabular-nums">
+                01 / 03
+              </span>
+            </div>
+
             <p className="font-display text-[36px] sm:text-[56px] md:text-[80px] lg:text-[112px] leading-[1.05] tracking-[-0.025em]">
-              <span className="js-philosophy-line block">
-                {c.process.steps[0].title[lang]}.
-              </span>
-              <span className="js-philosophy-line block">
-                {c.process.steps[1].title[lang]}.
-              </span>
-              <span className="js-philosophy-line block">
-                {c.process.steps[2].title[lang]}.
-              </span>
+              {c.process.steps.map((step, i) => (
+                <span key={i} className="js-philosophy-line block relative">
+                  <span className="inline-block align-baseline text-[#5B7189]/70 text-[0.35em] tracking-[0.22em] mr-4 md:mr-6 tabular-nums">
+                    0{i + 1}
+                  </span>
+                  {step.title[lang]}.
+                </span>
+              ))}
             </p>
+
             <div className="mt-16 grid md:grid-cols-3 gap-10 text-background/65">
               {c.process.steps.map((step, i) => (
-                <div key={i}>
-                  <span className="text-[11px] uppercase tracking-[0.22em] text-background/45">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-3 text-sm leading-[1.7]">
+                <div key={i} className="js-phil-card border-t border-white/15 pt-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-background/45">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-[#5B7189]">
+                      {isZh ? "步驟" : "Step"}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-lg md:text-xl text-white mb-3 tracking-tight">
+                    {step.title[lang]}
+                  </h3>
+                  <p className="text-sm leading-[1.7]">
                     {step.body[lang]}
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* Mouse scroll cue */}
+            <div className="mt-16 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-background/55">
+              <span className="scroll-cue-mouse text-white/70" aria-hidden />
+              <span>{isZh ? "繼續向下捲動" : "Keep scrolling"}</span>
             </div>
           </div>
         </section>
