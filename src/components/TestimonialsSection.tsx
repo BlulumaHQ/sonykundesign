@@ -38,38 +38,46 @@ const TestimonialsSection = () => {
   return (
     <section className="section-padding bg-muted">
       <div className="container-wide">
-        <div className="text-center mb-12">
-          <span className="eyebrow">{isZh ? "客戶評價" : "Client Feedback"}</span>
-          <h2 className="heading-section">
-            {isZh ? "客戶評價" : "What Our Clients Say"}
-          </h2>
+        <div className="mb-12 md:mb-16 flex items-end justify-between flex-wrap gap-6">
+          <div>
+            <span className="eyebrow">{isZh ? "客戶評價" : "Client Feedback"}</span>
+            <h2 className="heading-section max-w-2xl">
+              {isZh ? "客戶這樣說。" : "What clients say."}
+            </h2>
+          </div>
+          <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+            {isZh ? "已交付 200+ 專案" : "200+ projects delivered"}
+          </span>
         </div>
       </div>
 
       <Marquee speed={60} pauseOnHover>
-        <div className="flex items-stretch gap-6 pr-6">
+        <div className="flex items-stretch gap-5 pr-5">
           {testimonials.map((item, i) => (
-            <div
+            <article
               key={`${item.name}-${i}`}
-              className="w-[320px] sm:w-[360px] md:w-[400px] flex-shrink-0 bg-background rounded-2xl p-7 border border-border flex flex-col"
+              className="w-[320px] sm:w-[360px] md:w-[400px] flex-shrink-0 bg-background border border-border p-7 flex flex-col"
             >
               <Stars />
               <blockquote className="text-foreground leading-relaxed mb-6 flex-1 text-sm">
                 "{item.quote}"
               </blockquote>
-              <div className="mb-4">
+              <div className="mb-4 border-t border-border pt-4">
                 <p className="font-display font-semibold text-foreground">{item.name}</p>
-                <p className="text-sm text-muted-foreground">{item.company}</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mt-1">{item.company}</p>
               </div>
               {item.url && (
-                <a href={item.url} target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" className="rounded-lg gap-2 btn-cta btn-fill w-full">
-                    {isZh ? "查看網站" : "Visit Website"}
-                    <ExternalLink className="w-4 h-4" />
-                  </Button>
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-between gap-2 border border-foreground px-4 py-3 text-[11px] uppercase tracking-[0.22em] hover:bg-foreground hover:text-background transition-colors"
+                >
+                  {isZh ? "查看網站" : "Visit Website"}
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
-            </div>
+            </article>
           ))}
         </div>
       </Marquee>
