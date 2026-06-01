@@ -120,7 +120,8 @@ const Footer = () => {
               <img
                 src={logoWhite}
                 alt="Sonykun Design"
-                className="w-full h-auto select-none pointer-events-none"
+                className="w-full h-auto select-none pointer-events-none opacity-70"
+                style={{ filter: "brightness(0.92) contrast(0.95)" }}
                 draggable={false}
               />
             </Link>
