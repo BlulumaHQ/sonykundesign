@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import AnimatedRoutes from "@/components/AnimatedRoutes";
 import MobileBottomCTA from "@/components/MobileBottomCTA";
+import GlobalScrollAnimations from "@/components/GlobalScrollAnimations";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <GlobalScrollAnimations />
           <AnimatedRoutes />
           <MobileBottomCTA />
         </BrowserRouter>
@@ -25,3 +27,4 @@ const App = () => (
 );
 
 export default App;
+
