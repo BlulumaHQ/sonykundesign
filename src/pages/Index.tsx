@@ -251,12 +251,13 @@ const Index = () => {
 
         {/* ─────────── PINNED PHILOSOPHY (richer scroll choreography) ─────────── */}
         <section className="js-philosophy bg-foreground text-background min-h-screen flex items-center relative overflow-hidden">
+          <LinePattern variant="dark" />
           {/* Faint scroll progress bar — animated by GSAP */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-white/10">
+          <div className="absolute top-0 left-0 right-0 h-px bg-white/10 z-10">
             <div className="js-phil-progress h-full bg-[#5B7189] w-0" />
           </div>
 
-          <div className="container-wide py-24 relative">
+          <div className="container-wide py-24 relative z-10">
             <div className="flex items-end justify-between mb-10">
               <span className="eyebrow !text-background/45 !mb-0">
                 {c.process.eyebrow[lang]}
