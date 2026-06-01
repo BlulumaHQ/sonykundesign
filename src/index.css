@@ -82,13 +82,8 @@
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image:
-      linear-gradient(hsl(0 0% 100% / 0.78), hsl(0 0% 100% / 0.78)),
-      url("/textures/section-bg.jpg");
-    background-attachment: fixed, fixed;
-    background-size: cover, cover;
-    background-position: center, center;
-    background-repeat: no-repeat, no-repeat;
+    /* Editorial: clean off-white, no texture overlay */
+    background-color: #fafaf8;
   }
 
   p {
@@ -98,7 +93,8 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     color: hsl(var(--foreground));
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    font-weight: 500;
   }
 
   /* ===== Traditional Chinese typography refinement (Noto Sans TC) ===== */
@@ -146,52 +142,45 @@
 
 @layer components {
   .container-wide {
-    @apply mx-auto w-full max-w-[1400px] px-6 sm:px-8 md:px-12 lg:px-20;
+    @apply mx-auto w-full max-w-[1600px] px-6 sm:px-8 md:px-12 lg:px-16;
   }
 
-  /* Portfolio layout uses a standard flex sidebar + grid (see Work.tsx). */
-
-  /* Editorial: generous whitespace between sections. */
+  /* Editorial: very generous whitespace between sections. */
   .section-padding {
-    @apply py-[60px] md:py-[80px] lg:py-[120px];
+    @apply py-20 md:py-28 lg:py-40;
   }
 
   .heading-hero {
     font-family: var(--font-display);
-    @apply text-[34px] sm:text-[42px] md:text-[56px] lg:text-[72px] font-bold leading-[1.05];
+    @apply text-[44px] sm:text-[64px] md:text-[96px] lg:text-[140px] leading-[0.95];
+    font-weight: 500;
     color: hsl(var(--foreground));
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
     white-space: pre-line;
   }
 
   .heading-section {
     font-family: var(--font-display);
-    @apply text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-bold leading-[1.1];
+    @apply text-[32px] sm:text-[44px] md:text-[60px] lg:text-[72px] leading-[1.02];
+    font-weight: 500;
     color: hsl(var(--foreground));
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     white-space: pre-line;
   }
 
   .heading-subsection {
     font-family: var(--font-display);
-    @apply text-xl sm:text-[22px] font-semibold leading-[1.2];
+    @apply text-xl sm:text-2xl leading-[1.2];
+    font-weight: 500;
     color: hsl(var(--foreground));
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
 
-  /* Small caps section label / eyebrow — editorial style w/ blue dot. */
+  /* Editorial eyebrow — wide-tracked small caps, no dot. */
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase mb-4;
-    letter-spacing: 0.22em;
-    color: hsl(var(--secondary));
-  }
-  .eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 9999px;
-    background-color: hsl(var(--secondary));
+    @apply inline-block text-[10px] font-medium uppercase mb-6;
+    letter-spacing: 0.28em;
+    color: hsl(var(--muted-foreground));
   }
 
   /* Oversized pale background word for editorial sections */

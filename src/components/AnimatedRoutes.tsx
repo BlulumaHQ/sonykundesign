@@ -14,7 +14,6 @@ import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
 import ThankYou from "@/pages/ThankYou";
-import Studio from "@/pages/Studio";
 
 const wrap = (el: JSX.Element) => <PageTransition>{el}</PageTransition>;
 
@@ -23,8 +22,7 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={wrap(<Studio />)} />
-        <Route path="/legacy" element={wrap(<Index />)} />
+        <Route path="/" element={wrap(<Index />)} />
         <Route path="/work" element={wrap(<Work />)} />
         <Route path="/work/:slug" element={wrap(<ProjectDetail />)} />
         <Route path="/portfolio" element={wrap(<Work />)} />
@@ -38,7 +36,6 @@ const AnimatedRoutes = () => {
         <Route path="/privacy" element={wrap(<Privacy />)} />
         <Route path="/terms" element={wrap(<Terms />)} />
         <Route path="/thank-you" element={wrap(<ThankYou />)} />
-        <Route path="/studio" element={wrap(<Studio />)} />
         <Route path="*" element={wrap(<NotFound />)} />
       </Routes>
     </AnimatePresence>
