@@ -61,26 +61,32 @@ const Index = () => {
         );
       });
 
-      // Pinned philosophy chapter — large text grows in
+      // Pinned philosophy chapter — lines reveal + progress bar + counter
       const phil = document.querySelector<HTMLElement>(".js-philosophy");
       if (phil) {
         const lines = phil.querySelectorAll<HTMLElement>(".js-philosophy-line");
-        gsap.fromTo(
-          lines,
-          { opacity: 0.15 },
-          {
-            opacity: 1,
-            stagger: 0.5,
-            ease: "none",
-            scrollTrigger: {
-              trigger: phil,
-              start: "top top",
-              end: "+=120%",
-              pin: true,
-              scrub: 0.5,
+        const cards = phil.querySelectorAll<HTMLElement>(".js-phil-card");
+        const progress = phil.querySelector<HTMLElement>(".js-phil-progress");
+        const counter = phil.querySelector<HTMLElement>(".js-phil-counter");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: phil,
+            start: "top top",
+            end: "+=160%",
+            pin: true,
+            scrub: 0.5,
+            onUpdate: (self) => {
+              if (progress) progress.style.width = `${self.progress * 100}%`;
+              if (counter) {
+                const step = Math.min(3, Math.floor(self.progress * 3) + 1);
+                counter.textContent = `0${step} / 03`;
+              }
             },
-          }
-        );
+          },
+        });
+        tl.fromTo(lines, { opacity: 0.12, y: 30 }, { opacity: 1, y: 0, stagger: 0.6, ease: "power2.out" })
+          .fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.15, ease: "power2.out" }, "-=0.4");
       }
 
       // Horizontal capability ribbon (desktop only)
