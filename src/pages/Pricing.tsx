@@ -1,52 +1,79 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContactButton from "@/components/FloatingContactButton";
 import ScrollToTop from "@/components/ScrollToTop";
 import FaqAccordion from "@/components/FaqAccordion";
-import { Button } from "@/components/ui/button";
-import { Check, ArrowRight } from "lucide-react";
+import SplitTextReveal from "@/components/SplitTextReveal";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { pricingContent, pageMeta } from "@/i18n/pageContent";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-};
-
-interface CardShellProps {
-  highlighted?: boolean;
+interface RowProps {
+  index: number;
+  title: string;
+  price: string;
+  note?: string;
+  description?: string;
+  features?: readonly string[];
   badge?: string;
-  children: React.ReactNode;
-  delay?: number;
+  save?: string;
 }
 
-const CardShell = ({ highlighted, badge, children, delay = 0 }: CardShellProps) => (
-  <motion.div
-    initial={{ opacity: 0, y: 24 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-60px" }}
-    transition={{ duration: 0.5, delay }}
-    whileHover={{ y: -4 }}
-    className={`relative rounded-2xl p-7 border flex flex-col h-full ${
-      highlighted ? "border-primary/40 bg-primary/[0.03] shadow-md" : "border-border bg-background"
-    }`}
-  >
-    {badge && (
-      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
-        {badge}
-      </span>
-    )}
-    {children}
-  </motion.div>
+const PriceRow = ({
+  index,
+  title,
+  price,
+  note,
+  description,
+  features,
+  badge,
+  save,
+}: RowProps) => (
+  <div className="py-10 md:py-14 grid grid-cols-12 gap-6 md:gap-10 items-start group hover:bg-muted/30 transition-colors -mx-6 px-6 md:-mx-12 md:px-12">
+    <div className="col-span-12 md:col-span-1 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+      {String(index).padStart(2, "0")}
+    </div>
+    <div className="col-span-12 md:col-span-4">
+      <h3 className="font-display text-2xl md:text-3xl leading-tight tracking-tight">
+        {title}
+      </h3>
+      {badge && (
+        <span className="inline-block mt-3 text-[10px] uppercase tracking-[0.22em] border border-foreground px-2 py-1">
+          {badge}
+        </span>
+      )}
+      {description && (
+        <p className="text-sm text-muted-foreground leading-[1.7] mt-4 max-w-md">
+          {description}
+        </p>
+      )}
+    </div>
+    <div className="col-span-12 md:col-span-5 space-y-2">
+      {features?.map((f, j) => (
+        <p key={j} className="text-sm text-muted-foreground leading-[1.7]">
+          — {f}
+        </p>
+      ))}
+    </div>
+    <div className="col-span-12 md:col-span-2 md:text-right">
+      <p className="font-display text-3xl md:text-4xl tracking-tight">{price}</p>
+      {save && (
+        <p className="text-[11px] uppercase tracking-[0.18em] text-secondary mt-1">
+          {save}
+        </p>
+      )}
+      {note && (
+        <p className="text-[11px] text-muted-foreground mt-1">{note}</p>
+      )}
+    </div>
+  </div>
 );
 
 const Pricing = () => {
   const { lang } = useLanguage();
+  const isZh = lang === "zh";
   const c = pricingContent;
   usePageMeta({
     title: pageMeta.pricing.title,
@@ -58,38 +85,41 @@ const Pricing = () => {
     <>
       <Header />
       <main>
-        {/* HEADER */}
-        <section className="bg-background pt-36 pb-14 md:pt-44 md:pb-20">
-          <div className="container-wide text-center max-w-3xl">
-            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="eyebrow">
-              {c.header.eyebrow[lang]}
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="heading-hero mb-6"
-            >
-              {c.header.title[lang]}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.15 }}
-              className="text-subtitle"
+        {/* HERO */}
+        <section className="pt-40 md:pt-52 pb-16 md:pb-28">
+          <div className="container-wide">
+            <div className="flex items-end justify-between mb-10">
+              <span className="eyebrow !mb-0">{c.header.eyebrow[lang]}</span>
+              <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                {isZh ? "加幣 · 含稅另計" : "CAD · taxes apart"}
+              </span>
+            </div>
+            <SplitTextReveal
+              as="h1"
+              text={c.header.title[lang]}
+              className="heading-hero"
+            />
+            <p
+              data-reveal
+              className="text-subtitle max-w-2xl mt-10 text-foreground/70"
             >
               {c.header.subtext[lang]}
-            </motion.p>
+            </p>
           </div>
         </section>
 
-        {/* WEBSITE DESIGN */}
-        <section className="pb-16 md:pb-24">
+        {/* WEBSITES */}
+        <section className="py-20 md:py-32 border-t border-border">
           <div className="container-wide">
-            <motion.h2 {...fadeUp} className="heading-section text-center mb-12">
-              {c.website.title[lang]}
-            </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+            <div className="grid grid-cols-12 gap-6 md:gap-12 mb-12">
+              <div className="col-span-12 md:col-span-3">
+                <span className="eyebrow">{isZh ? "01" : "01"}</span>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="heading-section">{c.website.title[lang]}</h2>
+              </div>
+            </div>
+            <div className="divide-y divide-border border-y border-border">
               {c.website.cards.map((rawCard, i) => {
                 const card = rawCard as typeof rawCard & {
                   badge?: { en: string; zh: string };
@@ -97,23 +127,16 @@ const Pricing = () => {
                   description?: { en: string; zh: string };
                 };
                 return (
-                  <CardShell key={i} delay={i * 0.08} highlighted={!!card.badge} badge={card.badge?.[lang]}>
-                    <h3 className="font-display text-lg font-bold text-foreground mb-2">{card.title[lang]}</h3>
-                    <p className="font-display text-4xl font-bold text-foreground mb-1">{card.price}</p>
-                    {card.note && <p className="text-xs text-muted-foreground mb-3 leading-snug">{card.note[lang]}</p>}
-                    {card.description && (
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-4 mt-1">{card.description[lang]}</p>
-                    )}
-                    {!card.note && !card.description && <div className="mb-4" />}
-                    <ul className="space-y-2.5 flex-1">
-                      {card.features[lang].map((f, j) => (
-                        <li key={j} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                          <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardShell>
+                  <PriceRow
+                    key={i}
+                    index={i + 1}
+                    title={card.title[lang]}
+                    price={card.price}
+                    note={card.note?.[lang]}
+                    description={card.description?.[lang]}
+                    features={card.features[lang]}
+                    badge={card.badge?.[lang]}
+                  />
                 );
               })}
             </div>
@@ -121,142 +144,170 @@ const Pricing = () => {
         </section>
 
         {/* BUNDLES */}
-        <section className="section-padding bg-muted">
+        <section className="py-20 md:py-32 bg-muted border-t border-border">
           <div className="container-wide">
-            <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="heading-section mb-4">{c.bundles.title[lang]}</h2>
-              <p className="text-body">{c.bundles.body[lang]}</p>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+            <div className="grid grid-cols-12 gap-6 md:gap-12 mb-12">
+              <div className="col-span-12 md:col-span-3">
+                <span className="eyebrow">{isZh ? "02" : "02"}</span>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="heading-section mb-4">
+                  {c.bundles.title[lang]}
+                </h2>
+                <p className="text-body max-w-2xl">{c.bundles.body[lang]}</p>
+              </div>
+            </div>
+            <div className="divide-y divide-border border-y border-border">
               {c.bundles.cards.map((rawCard, i) => {
-                const card = rawCard as typeof rawCard & { badge?: { en: string; zh: string } };
+                const card = rawCard as typeof rawCard & {
+                  badge?: { en: string; zh: string };
+                };
                 return (
-                  <CardShell key={i} delay={i * 0.1} highlighted={!!card.badge} badge={card.badge?.[lang]}>
-                  <h3 className="font-display text-xl font-bold text-foreground mb-2">{card.title[lang]}</h3>
-                  <p className="font-display text-3xl font-bold text-foreground mb-1">{card.price}</p>
-                  <p className="text-xs text-secondary font-semibold uppercase tracking-wider mb-5">{card.save[lang]}</p>
-                  <ul className="space-y-2.5 flex-1">
-                    {card.items[lang].map((it, j) => (
-                      <li key={j} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                        <span className="block w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        {it}
-                      </li>
-                    ))}
-                  </ul>
-                </CardShell>
+                  <PriceRow
+                    key={i}
+                    index={i + 1}
+                    title={card.title[lang]}
+                    price={card.price}
+                    features={card.items[lang]}
+                    badge={card.badge?.[lang]}
+                    save={card.save[lang]}
+                  />
                 );
               })}
             </div>
           </div>
         </section>
 
-        {/* LOGO & BRANDING */}
-        <section className="section-padding">
+        {/* BRANDING — narrative + addons row */}
+        <section className="py-24 md:py-40 border-t border-border">
           <div className="container-wide">
-            <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto mb-10">
-              <h2 className="heading-section mb-4">{c.branding.title[lang]}</h2>
-              <p className="text-body">{c.branding.body[lang]}</p>
-            </motion.div>
-            <motion.p
-              {...fadeUp}
-              className="text-center text-xs uppercase tracking-[0.18em] text-muted-foreground mb-6"
-            >
-              {c.branding.addonsLabel[lang]}
-            </motion.p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+            <div className="grid grid-cols-12 gap-6 md:gap-12 mb-12">
+              <div className="col-span-12 md:col-span-3">
+                <span className="eyebrow">{isZh ? "03" : "03"}</span>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="heading-section mb-6">
+                  {c.branding.title[lang]}
+                </h2>
+                <p className="text-body max-w-2xl mb-4">
+                  {c.branding.body[lang]}
+                </p>
+                <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mt-10">
+                  {c.branding.addonsLabel[lang]}
+                </p>
+              </div>
+            </div>
+            <div className="divide-y divide-border border-y border-border">
               {c.branding.cards.map((card, i) => (
-                <CardShell key={i} delay={i * 0.08}>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">{card.title[lang]}</h3>
-                  <p className="font-display text-3xl font-bold text-foreground mb-3">{card.price}</p>
-                  <p className="text-sm text-muted-foreground leading-[1.7] flex-1">{card.body[lang]}</p>
-                </CardShell>
+                <PriceRow
+                  key={i}
+                  index={i + 1}
+                  title={card.title[lang]}
+                  price={card.price}
+                  description={card.body[lang]}
+                />
               ))}
             </div>
-            <motion.p
-              {...fadeUp}
-              className="text-center text-base md:text-lg text-muted-foreground italic max-w-2xl mx-auto mt-14 leading-relaxed"
-            >
+            <p className="text-base md:text-xl text-foreground/55 italic max-w-3xl mt-16 leading-[1.55]">
               "{c.branding.closingLine[lang]}"
-            </motion.p>
+            </p>
           </div>
         </section>
 
         {/* HOSTING */}
-        <section className="section-padding bg-muted">
+        <section className="py-20 md:py-32 bg-muted border-t border-border">
           <div className="container-wide">
-            <motion.h2 {...fadeUp} className="heading-section text-center mb-12">
-              {c.hosting.title[lang]}
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
-              <CardShell>
-                <h3 className="font-display text-lg font-bold text-foreground mb-2">{c.hosting.free.title[lang]}</h3>
-                <p className="font-display text-4xl font-bold text-foreground mb-4">{c.hosting.free.price}</p>
-                <p className="text-sm text-muted-foreground leading-[1.7] flex-1">{c.hosting.free.body[lang]}</p>
-              </CardShell>
-              <CardShell highlighted delay={0.1}>
-                <h3 className="font-display text-lg font-bold text-foreground mb-2">{c.hosting.managed.title[lang]}</h3>
-                <p className="font-display text-2xl font-bold text-foreground mb-4">{c.hosting.managed.price[lang]}</p>
-                <ul className="space-y-2.5 mb-4 flex-1">
-                  {c.hosting.managed.features[lang].map((f, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs text-secondary font-medium uppercase tracking-wider">{c.hosting.managed.note[lang]}</p>
-              </CardShell>
+            <div className="grid grid-cols-12 gap-6 md:gap-12 mb-12">
+              <div className="col-span-12 md:col-span-3">
+                <span className="eyebrow">{isZh ? "04" : "04"}</span>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="heading-section">{c.hosting.title[lang]}</h2>
+              </div>
+            </div>
+            <div className="divide-y divide-border border-y border-border">
+              <PriceRow
+                index={1}
+                title={c.hosting.free.title[lang]}
+                price={c.hosting.free.price}
+                description={c.hosting.free.body[lang]}
+              />
+              <PriceRow
+                index={2}
+                title={c.hosting.managed.title[lang]}
+                price={c.hosting.managed.price[lang]}
+                features={c.hosting.managed.features[lang]}
+                save={c.hosting.managed.note[lang]}
+              />
             </div>
           </div>
         </section>
 
         {/* ADD-ONS */}
-        <section className="section-padding">
+        <section className="py-20 md:py-32 border-t border-border">
           <div className="container-wide">
-            <motion.h2 {...fadeUp} className="heading-section text-center mb-12">
-              {c.addons.title[lang]}
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+            <div className="grid grid-cols-12 gap-6 md:gap-12 mb-12">
+              <div className="col-span-12 md:col-span-3">
+                <span className="eyebrow">{isZh ? "05" : "05"}</span>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="heading-section">{c.addons.title[lang]}</h2>
+              </div>
+            </div>
+            <div className="divide-y divide-border border-y border-border">
               {c.addons.cards.map((card, i) => (
-                <CardShell key={i} delay={i * 0.1}>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2">{card.title[lang]}</h3>
-                  <p className="font-display text-3xl font-bold text-foreground mb-4">
-                    {typeof card.price === "string" ? card.price : card.price[lang]}
-                  </p>
-                  <p className="text-sm text-muted-foreground leading-[1.7] flex-1">{card.body[lang]}</p>
-                </CardShell>
+                <PriceRow
+                  key={i}
+                  index={i + 1}
+                  title={card.title[lang]}
+                  price={
+                    typeof card.price === "string"
+                      ? card.price
+                      : card.price[lang]
+                  }
+                  description={card.body[lang]}
+                />
               ))}
             </div>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="section-padding bg-muted">
-          <div className="container-wide">
-            <motion.div {...fadeUp} className="text-center mb-12">
+        <section className="py-24 md:py-32 bg-muted border-t border-border">
+          <div className="container-wide grid grid-cols-12 gap-8 md:gap-16">
+            <div className="col-span-12 md:col-span-4 md:sticky md:top-32 md:self-start">
+              <span className="eyebrow">{isZh ? "常見問題" : "FAQ"}</span>
               <h2 className="heading-section">{c.faq.title[lang]}</h2>
-            </motion.div>
-            <FaqAccordion items={c.faq.items.map((item) => ({ q: item.q[lang], a: item.a[lang] }))} />
+            </div>
+            <div className="col-span-12 md:col-span-8">
+              <FaqAccordion
+                items={c.faq.items.map((item) => ({
+                  q: item.q[lang],
+                  a: item.a[lang],
+                }))}
+              />
+            </div>
           </div>
         </section>
 
         {/* BOTTOM CTA */}
-        <section className="charcoal-section section-padding">
-          <div className="container-wide text-center">
-            <motion.h2 {...fadeUp} className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight mb-5">
+        <section className="bg-foreground text-background py-32 md:py-48">
+          <div className="container-wide">
+            <h2 className="font-display text-[40px] sm:text-[64px] md:text-[96px] lg:text-[120px] leading-[0.95] tracking-[-0.035em] mb-12">
               {c.bottomCta.title[lang]}
-            </motion.h2>
-            <motion.p {...fadeUp} className="text-lg text-white/65 mb-9 max-w-xl mx-auto">
-              {c.bottomCta.body[lang]}
-            </motion.p>
-            <motion.div {...fadeUp}>
-              <Link to="/contact">
-                <Button size="lg" className="h-13 px-10 text-base font-semibold bg-white text-foreground hover:bg-white/90 rounded-full">
-                  {c.bottomCta.cta[lang]}
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+            </h2>
+            <div className="grid md:grid-cols-[1fr_auto] gap-10 items-end max-w-5xl">
+              <p className="text-lg md:text-xl text-background/65 max-w-xl leading-[1.6]">
+                {c.bottomCta.body[lang]}
+              </p>
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-4 bg-background text-foreground px-8 py-5 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-background/90"
+              >
+                {c.bottomCta.cta[lang]}
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>
