@@ -280,30 +280,35 @@ const Index = () => {
             </h2>
           </div>
           <div className="js-ribbon-track flex gap-6 lg:gap-10 pl-6 sm:pl-8 md:pl-12 lg:pl-16">
-            {c.services.cards.map((card, i) => (
-              <Link
-                key={i}
-                to={card.href}
-                className="group shrink-0 w-[82vw] sm:w-[60vw] md:w-[48vw] lg:w-[36vw] xl:w-[30vw] border-t border-foreground pt-6 hover:bg-muted/40 transition-colors px-1"
-              >
-                <div className="flex items-baseline justify-between mb-8">
-                  <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                    {card.badge ? ` · ${card.badge[lang]}` : ""}
+            {c.services.cards.map((rawCard, i) => {
+              const card = rawCard as typeof rawCard & {
+                badge?: { en: string; zh: string };
+              };
+              return (
+                <Link
+                  key={i}
+                  to={card.href}
+                  className="group shrink-0 w-[82vw] sm:w-[60vw] md:w-[48vw] lg:w-[36vw] xl:w-[30vw] border-t border-foreground pt-6 hover:bg-muted/40 transition-colors px-1"
+                >
+                  <div className="flex items-baseline justify-between mb-8">
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                      {card.badge ? ` · ${card.badge[lang]}` : ""}
+                    </span>
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                  <h3 className="font-display text-3xl md:text-4xl leading-[1.05] tracking-tight mb-8 min-h-[2.2em]">
+                    {card.title[lang]}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-[1.7] mb-10 max-w-md">
+                    {card.body[lang]}
+                  </p>
+                  <span className="text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1">
+                    {card.price[lang]}
                   </span>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </div>
-                <h3 className="font-display text-3xl md:text-4xl leading-[1.05] tracking-tight mb-8 min-h-[2.2em]">
-                  {card.title[lang]}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-[1.7] mb-10 max-w-md">
-                  {card.body[lang]}
-                </p>
-                <span className="text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1">
-                  {card.price[lang]}
-                </span>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </section>
 
