@@ -11,6 +11,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import ImageMarquee from "@/components/ImageMarquee";
 import SplitTextReveal from "@/components/SplitTextReveal";
+import LinePattern from "@/components/LinePattern";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeContent, pageMeta, localBusinessJsonLd } from "@/i18n/pageContent";
