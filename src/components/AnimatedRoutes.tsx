@@ -33,6 +33,7 @@ const AnimatedRoutes = () => {
         <Route path="/services" element={wrap(<Services />)} />
         <Route path="/contact" element={wrap(<Contact />)} />
         <Route path="/pricing" element={wrap(<Pricing />)} />
+        <Route path="/about" element={wrap(<About />)} />
         <Route path="/craigslist" element={wrap(<Craigslist />)} />
         <Route path="/privacy" element={wrap(<Privacy />)} />
         <Route path="/terms" element={wrap(<Terms />)} />
