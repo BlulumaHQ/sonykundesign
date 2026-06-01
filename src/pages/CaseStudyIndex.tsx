@@ -32,8 +32,9 @@ const CaseStudyIndex = () => {
       <Header />
       <main className="pt-28">
         {/* Hero */}
-        <section className="py-16 md:py-24">
-          <div className="container-wide max-w-4xl">
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          <LinePattern variant="light" />
+          <div className="container-wide max-w-4xl relative z-10">
             <ScrollReveal>
               <span className="eyebrow">{isZh ? "案例研究" : "Case Studies"}</span>
               <h1 className="heading-hero mb-6">
