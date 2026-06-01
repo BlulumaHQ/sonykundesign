@@ -5,6 +5,7 @@ import Index from "@/pages/Index";
 import Work from "@/pages/Work";
 import ProjectDetail from "@/pages/ProjectDetail";
 import CaseStudyIndex from "@/pages/CaseStudyIndex";
+import About from "@/pages/About";
 import CaseStudy from "@/pages/CaseStudy";
 import Services from "@/pages/Services";
 import Contact from "@/pages/Contact";
@@ -32,6 +33,7 @@ const AnimatedRoutes = () => {
         <Route path="/services" element={wrap(<Services />)} />
         <Route path="/contact" element={wrap(<Contact />)} />
         <Route path="/pricing" element={wrap(<Pricing />)} />
+        <Route path="/about" element={wrap(<About />)} />
         <Route path="/craigslist" element={wrap(<Craigslist />)} />
         <Route path="/privacy" element={wrap(<Privacy />)} />
         <Route path="/terms" element={wrap(<Terms />)} />

@@ -20,6 +20,7 @@ const Header = () => {
     { label: t(translations.nav.work, lang), href: "/portfolio" },
     { label: t(translations.nav.services, lang), href: "/services" },
     { label: t(translations.nav.pricing, lang), href: "/pricing" },
+    { label: t(translations.nav.about, lang), href: "/about" },
     { label: t(translations.nav.contact, lang), href: "/contact" },
   ];
 
