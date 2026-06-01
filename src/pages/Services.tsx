@@ -136,6 +136,7 @@ const Services = () => {
               {c.hero.subtext[lang]}
             </p>
           </div>
+          </div>
         </section>
 
         <ServiceChapter index={1} block={c.website} lang={lang} />

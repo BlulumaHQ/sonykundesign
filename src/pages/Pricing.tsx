@@ -109,6 +109,7 @@ const Pricing = () => {
               {c.header.subtext[lang]}
             </p>
           </div>
+          </div>
         </section>
 
         {/* WEBSITES */}
