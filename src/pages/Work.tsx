@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PortfolioCard from "@/components/PortfolioCard";
 import SplitTextReveal from "@/components/SplitTextReveal";
+import LinePattern from "@/components/LinePattern";
 import {
   projects,
   PORTFOLIO_CATEGORIES,

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollReveal from "@/components/ScrollReveal";
+import LinePattern from "@/components/LinePattern";
 import { Button } from "@/components/ui/button";
 import { caseStudies } from "@/data/caseStudies";
 import { projects } from "@/data/projects";

@@ -4,6 +4,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import ContactSection from "@/components/ContactSection";
 import SplitTextReveal from "@/components/SplitTextReveal";
+import LinePattern from "@/components/LinePattern";
 import { ArrowUpRight, Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
