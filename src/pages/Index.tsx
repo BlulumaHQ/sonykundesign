@@ -435,26 +435,43 @@ const Index = () => {
           </div>
         </section>
 
-        {/* ─────────── FINAL OVERSIZED CTA ─────────── */}
-        <section className="bg-foreground text-background py-32 md:py-48">
+        {/* ─────────── FINAL OVERSIZED CTA (high contrast, editorial) ─────────── */}
+        <section className="relative bg-muted border-t border-border py-24 md:py-36 overflow-hidden">
           <div className="container-wide">
-            <span className="eyebrow !text-background/45">
-              {isZh ? "下一步" : "Next step"}
-            </span>
-            <h2 className="font-display text-[40px] sm:text-[64px] md:text-[96px] lg:text-[140px] leading-[0.95] tracking-[-0.035em] mb-12">
+            <div className="flex items-center justify-between mb-10 md:mb-14">
+              <span className="eyebrow !mb-0">
+                <span className="inline-block w-8 h-px bg-[#5B7189] align-middle mr-3" />
+                {isZh ? "下一步" : "Next step"}
+              </span>
+              <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-foreground/55">
+                {isZh ? "01 — 索取免費預覽" : "01 — Request a free preview"}
+              </span>
+            </div>
+
+            <h2 className="font-display font-medium text-foreground text-[40px] sm:text-[64px] md:text-[96px] lg:text-[128px] leading-[0.95] tracking-[-0.035em] mb-14">
               {c.finalCta.title[lang]}
             </h2>
-            <div className="grid md:grid-cols-[1fr_auto] gap-10 items-end max-w-5xl">
-              <p className="text-lg md:text-xl text-background/65 max-w-xl leading-[1.6]">
+
+            <div className="grid grid-cols-12 gap-8 md:gap-12 items-end pt-10 border-t border-foreground/15">
+              <p className="col-span-12 md:col-span-6 text-base md:text-lg text-foreground/75 leading-[1.7] max-w-xl">
                 {c.finalCta.body[lang]}
               </p>
-              <Link
-                to="/contact"
-                className="group inline-flex items-center gap-4 bg-background text-foreground px-8 py-5 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-background/90"
-              >
-                {c.finalCta.cta[lang]}
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
+              <div className="col-span-12 md:col-span-6 flex flex-col sm:flex-row md:justify-end gap-3">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-7 py-5 text-[12px] uppercase tracking-[0.22em] hover:bg-[#5B7189] transition-colors"
+                >
+                  {c.finalCta.cta[lang]}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+                <a
+                  href="tel:6042621168"
+                  className="group inline-flex items-center justify-between gap-6 border border-foreground/30 px-7 py-5 text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
+                >
+                  {isZh ? "或致電 (604) 262-1168" : "Or call (604) 262-1168"}
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              </div>
             </div>
           </div>
         </section>
