@@ -1,94 +1,81 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import logo from "@/assets/logo.svg";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
 
 const Footer = () => {
   const { lang } = useLanguage();
-
-  const footerLinks = [
-    { label: t(translations.nav.home, lang), href: "/" },
-    { label: t(translations.nav.workCaseStudy, lang), href: "/case-study" },
-    { label: t(translations.nav.workPortfolio, lang), href: "/portfolio" },
-    { label: t(translations.nav.services, lang), href: "/services" },
-    { label: t(translations.nav.pricing, lang), href: "/pricing" },
-    { label: t(translations.nav.contact, lang), href: "/contact" },
-  ];
+  const isZh = lang === "zh";
 
   return (
-    <motion.footer
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="bg-background text-foreground border-t border-border"
-    >
-      <div className="container-wide py-16 md:py-20">
-        <div className="flex flex-col md:flex-row justify-between gap-10">
-          <div className="max-w-sm">
-            <Link to="/" className="inline-block">
-              <img src={logo} alt="Sonykun Design" className="h-16 md:h-20 w-auto mb-4" />
+    <footer className="bg-charcoal text-white">
+      <div className="container-wide pt-24 pb-12">
+        {/* Big editorial closer */}
+        <div className="border-b border-white/15 pb-16 mb-16">
+          <p className="eyebrow !text-white/55 !mb-6">{isZh ? "聯絡 · 2026" : "Contact · 2026"}</p>
+          <h2 className="font-display text-[clamp(2.5rem,8vw,7rem)] leading-[0.95] tracking-[-0.02em] font-medium mb-10">
+            {isZh ? "讓我們開始合作。" : "Let's start a project."}
+          </h2>
+          <Link
+            to="/contact"
+            className="inline-block bg-white text-foreground px-7 py-4 rounded-full text-[11px] uppercase tracking-[0.22em] hover:bg-white/80 transition-colors"
+          >
+            {isZh ? "索取免費預覽" : "Get a free preview"}
+          </Link>
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-10">
+          <div className="md:col-span-1">
+            <Link to="/" className="inline-block mb-5">
+              <img src={logo} alt="Sonykun Design" className="h-12 w-auto invert brightness-0" style={{ filter: "invert(1) brightness(2)" }} />
             </Link>
-            <p className="text-sm text-muted-foreground leading-[1.7] mb-4">
-              {lang === "zh"
-                ? "自 2005 年起，為小型企業提供平價且專業的網站設計服務。"
+            <p className="text-sm text-white/55 leading-relaxed">
+              {isZh
+                ? "自 2005 年起，為小型企業提供平價且專業的網站設計。"
                 : "Affordable, professional website design for small businesses since 2005."}
             </p>
-            <p className="text-sm text-muted-foreground">Vancouver, BC, Canada</p>
-            <p className="text-sm text-muted-foreground mt-1">
-              {lang === "zh" ? "電話：" : "Phone: "}
-              <a href="tel:6042621168" className="text-foreground hover:text-primary transition-colors">
-                (604) 262-1168
-              </a>
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Email:{" "}
-              <a
-                href="mailto:support@sonykundesign.com"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                support@sonykundesign.com
-              </a>
-            </p>
           </div>
 
-          <nav className="flex flex-wrap gap-x-8 gap-y-3 h-fit">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
-                style={{ letterSpacing: "0.04em" }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-4">
+              {isZh ? "瀏覽" : "Navigate"}
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              <li><Link to="/portfolio" className="text-white/80 hover:text-white transition">{t(translations.nav.work, lang)}</Link></li>
+              <li><Link to="/services" className="text-white/80 hover:text-white transition">{t(translations.nav.services, lang)}</Link></li>
+              <li><Link to="/pricing" className="text-white/80 hover:text-white transition">{t(translations.nav.pricing, lang)}</Link></li>
+              <li><Link to="/contact" className="text-white/80 hover:text-white transition">{t(translations.nav.contact, lang)}</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-4">
+              {isZh ? "聯絡" : "Contact"}
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              <li><a href="mailto:support@sonykundesign.com" className="text-white/80 hover:text-white transition">support@sonykundesign.com</a></li>
+              <li><a href="tel:6042621168" className="text-white/80 hover:text-white transition">(604) 262-1168</a></li>
+              <li className="text-white/55">Vancouver, BC, Canada</li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-white/45 mb-4">
+              {isZh ? "法律" : "Legal"}
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              <li><Link to="/privacy" className="text-white/80 hover:text-white transition">{t(translations.nav.privacy, lang)}</Link></li>
+              <li><Link to="/terms" className="text-white/80 hover:text-white transition">{t(translations.nav.terms, lang)}</Link></li>
+            </ul>
+          </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Sonykun Design.{" "}
-            {lang === "zh" ? "版權所有。" : "All Rights Reserved."}
-          </p>
-          <div className="flex items-center gap-3 text-xs">
-            <Link
-              to="/privacy"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t(translations.nav.privacy, lang)}
-            </Link>
-            <span className="text-muted-foreground/50">|</span>
-            <Link
-              to="/terms"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t(translations.nav.terms, lang)}
-            </Link>
-          </div>
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-[10px] uppercase tracking-[0.22em] text-white/45">
+          <span>Sonykun Design © {new Date().getFullYear()}</span>
+          <span>{isZh ? "版權所有" : "All Rights Reserved"}</span>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 };
 
