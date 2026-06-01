@@ -23,7 +23,8 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={wrap(<Index />)} />
+        <Route path="/" element={wrap(<Studio />)} />
+        <Route path="/legacy" element={wrap(<Index />)} />
         <Route path="/work" element={wrap(<Work />)} />
         <Route path="/work/:slug" element={wrap(<ProjectDetail />)} />
         <Route path="/portfolio" element={wrap(<Work />)} />
