@@ -1,57 +1,54 @@
-import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations, t } from "@/i18n/translations";
 
 const About = () => {
+  const { lang } = useLanguage();
+  const isZh = lang === "zh";
+  const a = translations.about;
+
   return (
     <>
       <Header />
-      <main className="pt-20">
+      <main className="pt-28">
         <section className="section-padding">
           <div className="container-wide">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="eyebrow">About</span>
-            </motion.div>
-            <motion.h1
-              className="heading-hero mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              About<br />Sony Lin
-            </motion.h1>
+            <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16 lg:gap-24">
+              <div data-reveal>
+                <span className="eyebrow">{isZh ? "關於" : "About"}</span>
+                <h1 className="heading-hero">{t(a.title, lang)}</h1>
+              </div>
 
-            <motion.div
-              className="max-w-3xl space-y-8"
-              initial="hidden"
-              animate="show"
-              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } } }}
-            >
-              {[
-                "Sony Lin is a Vancouver-based designer with more than twenty years of experience in branding, website design, and marketing graphics.",
-                "After graduating from Emily Carr University in 2002, he began working with businesses to develop brand identities, digital platforms, and marketing materials used across print and digital media.",
-                "His work focuses on creating clean visual systems that help businesses communicate clearly and present themselves with confidence.",
-              ].map((text, i) => (
-                <motion.p
-                  key={i}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-                  }}
-                  className={i === 0 ? "text-subtitle" : "text-body text-lg"}
-                >
-                  {text}
-                </motion.p>
-              ))}
-            </motion.div>
+              <div className="space-y-10 max-w-2xl lg:pt-6">
+                <p data-reveal className="text-subtitle">
+                  {t(a.subtitle, lang)}
+                </p>
+                <p data-reveal className="text-body">{t(a.p1, lang)}</p>
+                <p data-reveal className="text-body">{t(a.p2, lang)}</p>
+                <p data-reveal className="text-body">{t(a.p3, lang)}</p>
+
+                <div data-reveal className="pt-10 border-t border-border">
+                  <p className="eyebrow !mb-5">{t(a.highlightsTitle, lang)}</p>
+                  <ul className="space-y-3">
+                    {a.highlights[lang].map((h, i) => (
+                      <li key={i} className="flex items-baseline gap-4 text-foreground">
+                        <span className="text-xs tabular-nums text-muted-foreground">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="leading-relaxed">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 };
