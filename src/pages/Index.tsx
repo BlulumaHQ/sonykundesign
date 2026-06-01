@@ -116,10 +116,10 @@ const Index = () => {
     <div ref={root}>
       <Header />
       <main>
-        {/* ─────────── CINEMATIC HERO ─────────── */}
-        <section className="relative pt-40 md:pt-52 pb-16 md:pb-28">
-          <div className="container-wide">
-            <div className="flex items-end justify-between mb-10 md:mb-16">
+        {/* ─────────── CINEMATIC HERO (shorter) ─────────── */}
+        <section className="relative pt-28 md:pt-36 pb-12 md:pb-16 min-h-[88vh] md:min-h-[92vh] flex flex-col justify-center">
+          <div className="container-wide w-full">
+            <div className="flex items-end justify-between mb-8 md:mb-12">
               <span className="eyebrow !mb-0">{c.hero.eyebrow[lang]}</span>
               <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                 {isZh ? "溫哥華 · 自 2005" : "Vancouver · Est. 2005"}
@@ -144,7 +144,7 @@ const Index = () => {
               delay={0.3}
             />
 
-            <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 md:gap-20 items-end">
+            <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-end">
               <p
                 data-reveal
                 className="text-subtitle max-w-xl text-foreground/70"
@@ -154,26 +154,30 @@ const Index = () => {
               <div data-reveal className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/pricing"
-                  className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-6 py-4 rounded-full text-[12px] uppercase tracking-[0.22em] hover:bg-foreground/85 transition-colors"
+                  className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-6 py-4 text-[12px] uppercase tracking-[0.22em] hover:bg-foreground/85 transition-colors"
                 >
                   {c.hero.ctaPrimary[lang]}
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 <Link
                   to="/portfolio"
-                  className="group inline-flex items-center justify-between gap-6 border border-foreground/25 px-6 py-4 rounded-full text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
+                  className="group inline-flex items-center justify-between gap-6 border border-foreground/25 px-6 py-4 text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
                 >
                   {c.hero.ctaSecondary[lang]}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
+          </div>
 
-            <div className="mt-16 pt-6 border-t border-border flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          {/* Mouse scroll cue (bottom-centered) */}
+          <div className="container-wide w-full mt-12 md:mt-16">
+            <div className="pt-6 border-t border-border flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
               <span>{c.hero.trust[lang]}</span>
-              <span className="hidden md:inline animate-pulse">
-                ↓ {isZh ? "向下捲動" : "Scroll"}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="hidden sm:inline">{isZh ? "向下捲動" : "Scroll"}</span>
+                <span className="scroll-cue-mouse text-foreground/60" aria-hidden />
+              </div>
             </div>
           </div>
         </section>
