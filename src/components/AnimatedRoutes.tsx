@@ -5,6 +5,7 @@ import Index from "@/pages/Index";
 import Work from "@/pages/Work";
 import ProjectDetail from "@/pages/ProjectDetail";
 import CaseStudyIndex from "@/pages/CaseStudyIndex";
+import About from "@/pages/About";
 import CaseStudy from "@/pages/CaseStudy";
 import Services from "@/pages/Services";
 import Contact from "@/pages/Contact";
