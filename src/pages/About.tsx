@@ -18,8 +18,9 @@ const About = () => {
       <Header />
       <main>
         {/* HERO */}
-        <section className="pt-40 md:pt-52 pb-16 md:pb-28">
-          <div className="container-wide">
+        <section className="relative pt-40 md:pt-52 pb-16 md:pb-28 overflow-hidden">
+          <LinePattern variant="light" />
+          <div className="container-wide relative z-10">
             <div className="flex items-end justify-between mb-10">
               <span className="eyebrow !mb-0">
                 {isZh ? "關於" : "About"}
