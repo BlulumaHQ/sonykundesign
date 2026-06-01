@@ -4,6 +4,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import ContactSection from "@/components/ContactSection";
 import SplitTextReveal from "@/components/SplitTextReveal";
+import LinePattern from "@/components/LinePattern";
 import { ArrowUpRight, Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -77,8 +78,9 @@ const Contact = () => {
         </section>
 
         {/* ───────── DETAILS STRIP ───────── */}
-        <section className="border-b border-border bg-muted">
-          <div className="container-wide grid grid-cols-2 md:grid-cols-4 divide-x divide-foreground/10">
+        <section className="relative border-b border-border bg-muted overflow-hidden">
+          <LinePattern variant="light" />
+          <div className="container-wide grid grid-cols-2 md:grid-cols-4 divide-x divide-foreground/10 relative z-10">
             {details.map((d) => {
               const Icon = d.icon;
               return (

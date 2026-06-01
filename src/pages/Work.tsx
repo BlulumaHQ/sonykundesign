@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PortfolioCard from "@/components/PortfolioCard";
 import SplitTextReveal from "@/components/SplitTextReveal";
+import LinePattern from "@/components/LinePattern";
 import {
   projects,
   PORTFOLIO_CATEGORIES,
@@ -51,8 +52,9 @@ const Work = () => {
       <Header />
       <main>
         {/* CINEMATIC HERO */}
-        <section className="pt-40 md:pt-52 pb-12 md:pb-20">
-          <div className="container-wide">
+        <section className="relative pt-40 md:pt-52 pb-12 md:pb-20 overflow-hidden">
+          <LinePattern variant="light" />
+          <div className="container-wide relative z-10">
             <div className="flex items-end justify-between mb-10">
               <span className="eyebrow !mb-0">
                 {isZh ? "精選作品" : "Selected work"}

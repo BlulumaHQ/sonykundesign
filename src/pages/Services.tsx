@@ -5,6 +5,7 @@ import FloatingContactButton from "@/components/FloatingContactButton";
 import ScrollToTop from "@/components/ScrollToTop";
 import FaqAccordion from "@/components/FaqAccordion";
 import SplitTextReveal from "@/components/SplitTextReveal";
+import LinePattern from "@/components/LinePattern";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { servicesContent, pageMeta } from "@/i18n/pageContent";
@@ -113,7 +114,9 @@ const Services = () => {
       <Header />
       <main>
         {/* HERO */}
-        <section className="pt-40 md:pt-52 pb-16 md:pb-28">
+        <section className="relative pt-40 md:pt-52 pb-16 md:pb-28 overflow-hidden">
+          <LinePattern variant="light" />
+          <div className="relative z-10">
           <div className="container-wide">
             <div className="flex items-end justify-between mb-10">
               <span className="eyebrow !mb-0">{c.hero.eyebrow[lang]}</span>
@@ -132,6 +135,7 @@ const Services = () => {
             >
               {c.hero.subtext[lang]}
             </p>
+          </div>
           </div>
         </section>
 
