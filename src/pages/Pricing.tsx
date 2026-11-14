@@ -93,7 +93,7 @@ const Pricing = () => {
             <div className="flex items-end justify-between mb-10">
               <span className="eyebrow !mb-0">{c.header.eyebrow[lang]}</span>
               <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                {isZh ? "價格以加幣計" : "All prices in CAD"}
+                {isZh ? "先看預覽 · 再付款" : "Preview first · pay after"}
               </span>
             </div>
             <SplitTextReveal

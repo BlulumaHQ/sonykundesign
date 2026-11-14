@@ -76,7 +76,7 @@ const SplitTextReveal = ({
       aria-label={text}
     >
       {lines.map((line, li) => (
-        <span key={li} className="block overflow-hidden" aria-hidden="true">
+        <span key={li} className="block overflow-hidden pb-[0.14em] -mb-[0.14em]" aria-hidden="true">
           {/* Letters are grouped per word so lines only wrap between words. */}
           {line.split(" ").map((word, wi) => (
             <span key={`${li}-${wi}`}>
