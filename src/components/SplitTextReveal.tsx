@@ -76,19 +76,20 @@ const SplitTextReveal = ({
       aria-label={text}
     >
       {lines.map((line, li) => (
-        <span key={li} className="block overflow-hidden">
-          <span className="inline-block">
-            {Array.from(line).map((ch, i) => (
-              <span
-                key={`${li}-${i}`}
-                data-char
-                className="inline-block will-change-transform"
-                style={{ whiteSpace: ch === " " ? "pre" : undefined }}
-              >
-                {ch}
+        <span key={li} className="block overflow-hidden" aria-hidden="true">
+          {/* Letters are grouped per word so lines only wrap between words. */}
+          {line.split(" ").map((word, wi) => (
+            <span key={`${li}-${wi}`}>
+              {wi > 0 && " "}
+              <span className="inline-block whitespace-nowrap">
+                {Array.from(word).map((ch, i) => (
+                  <span key={i} data-char className="inline-block will-change-transform">
+                    {ch}
+                  </span>
+                ))}
               </span>
-            ))}
-          </span>
+            </span>
+          ))}
         </span>
       ))}
     </Tag>

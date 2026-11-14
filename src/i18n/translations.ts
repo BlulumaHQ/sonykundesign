@@ -3,7 +3,6 @@ export type Lang = "en" | "zh";
 export const translations = {
   nav: {
     home: { en: "Home", zh: "首頁" },
-    about: { en: "About", zh: "關於" },
     pricing: { en: "Pricing", zh: "價格" },
     work: { en: "Work", zh: "作品" },
     workCaseStudy: { en: "Case Study", zh: "案例研究" },

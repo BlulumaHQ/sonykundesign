@@ -45,7 +45,7 @@ const TestimonialsSection = () => {
             </h2>
           </div>
           <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-            {isZh ? "已交付 200+ 專案" : "200+ projects delivered"}
+            {isZh ? "已完成 500+ 網站" : "500+ websites built"}
           </span>
         </div>
       </div>

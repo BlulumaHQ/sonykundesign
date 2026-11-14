@@ -17,7 +17,7 @@ export interface ServiceCard {
 export interface BundleCard {
   title: Bi;
   price: string;
-  save: Bi;
+  subtitle: Bi;
   items: BiList;
   badge?: Bi;
 }
@@ -34,15 +34,15 @@ export const homeContent = {
   hero: {
     eyebrow: { en: "Vancouver Web Designer", zh: "溫哥華網站設計師" },
     headline: {
-      en: "Get a Professional Website\nin 3 Business Days.",
+      en: "Get a Professional Website in 3 Business Days.",
       zh: "3 個工作天內\n獲得專業網站。",
     },
     subhead: {
-      en: "You see your website preview before you pay — then we launch it. Websites starting at $349 CAD. No surprises, no hidden fees.",
-      zh: "付款前先看到網站預覽，確認後我們上線。網站起價 $349 加幣。沒有意外、沒有隱藏費用。",
+      en: "You see your website preview before you pay — then we launch it. Websites starting at $375 CAD. No surprises, no hidden fees.",
+      zh: "付款前先看到網站預覽，確認後我們上線。網站起價 $375 加幣。沒有意外、沒有隱藏費用。",
     },
-    ctaPrimary: { en: "See Website Packages", zh: "查看網站方案" },
-    ctaSecondary: { en: "View Our Work", zh: "查看作品集" },
+    ctaPrimary: { en: "Get Your Free Preview", zh: "取得免費預覽" },
+    ctaSecondary: { en: "See Website Packages", zh: "查看網站方案" },
     trust: {
       en: "500+ websites built · Since 2005 · Based in Vancouver, BC · 3-day delivery",
       zh: "500+ 網站完成 · 自 2005 年起 · 位於溫哥華 BC · 3 天交付",
@@ -89,7 +89,7 @@ export const homeContent = {
           en: "Professional, mobile-friendly websites built for small businesses. From single-page sites to full multi-page builds.",
           zh: "為小型企業打造的專業、手機友善網站。從單頁網站到完整多頁建置。",
         },
-        price: { en: "From $349 CAD", zh: "起價 $349 加幣" },
+        price: { en: "From $375 CAD", zh: "起價 $375 加幣" },
         link: { en: "See website packages →", zh: "查看網站方案 →" },
         href: "/pricing",
       },
@@ -106,10 +106,10 @@ export const homeContent = {
       {
         title: { en: "Website + Brand Bundle", zh: "網站 + 品牌套裝" },
         body: {
-          en: "Get your website and logo designed together and save. Our most popular option for businesses launching from scratch.",
-          zh: "網站與 Logo 一起設計，更划算。從零開始的客戶最常選擇的方案。",
+          en: "Your website and brand identity designed together as one integrated project. Our most popular option for businesses launching from scratch.",
+          zh: "網站與品牌識別作為一個整合專案一起設計。從零開始的客戶最常選擇的方案。",
         },
-        price: { en: "From $599 CAD — save $125", zh: "起價 $599 加幣 — 省 $125" },
+        price: { en: "From $800 CAD", zh: "起價 $800 加幣" },
         link: { en: "See bundle packages →", zh: "查看套裝方案 →" },
         href: "/pricing",
         badge: { en: "Best Value", zh: "最佳價值" },
@@ -120,7 +120,7 @@ export const homeContent = {
           en: "We handle all technical details — hosting, domain setup, transfers, and ongoing maintenance. You don't touch a thing.",
           zh: "主機、網域、轉移與維護所有技術細節由我們處理。您完全不需要動手。",
         },
-        price: { en: "Free hosting available · Managed from $15/mo", zh: "提供免費主機 · 代管自 $15/月起" },
+        price: { en: "Free hosting available · Managed $18/mo", zh: "提供免費主機 · 代管 $18/月" },
         link: { en: "Learn more →", zh: "了解更多 →" },
         href: "/pricing",
       },
@@ -133,19 +133,20 @@ export const homeContent = {
   },
   bundle: {
     eyebrow: { en: "Most Popular Package", zh: "最受歡迎方案" },
-    title: { en: "Business Bundle — $899 CAD", zh: "商業套裝 — $899 加幣" },
+    title: { en: "Business Bundle — $1,400 CAD", zh: "商業套裝 — $1,400 加幣" },
     body: {
-      en: "Business Website (up to 7 pages) + Logo Growth package. Normally $1,149 — save $250. Everything you need to launch your business professionally.",
-      zh: "商業網站（最多 7 頁）+ Logo Growth 方案。原價 $1,149 — 省 $250。專業上線所需的一切。",
+      en: "A professional website and cohesive identity for your growing business — Business Website (up to 7 pages) with the Growth Logo package, designed together.",
+      zh: "為成長中的業務打造專業網站與一致的品牌識別 — 商業網站（最多 7 頁）搭配 Growth Logo 方案，整合設計。",
     },
     checklist: {
       en: [
-        "Up to 7-page responsive website",
-        "Logo design with colour palette and typography",
-        "SEO-friendly structure",
-        "Free hosting included",
+        "Business Website package",
+        "Growth Logo package",
+        "Consistent brand colours and typography across the website",
+        "Mini brand style guide",
+        "Business card design",
       ],
-      zh: ["最多 7 頁響應式網站", "Logo 設計含配色與字體", "SEO 友善結構", "包含免費主機"],
+      zh: ["商業網站方案", "Growth Logo 方案", "名片設計", "全站一致的品牌配色與字體", "迷你品牌風格指南"],
     },
     cta: { en: "Get This Bundle", zh: "選擇此套裝" },
   },
@@ -214,7 +215,7 @@ export const homeContent = {
       en: "Tell us about your business and we'll build you a free preview.",
       zh: "告訴我們您的業務，我們會為您打造免費預覽。",
     },
-    cta: { en: "Get Your Free Preview", zh: "獲取免費預覽" },
+    cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
   },
 } as const;
 
@@ -267,7 +268,7 @@ export const servicesContent = {
         "網域與 DNS 設定協助",
       ],
     },
-    price: { en: "Starting at $349 CAD", zh: "起價 $349 加幣" },
+    price: { en: "Starting at $375 CAD", zh: "起價 $375 加幣" },
     link: { en: "See full pricing →", zh: "查看完整價格 →" },
   },
   logo: {
@@ -323,61 +324,38 @@ export const servicesContent = {
   },
   bundles: {
     title: { en: "Website + Brand Bundles", zh: "網站 + 品牌套裝" },
-    body: {
-      en: "Get your website and logo designed together in one streamlined project. Bundles save you money and ensure your website and brand identity are designed to work together from the start.",
-      zh: "在一個專案中同時設計網站與 Logo。套裝幫您省錢，並確保網站與品牌從一開始就完美搭配。",
-    },
+    body: { en: "Website and brand identity designed together as one integrated project.", zh: "網站與品牌識別作為一個整合專案一起設計。" },
     cards: [
       {
         title: { en: "Starter Bundle", zh: "入門套裝" },
-        price: "$599 CAD",
-        save: { en: "Save $125 (normally $724)", zh: "省 $125（原價 $724）" },
+        price: "$800 CAD",
+        tagline: { en: "Establish Your Business", zh: "建立您的業務" },
+        subtitle: { en: "Everything you need to establish your business online.", zh: "建立線上業務所需的一切。" },
         items: {
-          en: [
-            "Basic Website (up to 5 pages)",
-            "Logo Basic (3 concepts, vector files)",
-            "Mobile-friendly and contact form",
-          ],
-          zh: ["基本網站（最多 5 頁）", "Logo Basic（3 個概念、向量檔）", "手機友善與聯絡表單"],
+          en: ["Basic Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
+          zh: ["基本網站方案", "Basic Logo 方案", "名片設計", "基本網站配色與字體協調", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
         },
       },
       {
         title: { en: "Business Bundle", zh: "商業套裝" },
-        price: "$899 CAD",
-        save: { en: "Save $250 (normally $1,149)", zh: "省 $250（原價 $1,149）" },
+        price: "$1,400 CAD",
+        tagline: { en: "Build a Professional Presence", zh: "建立專業形象" },
+        subtitle: { en: "A professional website and cohesive identity for your growing business.", zh: "為成長中的業務打造專業網站與一致的品牌識別。" },
         items: {
-          en: [
-            "Business Website (up to 7 pages)",
-            "Logo Growth (logo + colour + typography + mini brand guide)",
-            "SEO-friendly structure",
-            "Free hosting included",
-          ],
-          zh: [
-            "商業網站（最多 7 頁）",
-            "Logo Growth（Logo + 配色 + 字體 + 迷你品牌指南）",
-            "SEO 友善結構",
-            "包含免費主機",
-          ],
+          en: ["Business Website package", "Growth Logo package", "Business card design", "Consistent brand colours and typography across the website", "Mini brand style guide", "Enhanced homepage presentation", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
+          zh: ["商業網站方案", "Growth Logo 方案", "名片設計", "全站一致的品牌配色與字體", "迷你品牌風格指南", "強化首頁呈現", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
         },
         badge: { en: "Most Popular", zh: "最受歡迎" },
       },
       {
-        title: { en: "Brand Launch Bundle", zh: "品牌啟動套裝" },
-        price: "$1,699 CAD",
-        save: { en: "Save $451 (normally $2,150)", zh: "省 $451（原價 $2,150）" },
+        title: { en: "Premium Brand Launch", zh: "進階品牌啟動" },
+        price: "$2,400 CAD",
+        tagline: { en: "Complete Brand Experience", zh: "完整品牌體驗" },
+        subtitle: { en: "A complete, professionally integrated brand and website experience.", zh: "完整、專業整合的品牌與網站體驗。" },
+        premium: true,
         items: {
-          en: [
-            "Premium Website (up to 10 pages)",
-            "Logo Premium (full brand identity system)",
-            "Full brand guideline document",
-            "Advanced layout and custom styling",
-          ],
-          zh: [
-            "進階網站（最多 10 頁）",
-            "Logo Premium（完整品牌識別系統）",
-            "完整品牌規範文件",
-            "進階版面與客製樣式",
-          ],
+          en: ["Premium Website package", "Premium Logo package", "Business card design", "Comprehensive brand identity integration", "Custom homepage visual direction", "Consistent brand typography, colour system, and graphic elements", "Strategic homepage content hierarchy and call-to-action planning", "Enhanced on-page SEO setup", "Mobile-responsive optimization", "Complete brand guidelines", "Final brand design assets", "Website launch and testing"],
+          zh: ["進階網站方案", "Premium Logo 方案", "名片設計", "全面品牌識別整合", "客製首頁視覺方向", "一致的品牌字體、配色系統與圖形元素", "策略性首頁內容層次與行動呼籲規劃", "強化頁面 SEO 設定", "響應式手機優化", "完整品牌規範", "最終品牌設計素材", "網站上線與測試"],
         },
       },
     ],
@@ -417,16 +395,16 @@ export const servicesContent = {
         },
       },
       managed: {
-        title: { en: "Managed Hosting — $15/month or $135/year", zh: "代管主機 — $15/月 或 $135/年" },
+        title: { en: "Managed Website Hosting — $18/month or $165/year", zh: "代管網站主機 — $18/月 或 $165/年" },
         body: {
-          en: "Full hosting management, basic maintenance, and small revision support included.",
-          zh: "完整主機管理、基本維護與小幅修改支援。",
+          en: "Full hosting management, basic maintenance, and small revision support included. Save $51 annually with yearly billing.",
+          zh: "完整主機管理、基本維護與小幅修改支援。年繳每年省 $51。",
         },
       },
     },
     note: {
-      en: "Already have hosting with GoDaddy, Squarespace, Wix, or another provider? No problem — we'll transfer your domain and migrate your site for free as part of your project.",
-      zh: "已經在 GoDaddy、Squarespace、Wix 或其他供應商有主機？沒問題 — 我們會在專案中免費為您轉移網域與網站。",
+      en: "Already have hosting with GoDaddy, Squarespace, Wix, or another provider? No problem — we'll migrate your site for free as part of your project. Domain setup is a one-time $25.",
+      zh: "已經在 GoDaddy、Squarespace、Wix 或其他供應商有主機？沒問題 — 我們會在專案中免費為您轉移網站。網域設定為一次性 $25。",
     },
   },
   faq: {
@@ -456,15 +434,15 @@ export const servicesContent = {
       {
         q: { en: "Do you offer ongoing support after the site launches?", zh: "上線後有持續支援嗎？" },
         a: {
-          en: "Yes. Our Managed Hosting plan at $15/month includes basic maintenance and small revision support. For larger updates, we're always available to quote on a per-project basis.",
-          zh: "有。代管主機方案每月 $15，包含基本維護與小幅修改。較大更新可依專案個別報價。",
+          en: "Yes. Our Managed Hosting plan at $18/month ($165/year) includes basic maintenance and small revision support. For larger updates, we're always available to quote on a per-project basis.",
+          zh: "有。代管主機方案每月 $18（或每年 $165），包含基本維護與小幅修改。較大更新可依專案個別報價。",
         },
       },
       {
         q: { en: "What's the difference between the bundle packages and buying separately?", zh: "套裝與分開購買有什麼差別？" },
         a: {
-          en: "The bundles are the same services — just discounted when purchased together. The Business Bundle, for example, saves you $250 versus buying the Business Website and Logo Growth packages separately. Plus, designing both together means the branding and website look cohesive from the start.",
-          zh: "套裝就是相同服務 — 一起購買享折扣。例如商業套裝比分開買商業網站與 Logo Growth 省 $250。同時設計也讓品牌與網站從一開始就一致。",
+          en: "Bundles are integrated service packages, not just two services combined. Along with the website and logo packages, they include extra work to coordinate your brand colours, typography, and homepage presentation so your website and brand feel like one cohesive experience from the start.",
+          zh: "套裝是整合式服務方案，不只是兩項服務的組合。除了網站與 Logo 方案外，還包含協調品牌配色、字體與首頁呈現的額外工作，讓網站與品牌從一開始就是一致的整體體驗。",
         },
       },
     ],
@@ -475,7 +453,7 @@ export const servicesContent = {
       en: "We'll build you a free preview so you can see your website before you commit.",
       zh: "我們會為您打造免費預覽，讓您在決定前先看到網站。",
     },
-    cta: { en: "Get Your Free Preview", zh: "獲取免費預覽" },
+    cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
   },
 } as const;
 
@@ -493,19 +471,19 @@ export const pricingContent = {
     cards: [
       {
         title: { en: "Basic Website", zh: "基本網站" },
-        price: "$349",
+        price: "$375",
         description: {
-          en: "A simple and clean website to establish your online presence and make your business look professional.",
-          zh: "簡潔乾淨的網站，建立您的線上形象，讓業務看起來專業可靠。",
+          en: "A clean single-page landing website designed for conversion and a simple business presentation.",
+          zh: "簡潔的單頁形象網站，為轉換而設計，清楚呈現您的業務。",
         },
         features: {
-          en: ["Up to 5 pages", "Mobile-friendly design", "Contact form", "Free hosting available", "Basic brand setup (logo + colours if needed)"],
-          zh: ["最多 5 頁", "手機友善設計", "聯絡表單", "提供免費主機", "基本品牌設定（如需要含 Logo 與配色）"],
+          en: ["Single-page website", "Mobile-friendly design", "Contact form", "Free hosting available", "Basic brand setup (logo + colours if needed)"],
+          zh: ["單頁網站", "手機友善設計", "聯絡表單", "提供免費主機", "基本品牌設定（如需要含 Logo 與配色）"],
         },
       },
       {
         title: { en: "Business Website", zh: "商業網站" },
-        price: "$499",
+        price: "$750",
         description: {
           en: "A complete business website designed to clearly present your services and help customers contact you.",
           zh: "完整的商業網站，清楚呈現您的服務，讓客戶輕鬆聯絡您。",
@@ -518,7 +496,7 @@ export const pricingContent = {
       },
       {
         title: { en: "Premium Website", zh: "進階網站" },
-        price: "$875",
+        price: "$1,250",
         description: {
           en: "A more refined website experience for businesses that want stronger presentation, better structure, and higher perceived value.",
           zh: "更精緻的網站體驗，適合追求更強呈現、更佳結構與更高品牌價值的業務。",
@@ -530,7 +508,7 @@ export const pricingContent = {
       },
       {
         title: { en: "E-commerce Basic", zh: "電商基本版" },
-        price: "$1,299+",
+        price: "$1,650",
         note: {
           en: "Pricing varies based on number of products and features",
           zh: "價格依產品數量與功能而定",
@@ -549,33 +527,36 @@ export const pricingContent = {
   branding: {
     title: { en: "Logo & Branding", zh: "Logo 與品牌" },
     body: {
-      en: "Logo design today is faster and more accessible than ever. What matters is how your brand looks and works together with your website. Basic brand setup is included with website packages if you don't already have one.",
-      zh: "現在的 Logo 設計比以往更快、更容易取得。真正重要的是品牌與網站如何整體搭配。若您尚未擁有 Logo，網站方案已包含基本品牌設定。",
+      en: "Standalone logo packages for businesses that need a professional identity on its own.",
+      zh: "為需要專業品牌識別的業務提供獨立 Logo 方案。",
     },
-    addonsLabel: { en: "Optional add-ons", zh: "可選加購" },
     cards: [
       {
-        title: { en: "Quick Logo", zh: "快速 Logo" },
-        price: "$49",
-        body: {
-          en: "Simple AI-assisted logo, clean and ready to use.",
-          zh: "AI 輔助的簡潔 Logo，乾淨即用。",
+        title: { en: "Basic Logo", zh: "Basic Logo" },
+        price: "$375",
+        subtitle: { en: "A professional logo to establish your business identity.", zh: "建立業務識別的專業 Logo。" },
+        features: {
+          en: ["2 initial logo concepts", "2 revision rounds", "Colour and monochrome versions", "PNG and SVG files", "Transparent-background files"],
+          zh: ["2 個初始 Logo 概念", "2 輪修改", "彩色與單色版本", "PNG 與 SVG 檔案", "透明背景檔案"],
         },
       },
       {
-        title: { en: "Business Logo", zh: "商業 Logo" },
-        price: "$129",
-        body: {
-          en: "Refined logo with better layout, colour and balance.",
-          zh: "更精緻的 Logo，具備更佳的版面、配色與平衡。",
+        title: { en: "Growth Logo", zh: "Growth Logo" },
+        price: "$650",
+        subtitle: { en: "A cohesive visual identity for a growing business.", zh: "為成長中業務打造一致的視覺識別。" },
+        features: {
+          en: ["Everything in Basic", "3 initial logo concepts in total", "3 revision rounds in total", "Brand colour palette", "Typography recommendations", "Primary and secondary logo variations", "Mini brand style guide"],
+          zh: ["包含 Basic 全部內容", "共 3 個初始 Logo 概念", "共 3 輪修改", "品牌配色", "字體建議", "主要與次要 Logo 變體", "迷你品牌風格指南"],
         },
+        badge: { en: "Most Popular", zh: "最受歡迎" },
       },
       {
-        title: { en: "Brand Upgrade", zh: "品牌升級" },
-        price: "$249",
-        body: {
-          en: "Multiple logo variations, brand direction, and visual consistency.",
-          zh: "多種 Logo 變體、品牌方向與視覺一致性。",
+        title: { en: "Premium Logo", zh: "Premium Logo" },
+        price: "$1,275",
+        subtitle: { en: "A complete visual identity for a confident, professional brand.", zh: "為自信專業的品牌打造完整視覺識別。" },
+        features: {
+          en: ["Everything in Growth", "4 revision rounds in total", "Extended logo variations", "Comprehensive brand guidelines", "Social media profile assets", "Business card design", "Brand application templates"],
+          zh: ["包含 Growth 全部內容", "共 4 輪修改", "延伸 Logo 變體", "完整品牌規範", "社群媒體個人檔案素材", "名片設計", "品牌應用範本"],
         },
       },
     ],
@@ -586,48 +567,38 @@ export const pricingContent = {
   },
   bundles: {
     title: { en: "Website + Brand Bundles", zh: "網站 + 品牌套裝" },
-    body: { en: "Save when you combine a website and logo into one project.", zh: "網站與 Logo 一起購買享優惠。" },
+    body: { en: "Website and brand identity designed together as one integrated project.", zh: "網站與品牌識別作為一個整合專案一起設計。" },
     cards: [
       {
         title: { en: "Starter Bundle", zh: "入門套裝" },
-        price: "$599 CAD",
-        save: { en: "Save $125", zh: "省 $125" },
+        price: "$800 CAD",
+        tagline: { en: "Establish Your Business", zh: "建立您的業務" },
+        subtitle: { en: "Everything you need to establish your business online.", zh: "建立線上業務所需的一切。" },
         items: {
-          en: ["Basic Website (up to 5 pages)", "Logo Basic (3 concepts, vector files)"],
-          zh: ["基本網站（最多 5 頁）", "Logo Basic（3 個概念、向量檔）"],
+          en: ["Basic Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
+          zh: ["基本網站方案", "Basic Logo 方案", "名片設計", "基本網站配色與字體協調", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
         },
       },
       {
         title: { en: "Business Bundle", zh: "商業套裝" },
-        price: "$899 CAD",
-        save: { en: "Save $250", zh: "省 $250" },
+        price: "$1,400 CAD",
+        tagline: { en: "Build a Professional Presence", zh: "建立專業形象" },
+        subtitle: { en: "A professional website and cohesive identity for your growing business.", zh: "為成長中的業務打造專業網站與一致的品牌識別。" },
         items: {
-          en: [
-            "Business Website (up to 7 pages)",
-            "Logo Growth (logo + colour palette + typography + mini brand guide)",
-            "SEO-friendly structure",
-            "Free hosting included",
-          ],
-          zh: [
-            "商業網站（最多 7 頁）",
-            "Logo Growth（Logo + 配色 + 字體 + 迷你品牌指南）",
-            "SEO 友善結構",
-            "包含免費主機",
-          ],
+          en: ["Business Website package", "Growth Logo package", "Business card design", "Consistent brand colours and typography across the website", "Mini brand style guide", "Enhanced homepage presentation", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
+          zh: ["商業網站方案", "Growth Logo 方案", "名片設計", "全站一致的品牌配色與字體", "迷你品牌風格指南", "強化首頁呈現", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
         },
-        badge: { en: "Best Value", zh: "最佳價值" },
+        badge: { en: "Most Popular", zh: "最受歡迎" },
       },
       {
-        title: { en: "Brand Launch Bundle", zh: "品牌啟動套裝" },
-        price: "$1,699 CAD",
-        save: { en: "Save $451", zh: "省 $451" },
+        title: { en: "Premium Brand Launch", zh: "進階品牌啟動" },
+        price: "$2,400 CAD",
+        tagline: { en: "Complete Brand Experience", zh: "完整品牌體驗" },
+        subtitle: { en: "A complete, professionally integrated brand and website experience.", zh: "完整、專業整合的品牌與網站體驗。" },
+        premium: true,
         items: {
-          en: [
-            "Premium Website (up to 10 pages)",
-            "Logo Premium (full brand identity system)",
-            "Brand guidelines document",
-          ],
-          zh: ["進階網站（最多 10 頁）", "Logo Premium（完整品牌識別系統）", "品牌規範文件"],
+          en: ["Premium Website package", "Premium Logo package", "Business card design", "Comprehensive brand identity integration", "Custom homepage visual direction", "Consistent brand typography, colour system, and graphic elements", "Strategic homepage content hierarchy and call-to-action planning", "Enhanced on-page SEO setup", "Mobile-responsive optimization", "Complete brand guidelines", "Final brand design assets", "Website launch and testing"],
+          zh: ["進階網站方案", "Premium Logo 方案", "名片設計", "全面品牌識別整合", "客製首頁視覺方向", "一致的品牌字體、配色系統與圖形元素", "策略性首頁內容層次與行動呼籲規劃", "強化頁面 SEO 設定", "響應式手機優化", "完整品牌規範", "最終品牌設計素材", "網站上線與測試"],
         },
       },
     ],
@@ -636,34 +607,31 @@ export const pricingContent = {
     title: { en: "Logo & Brand Identity", zh: "Logo 與品牌識別" },
     cards: [
       {
-        title: { en: "Logo Basic", zh: "Logo Basic" },
+        title: { en: "Basic Logo", zh: "Basic Logo" },
         price: "$375",
+        subtitle: { en: "A professional logo to establish your business identity.", zh: "建立業務識別的專業 Logo。" },
         features: {
-          en: ["3 logo concepts", "3 revision rounds", "Vector files (SVG, PNG, PDF)"],
-          zh: ["3 個 Logo 概念", "3 輪修改", "向量檔（SVG、PNG、PDF）"],
+          en: ["2 initial logo concepts", "2 revision rounds", "Colour and monochrome versions", "PNG and SVG files", "Transparent-background files"],
+          zh: ["2 個初始 Logo 概念", "2 輪修改", "彩色與單色版本", "PNG 與 SVG 檔案", "透明背景檔案"],
         },
       },
       {
-        title: { en: "Logo Growth", zh: "Logo Growth" },
+        title: { en: "Growth Logo", zh: "Growth Logo" },
         price: "$650",
+        subtitle: { en: "A cohesive visual identity for a growing business.", zh: "為成長中業務打造一致的視覺識別。" },
         features: {
-          en: ["Logo design", "Colour palette", "Typography recommendation", "Mini brand guide"],
-          zh: ["Logo 設計", "配色", "字體推薦", "迷你品牌指南"],
+          en: ["Everything in Basic", "3 initial logo concepts in total", "3 revision rounds in total", "Brand colour palette", "Typography recommendations", "Primary and secondary logo variations", "Mini brand style guide"],
+          zh: ["包含 Basic 全部內容", "共 3 個初始 Logo 概念", "共 3 輪修改", "品牌配色", "字體建議", "主要與次要 Logo 變體", "迷你品牌風格指南"],
         },
         badge: { en: "Most Popular", zh: "最受歡迎" },
       },
       {
-        title: { en: "Logo Premium", zh: "Logo Premium" },
+        title: { en: "Premium Logo", zh: "Premium Logo" },
         price: "$1,275",
+        subtitle: { en: "A complete visual identity for a confident, professional brand.", zh: "為自信專業的品牌打造完整視覺識別。" },
         features: {
-          en: [
-            "Full brand identity system",
-            "Logo suite (primary + variations)",
-            "Colour system",
-            "Typography system",
-            "Brand guidelines document",
-          ],
-          zh: ["完整品牌識別系統", "Logo 套組（主視覺 + 變體）", "配色系統", "字體系統", "品牌規範文件"],
+          en: ["Everything in Growth", "4 revision rounds in total", "Extended logo variations", "Comprehensive brand guidelines", "Social media profile assets", "Business card design", "Brand application templates"],
+          zh: ["包含 Growth 全部內容", "共 4 輪修改", "延伸 Logo 變體", "完整品牌規範", "社群媒體個人檔案素材", "名片設計", "品牌應用範本"],
         },
       },
     ],
@@ -680,23 +648,59 @@ export const pricingContent = {
     },
     managed: {
       title: { en: "Managed Hosting", zh: "代管主機" },
-      price: { en: "$15/month or $135/year", zh: "$15/月 或 $135/年" },
+      price: { en: "$18/month or $165/year", zh: "$18/月 或 $165/年" },
       features: {
-        en: ["Hosting management", "Basic maintenance", "Small revision support"],
-        zh: ["主機管理", "基本維護", "小幅修改支援"],
+        en: ["Hosting management", "Basic maintenance", "One small revision per month"],
+        zh: ["主機管理", "基本維護", "每月一次小幅修改"],
       },
-      note: { en: "Save $45 with annual billing", zh: "年繳省 $45" },
+      note: { en: "Save $51 annually with yearly billing", zh: "年繳每年省 $51" },
+      ownership: {
+        en: "Upon final payment, you own your completed website and design assets. Your domain can be registered under your own account. Websites are initially deployed through Sonykun Design's hosting environment. If you decide to move to another provider, we can provide the complete website source files for migration to a compatible hosting environment. Third-party migration, setup, and ongoing maintenance are separate services.",
+        zh: "付清尾款後，完成的網站與設計素材歸您所有。網域可註冊在您自己的帳戶下。網站初期部署於 Sonykun Design 的主機環境。若您決定轉到其他供應商，我們可提供完整網站原始檔，以轉移至相容的主機環境。第三方轉移、設定與持續維護為另計服務。",
+      },
     },
   },
   addons: {
     title: { en: "Add-ons", zh: "加購服務" },
     cards: [
       {
-        title: { en: "Website Copywriting", zh: "網站文案撰寫" },
-        price: { en: "$149 / website", zh: "$149 / 網站" },
+        title: { en: "Chinese Version (Language Switch)", zh: "中文版（網站內切換）" },
+        price: "$175",
         body: {
-          en: "Professional copy rewrite for your entire website. (Blog posts not included.)",
-          zh: "為您整個網站重新撰寫專業文案。（不含部落格文章。）",
+          en: "A Chinese version of your website with on-site language switching.",
+          zh: "網站加上中文版，可在網站內切換語言。",
+        },
+      },
+      {
+        title: { en: "Chinese Version (SEO URLs)", zh: "中文版（獨立 SEO 網址）" },
+        price: "$375",
+        body: {
+          en: "A Chinese version on its own SEO-friendly URLs, so your Chinese pages can rank on Google.",
+          zh: "中文版使用獨立的 SEO 網址，讓中文頁面也能在 Google 上被搜尋到。",
+        },
+      },
+      {
+        title: { en: "SEO 3-Month Package", zh: "SEO 三個月方案" },
+        price: "$900",
+        body: {
+          en: "Three months of SEO work: on-page optimization, Google Search Console setup and monthly improvements.",
+          zh: "三個月 SEO 服務：頁面優化、Google Search Console 設定與每月持續調整。",
+        },
+      },
+      {
+        title: { en: "AI Receptionist", zh: "AI 電話接待" },
+        price: { en: "$1,250 + $20/month", zh: "$1,250 + $20/月" },
+        body: {
+          en: "An AI phone receptionist set up and trained on your business information. One-time setup, then $20/month for management. Vapi and Twilio accounts are opened under your own credit card.",
+          zh: "AI 電話接待，依您的業務資訊完成設定與訓練。一次性設定費，之後每月 $20 管理費。Vapi 與 Twilio 帳號以您自己的信用卡申請。",
+        },
+      },
+      {
+        title: { en: "Website Copywriting", zh: "網站文案撰寫" },
+        price: { en: "$65 / page", zh: "$65 / 頁" },
+        body: {
+          en: "Professional website copywriting, including page structure and marketing messaging.",
+          zh: "專業網站文案撰寫，包含頁面架構與行銷訊息。",
         },
       },
       {
@@ -707,6 +711,19 @@ export const pricingContent = {
           zh: "將您現有的低解析度 Logo 轉換為乾淨、高品質的向量檔。",
         },
       },
+    ],
+  },
+  graphic: {
+    title: { en: "Graphic Design", zh: "平面設計" },
+    cards: [
+      { title: { en: "Business Card", zh: "名片" }, price: "$150", body: { en: "Double-sided business card design with 3 design concepts and print-ready files.", zh: "雙面名片設計，3 個設計提案，附印刷檔。" } },
+      { title: { en: "Stationery Set", zh: "文具組" }, price: "$275", body: { en: "Business card, letterhead and envelope design for professional brand stationery.", zh: "名片、信紙與信封設計，打造專業品牌文具。" } },
+      { title: { en: "Flyer / Poster", zh: "傳單 / 海報" }, price: "$275", body: { en: "Print-ready flyer or poster design for promotions, marketing or events.", zh: "促銷、行銷或活動用的傳單或海報設計，附印刷檔。" } },
+      { title: { en: "Brochure (up to 12 pages)", zh: "型錄（最多 12 頁）" }, price: "$1,200", body: { en: "Corporate brochure design including layout and typography. Additional pages $100 each.", zh: "企業型錄設計，含排版與字體。額外頁數每頁 $100。" } },
+      { title: { en: "Banner & Signage", zh: "布條與招牌" }, price: "$175", body: { en: "Large format banner, storefront sign or signage design for events or storefront display.", zh: "大型布條、店面招牌或活動看板設計。" } },
+      { title: { en: "Window Graphics", zh: "櫥窗設計" }, price: { en: "$250 / design", zh: "$250 / 款" }, body: { en: "Storefront window graphic or vinyl design. Discounted when ordered as a set.", zh: "店面櫥窗或貼紙設計。整組訂購另有優惠。" } },
+      { title: { en: "Tradeshow Kit", zh: "展覽套組" }, price: "$425", body: { en: "Tradeshow display graphics including backdrop design and flyer design.", zh: "展覽展示設計，包含背板與傳單設計。" } },
+      { title: { en: "Infographic", zh: "資訊圖表" }, price: "$375", body: { en: "Data visualization infographic design for presentations or marketing.", zh: "用於簡報或行銷的資訊圖表設計。" } },
     ],
   },
   faq: {
@@ -722,8 +739,8 @@ export const pricingContent = {
       {
         q: { en: "Are there any ongoing fees?", zh: "有任何持續費用嗎？" },
         a: {
-          en: "Free hosting is truly free — no monthly charges. Managed Hosting is $15/month or $135/year if you want us to handle maintenance and minor updates. There are no other mandatory recurring fees.",
-          zh: "免費主機是真的免費 — 沒有月費。若需要我們處理維護與小幅更新，可選擇代管主機 $15/月 或 $135/年。沒有其他強制性的持續費用。",
+          en: "Free hosting is truly free — no monthly charges. Managed Hosting is $18/month or $165/year (save $51 annually with yearly billing) if you want us to handle maintenance and minor updates. There are no other mandatory recurring fees.",
+          zh: "免費主機是真的免費 — 沒有月費。若需要我們處理維護與小幅更新，可選擇代管主機 $18/月 或 $165/年（年繳每年省 $51）。沒有其他強制性的持續費用。",
         },
       },
       {
@@ -748,10 +765,10 @@ export const pricingContent = {
         },
       },
       {
-        q: { en: "Do you charge extra for domain setup or hosting transfers?", zh: "網域設定或主機轉移會額外收費嗎？" },
+        q: { en: "Do you charge for domain setup or hosting transfers?", zh: "網域設定或主機轉移要收費嗎？" },
         a: {
-          en: "No. Domain and DNS setup, as well as transfers from your existing hosting provider, are included in your project at no extra cost.",
-          zh: "不會。網域與 DNS 設定，以及從現有主機商轉移，全部包含在專案中，不額外收費。",
+          en: "Domain and DNS setup is a one-time $25. Moving your website from your existing hosting provider is included in your project at no extra cost.",
+          zh: "網域與 DNS 設定為一次性 $25。從現有主機商轉移網站則包含在專案中，不額外收費。",
         },
       },
     ],
@@ -762,7 +779,7 @@ export const pricingContent = {
       en: "Fill out a short brief and we'll build you a free preview. No commitment required.",
       zh: "填寫簡短需求，我們會打造免費預覽。完全沒有任何承諾。",
     },
-    cta: { en: "Get Your Free Preview", zh: "獲取免費預覽" },
+    cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
   },
 } as const;
 
@@ -770,17 +787,33 @@ export const pageMeta = {
   home: {
     title: "Vancouver Web Designer for Small Businesses | Sonykun Design",
     description:
-      "Professional website and logo design starting at $349 CAD. See your website preview before you pay. Based in Vancouver, serving BC small businesses since 2005.",
+      "Professional website and logo design starting at $375 CAD. See your website preview before you pay. Based in Vancouver, serving BC small businesses since 2005.",
   },
   services: {
     title: "Web Design & Brand Identity Services | Sonykun Design Vancouver",
     description:
-      "Website design, logo design, brand identity, and bundle packages for small businesses. Transparent pricing from $349 CAD. Free preview before you pay.",
+      "Website design, logo design, brand identity, and bundle packages for small businesses. Transparent pricing from $375 CAD. Free preview before you pay.",
   },
   pricing: {
     title: "Web Design Pricing Vancouver | Sonykun Design",
     description:
-      "Transparent web design and logo pricing in CAD. Websites from $349, logos from $375, bundles from $599. No hidden fees. Free preview before you pay.",
+      "Transparent web design and logo pricing in CAD. Websites from $375, logos from $375, bundles from $800. No hidden fees. Free preview before you pay.",
+  },
+};
+
+/** Traditional Chinese (Taiwan usage) versions of pageMeta. */
+export const pageMetaZh: typeof pageMeta = {
+  home: {
+    title: "溫哥華網站設計｜中小企業網站與 Logo 設計｜Sonykun Design",
+    description: "專業網站與 Logo 設計，$375 加幣起。付款前先看網站預覽。位於溫哥華，自 2005 年起服務 BC 中小企業。",
+  },
+  services: {
+    title: "網站設計與品牌識別服務｜Sonykun Design 溫哥華",
+    description: "為中小企業提供網站設計、Logo 設計、品牌識別與套裝方案。價格透明，$375 加幣起，付款前免費預覽。",
+  },
+  pricing: {
+    title: "溫哥華網站設計價格｜Sonykun Design",
+    description: "以加幣標示的透明價格：網站 $375 起、Logo $375 起、套裝 $800 起。沒有隱藏費用，付款前免費預覽。",
   },
 };
 

@@ -15,7 +15,7 @@ const Contact = () => {
   const details = [
     {
       icon: Phone,
-      label: isZh ? "電話 / 簡訊" : "Phone / Text",
+      label: isZh ? "電話" : "Phone",
       value: "(604) 262-1168",
       href: "tel:6042621168",
     },
@@ -27,7 +27,7 @@ const Contact = () => {
     },
     {
       icon: MapPin,
-      label: isZh ? "工作室地點" : "Studio Location",
+      label: isZh ? "地點" : "Location",
       value: "Vancouver, BC, Canada",
     },
     {
@@ -48,7 +48,7 @@ const Contact = () => {
             <div className="flex items-end justify-between mb-8">
               <span className="eyebrow !mb-0">
                 <span className="inline-block w-8 h-px bg-[#5B7189] align-middle mr-3" />
-                {isZh ? "聯絡我們 · 2026" : "Contact · 2026"}
+                {isZh ? "聯絡我們" : "Get in touch"}
               </span>
               <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                 {isZh ? "免費預覽 · 不收訂金" : "Free preview · no deposit"}
@@ -126,7 +126,7 @@ const Contact = () => {
                     : "The more detail the better — but a few sentences is fine too. We personally read every message and reply with a tailored response."}
                 </p>
                 <div className="border-t border-border pt-6 space-y-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  <div className="flex items-center justify-between"><span>{isZh ? "起價" : "Starting at"}</span><span className="text-foreground">$349 CAD</span></div>
+                  <div className="flex items-center justify-between"><span>{isZh ? "起價" : "Starting at"}</span><span className="text-foreground">$375 CAD</span></div>
                   <div className="flex items-center justify-between"><span>{isZh ? "交付時間" : "Turnaround"}</span><span className="text-foreground">3 {isZh ? "天" : "days"}</span></div>
                   <div className="flex items-center justify-between"><span>{isZh ? "經驗" : "Experience"}</span><span className="text-foreground">20+ {isZh ? "年" : "yrs"}</span></div>
                 </div>
@@ -164,7 +164,7 @@ const Contact = () => {
                   }
                   className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-7 py-5 text-[12px] uppercase tracking-[0.22em] hover:bg-[#5B7189] transition-colors"
                 >
-                  {isZh ? "獲取免費預覽" : "Get Your Free Preview"}
+                  {isZh ? "取得免費預覽" : "Get Your Free Preview"}
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
               </div>

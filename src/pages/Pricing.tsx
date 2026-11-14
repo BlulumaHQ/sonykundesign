@@ -8,7 +8,7 @@ import SplitTextReveal from "@/components/SplitTextReveal";
 import LinePattern from "@/components/LinePattern";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { pricingContent, pageMeta } from "@/i18n/pageContent";
+import { pricingContent, pageMeta, pageMetaZh } from "@/i18n/pageContent";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 interface RowProps {
@@ -77,9 +77,8 @@ const Pricing = () => {
   const isZh = lang === "zh";
   const c = pricingContent;
   usePageMeta({
-    title: pageMeta.pricing.title,
-    description: pageMeta.pricing.description,
-    canonical: "https://sonykundesign.com/pricing",
+    title: (isZh ? pageMetaZh : pageMeta).pricing.title,
+    description: (isZh ? pageMetaZh : pageMeta).pricing.description,
   });
 
   return (
@@ -94,7 +93,7 @@ const Pricing = () => {
             <div className="flex items-end justify-between mb-10">
               <span className="eyebrow !mb-0">{c.header.eyebrow[lang]}</span>
               <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                {isZh ? "加幣 · 含稅另計" : "CAD · taxes apart"}
+                {isZh ? "價格以加幣計" : "All prices in CAD"}
               </span>
             </div>
             <SplitTextReveal
@@ -172,9 +171,10 @@ const Pricing = () => {
                     index={i + 1}
                     title={card.title[lang]}
                     price={card.price}
+                    description={card.subtitle[lang]}
                     features={card.items[lang]}
                     badge={card.badge?.[lang]}
-                    save={card.save[lang]}
+                    save={card.tagline[lang]}
                   />
                 );
               })}
@@ -196,21 +196,26 @@ const Pricing = () => {
                 <p className="text-body max-w-2xl mb-4">
                   {c.branding.body[lang]}
                 </p>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mt-10">
-                  {c.branding.addonsLabel[lang]}
-                </p>
               </div>
             </div>
             <div className="divide-y divide-border border-y border-border">
-              {c.branding.cards.map((card, i) => (
-                <PriceRow
-                  key={i}
-                  index={i + 1}
-                  title={card.title[lang]}
-                  price={card.price}
-                  description={card.body[lang]}
-                />
-              ))}
+              {c.branding.cards.map((rawCard, i) => {
+                const card = rawCard as typeof rawCard & {
+                  badge?: { en: string; zh: string };
+                };
+                return (
+                  <PriceRow
+                    key={i}
+                    index={i + 1}
+                    title={card.title[lang]}
+                    price={card.price}
+                    note="CAD"
+                    description={card.subtitle[lang]}
+                    features={card.features[lang]}
+                    badge={card.badge?.[lang]}
+                  />
+                );
+              })}
             </div>
             <p className="text-base md:text-xl text-foreground/55 italic max-w-3xl mt-16 leading-[1.55]">
               "{c.branding.closingLine[lang]}"
@@ -244,6 +249,9 @@ const Pricing = () => {
                 save={c.hosting.managed.note[lang]}
               />
             </div>
+            <p className="text-sm text-muted-foreground leading-[1.7] max-w-3xl mt-10">
+              {c.hosting.managed.ownership[lang]}
+            </p>
           </div>
         </section>
 
@@ -276,8 +284,37 @@ const Pricing = () => {
           </div>
         </section>
 
+        {/* GRAPHIC DESIGN */}
+        <section className="py-20 md:py-32 bg-muted border-t border-border">
+          <div className="container-wide">
+            <div className="grid grid-cols-12 gap-6 md:gap-12 mb-12">
+              <div className="col-span-12 md:col-span-3">
+                <span className="eyebrow">06</span>
+              </div>
+              <div className="col-span-12 md:col-span-9">
+                <h2 className="heading-section">{c.graphic.title[lang]}</h2>
+              </div>
+            </div>
+            <div className="divide-y divide-border border-y border-border">
+              {c.graphic.cards.map((card, i) => (
+                <PriceRow
+                  key={i}
+                  index={i + 1}
+                  title={card.title[lang]}
+                  price={
+                    typeof card.price === "string"
+                      ? card.price
+                      : card.price[lang]
+                  }
+                  description={card.body[lang]}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FAQ */}
-        <section className="py-24 md:py-32 bg-muted border-t border-border">
+        <section className="py-24 md:py-32 border-t border-border">
           <div className="container-wide grid grid-cols-12 gap-8 md:gap-16">
             <div className="col-span-12 md:col-span-4 md:sticky md:top-32 md:self-start">
               <span className="eyebrow">{isZh ? "常見問題" : "FAQ"}</span>

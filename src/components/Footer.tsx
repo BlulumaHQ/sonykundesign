@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { translations, t } from "@/i18n/translations";
+import { homeContent } from "@/i18n/pageContent";
 
 const Footer = () => {
   const { lang } = useLanguage();
@@ -50,8 +51,8 @@ const Footer = () => {
               </p>
               <p className="text-white/75 text-base md:text-lg leading-[1.7] max-w-md mb-8">
                 {isZh
-                  ? "自 2005 年起，於溫哥華為小型企業打造平價、誠實、值得信賴的網站。$349 加幣起，3 個工作天內交付。"
-                  : "Building affordable, honest, trustworthy websites for small businesses out of Vancouver since 2005. From $349 CAD, delivered in 3 business days."}
+                  ? "自 2005 年起，於溫哥華為小型企業打造平價、誠實、值得信賴的網站。$375 加幣起，3 個工作天內交付。"
+                  : "Building affordable, honest, trustworthy websites for small businesses out of Vancouver since 2005. From $375 CAD, delivered in 3 business days."}
               </p>
               <div className="flex flex-col gap-2 text-sm">
                 <a href="mailto:support@sonykundesign.com" className="group inline-flex items-center gap-3 text-white/85 hover:text-white">
@@ -76,7 +77,8 @@ const Footer = () => {
                 {isZh ? "工作室" : "Studio"}
               </p>
               <ul className="space-y-3 text-sm">
-                <li><Link to="/portfolio" className="text-white/80 hover:text-white transition">{t(translations.nav.work, lang)}</Link></li>
+                <li><Link to="/portfolio" className="text-white/80 hover:text-white transition">{t(translations.nav.workPortfolio, lang)}</Link></li>
+                <li><Link to="/case-study" className="text-white/80 hover:text-white transition">{t(translations.nav.workCaseStudy, lang)}</Link></li>
                 <li><Link to="/services" className="text-white/80 hover:text-white transition">{t(translations.nav.services, lang)}</Link></li>
                 <li><Link to="/pricing" className="text-white/80 hover:text-white transition">{t(translations.nav.pricing, lang)}</Link></li>
                 <li><Link to="/contact" className="text-white/80 hover:text-white transition">{t(translations.nav.contact, lang)}</Link></li>
@@ -89,23 +91,26 @@ const Footer = () => {
               </p>
               <ul className="space-y-3 text-sm">
                 <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "網站設計" : "Web Design"}</Link></li>
-                <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "品牌與標誌" : "Brand & Logo"}</Link></li>
-                <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "電商" : "E-commerce"}</Link></li>
-                <li><Link to="/pricing" className="text-white/80 hover:text-white transition">{isZh ? "定價方案" : "Pricing"}</Link></li>
+                <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "Logo 與品牌" : "Logo & Branding"}</Link></li>
+                <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "網站 + 品牌套裝" : "Website + Brand Bundles"}</Link></li>
+                <li><Link to="/pricing" className="text-white/80 hover:text-white transition">{isZh ? "主機代管" : "Hosting"}</Link></li>
               </ul>
             </div>
 
             <div className="col-span-12 md:col-span-3">
               <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-5">
-                {isZh ? "工作室時間" : "Studio Hours"}
+                {isZh ? "如何合作" : "How it works"}
               </p>
               <ul className="space-y-2 text-sm text-white/75">
-                <li className="flex justify-between"><span>{isZh ? "週一–週五" : "Mon – Fri"}</span><span>9 – 18</span></li>
-                <li className="flex justify-between"><span>{isZh ? "週六" : "Saturday"}</span><span>{isZh ? "預約制" : "By appt."}</span></li>
-                <li className="flex justify-between text-white/45"><span>{isZh ? "週日" : "Sunday"}</span><span>{isZh ? "休息" : "Closed"}</span></li>
+                {homeContent.process.steps.map((step, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="text-white/40 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                    {step.title[lang]}
+                  </li>
+                ))}
               </ul>
               <p className="mt-6 text-[11px] uppercase tracking-[0.22em] text-white/40">
-                PST · Vancouver
+                {isZh ? "溫哥華 · 自 2005" : "Vancouver · Since 2005"}
               </p>
             </div>
           </div>

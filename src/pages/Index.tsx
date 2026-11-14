@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,7 +6,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContactButton from "@/components/FloatingContactButton";
 import ScrollToTop from "@/components/ScrollToTop";
-import PortfolioGrid from "@/components/PortfolioGrid";
+import HomeFeaturedWork from "@/components/HomeFeaturedWork";
+import GoogleRating from "@/components/GoogleRating";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import ImageMarquee from "@/components/ImageMarquee";
@@ -14,26 +15,34 @@ import SplitTextReveal from "@/components/SplitTextReveal";
 import LinePattern from "@/components/LinePattern";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { homeContent, pageMeta, localBusinessJsonLd } from "@/i18n/pageContent";
+import { homeContent, pageMeta, pageMetaZh, localBusinessJsonLd } from "@/i18n/pageContent";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { projects } from "@/data/projects";
+import { usePortfolioFeed } from "@/lib/portfolioFeed";
+import { categoryZhLookup, serviceLabel } from "@/lib/feedLabels";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const featured = [...projects].filter((p) => p.featured).slice(0, 1)[0];
 
 const Index = () => {
   const { lang } = useLanguage();
   const isZh = lang === "zh";
   usePageMeta({
-    title: pageMeta.home.title,
-    description: pageMeta.home.description,
-    canonical: "https://sonykundesign.com/",
+    title: (isZh ? pageMetaZh : pageMeta).home.title,
+    description: (isZh ? pageMetaZh : pageMeta).home.description,
     jsonLd: localBusinessJsonLd,
   });
 
   const c = homeContent;
   const root = useRef<HTMLDivElement>(null);
+
+  // Featured project comes from the CMS: first project starred as featured.
+  const { items } = usePortfolioFeed();
+  const catLabel = categoryZhLookup(items);
+  const featured = useMemo(
+    () => items.find((i) => i.is_featured && i.featured_image_url) ?? items.find((i) => i.featured_image_url),
+    [items],
+  );
+  const featuredCategory = featured ? (featured.categories?.[0] ?? featured.category) : null;
 
   // GSAP scroll choreography: pinned philosophy, parallax featured image,
   // and horizontal capabilities ribbon.
@@ -113,11 +122,11 @@ const Index = () => {
     }, root);
 
     return () => ctx.revert();
-  }, [lang]);
+  }, [lang, featured?.id]);
 
-  const heroLine1 = isZh ? "為小型企業" : "Websites that";
-  const heroLine2 = isZh ? "打造的網站。" : "earn trust —";
-  const heroLine3 = isZh ? "3 天交付。" : "in 3 days.";
+  const heroLine1 = isZh ? "3 個工作天內" : "Get a Professional";
+  const heroLine2 = isZh ? "獲得專業" : "Website in 3";
+  const heroLine3 = isZh ? "網站。" : "Business Days.";
 
   return (
     <div ref={root}>
@@ -133,41 +142,32 @@ const Index = () => {
               </span>
             </div>
 
-            <SplitTextReveal
-              as="h1"
-              text={heroLine1}
-              className="heading-hero block"
-            />
-            <SplitTextReveal
-              as="h1"
-              text={heroLine2}
-              className="heading-hero block text-muted-foreground"
-              delay={0.15}
-            />
-            <SplitTextReveal
-              as="h1"
-              text={heroLine3}
-              className="heading-hero block"
-              delay={0.3}
-            />
+            <h1 aria-label={c.hero.headline[lang].replace(/\n/g, " ")}>
+              <SplitTextReveal as="span" text={heroLine1} className="heading-hero block" />
+              <SplitTextReveal
+                as="span"
+                text={heroLine2}
+                className="heading-hero block text-muted-foreground"
+                delay={0.15}
+              />
+              <SplitTextReveal as="span" text={heroLine3} className="heading-hero block" delay={0.3} />
+            </h1>
 
             <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-end">
-              <p
-                data-reveal
-                className="text-subtitle max-w-xl text-foreground/70"
-              >
-                {c.hero.subhead[lang]}
-              </p>
+              <div data-reveal className="max-w-xl">
+                <p className="text-subtitle text-foreground/70">{c.hero.subhead[lang]}</p>
+                <GoogleRating className="mt-5" />
+              </div>
               <div data-reveal className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  to="/pricing"
+                  to="/contact"
                   className="group inline-flex items-center justify-between gap-6 bg-foreground text-background px-6 py-4 text-[12px] uppercase tracking-[0.22em] hover:bg-foreground/85 transition-colors"
                 >
                   {c.hero.ctaPrimary[lang]}
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 <Link
-                  to="/portfolio"
+                  to="/pricing"
                   className="group inline-flex items-center justify-between gap-6 border border-foreground/25 px-6 py-4 text-[12px] uppercase tracking-[0.22em] hover:border-foreground hover:bg-foreground hover:text-background transition-colors"
                 >
                   {c.hero.ctaSecondary[lang]}
@@ -205,43 +205,52 @@ const Index = () => {
                     data-reveal
                     className="font-display text-3xl md:text-5xl leading-[1.05] tracking-tight mb-6"
                   >
-                    {featured.name}
+                    {featured.title}
                   </h2>
                   <p
                     data-reveal
                     className="text-sm text-muted-foreground leading-[1.7] mb-6"
                   >
-                    {featured.description}
+                    {featured.excerpt ||
+                      (featured.services ?? []).map((sv) => serviceLabel(sv, lang)).join(" · ")}
                   </p>
                   <dl className="grid grid-cols-2 gap-y-3 text-[11px] uppercase tracking-[0.18em]">
                     <dt className="text-muted-foreground">
                       {isZh ? "產業" : "Industry"}
                     </dt>
-                    <dd>{featured.industry}</dd>
+                    <dd>{featuredCategory ? catLabel(featuredCategory, lang) : "—"}</dd>
                     <dt className="text-muted-foreground">
                       {isZh ? "年份" : "Year"}
                     </dt>
-                    <dd>{featured.year}</dd>
+                    <dd>{featured.project_year || featured.publish_date?.slice(0, 4) || "—"}</dd>
                   </dl>
-                  {featured.liveUrl && (
-                    <a
-                      href={featured.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-8 inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1 hover:opacity-70"
+                  <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+                    <Link
+                      to={`/portfolio/${featured.slug}`}
+                      className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1 hover:opacity-70"
                     >
-                      {isZh ? "查看上線網站" : "View live"}{" "}
-                      <ArrowUpRight className="w-4 h-4" />
-                    </a>
-                  )}
+                      {isZh ? "查看作品" : "View project"} <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    {featured.live_url && (
+                      <a
+                        href={featured.live_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1 hover:opacity-70"
+                      >
+                        {isZh ? "查看上線網站" : "View live"}{" "}
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 <div className="col-span-12 md:col-span-9">
                   <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10] bg-muted">
                     <img
-                      src={featured.image}
-                      alt={featured.alt}
-                      className="js-feature-img absolute inset-0 w-full h-full object-cover"
+                      src={featured.featured_image_url ?? undefined}
+                      alt={`${featured.title} website`}
+                      className="js-feature-img absolute inset-0 w-full h-full object-cover object-top"
                     />
                   </div>
                 </div>
@@ -365,8 +374,8 @@ const Index = () => {
               {c.portfolio.cta[lang]} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          {/* Protected component — scrollable preview interaction preserved */}
-          <PortfolioGrid />
+          {/* CMS portfolio — 12 projects per visit, scrollable screenshot previews */}
+          <HomeFeaturedWork />
         </section>
 
         {/* ─────────── BUNDLE (dark editorial) ─────────── */}

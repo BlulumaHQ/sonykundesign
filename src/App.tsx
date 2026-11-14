@@ -4,9 +4,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import { ZH_PREFIX, langFromPath } from "@/lib/locale";
+
+const basename = typeof window !== "undefined" && langFromPath(window.location.pathname) === "zh" ? ZH_PREFIX : undefined;
 import AnimatedRoutes from "@/components/AnimatedRoutes";
 import MobileBottomCTA from "@/components/MobileBottomCTA";
-import GlobalScrollAnimations from "@/components/GlobalScrollAnimations";
 
 const queryClient = new QueryClient();
 
@@ -16,8 +18,7 @@ const App = () => (
       <LanguageProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <GlobalScrollAnimations />
+        <BrowserRouter basename={basename}>
           <AnimatedRoutes />
           <MobileBottomCTA />
         </BrowserRouter>
@@ -27,4 +28,3 @@ const App = () => (
 );
 
 export default App;
-

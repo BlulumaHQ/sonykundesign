@@ -8,7 +8,7 @@ import SplitTextReveal from "@/components/SplitTextReveal";
 import LinePattern from "@/components/LinePattern";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { servicesContent, pageMeta } from "@/i18n/pageContent";
+import { servicesContent, pageMeta, pageMetaZh } from "@/i18n/pageContent";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 interface ServiceBlockProps {
@@ -104,9 +104,8 @@ const Services = () => {
   const isZh = lang === "zh";
   const c = servicesContent;
   usePageMeta({
-    title: pageMeta.services.title,
-    description: pageMeta.services.description,
-    canonical: "https://sonykundesign.com/services",
+    title: (isZh ? pageMetaZh : pageMeta).services.title,
+    description: (isZh ? pageMetaZh : pageMeta).services.description,
   });
 
   return (
@@ -198,6 +197,9 @@ const Services = () => {
                           {card.badge[lang]}
                         </span>
                       )}
+                      <p className="text-sm text-muted-foreground leading-[1.7] mt-4 max-w-md">
+                        {card.subtitle[lang]}
+                      </p>
                     </div>
                     <div className="col-span-12 md:col-span-5 space-y-2">
                       {card.items[lang].map((it, j) => (
@@ -214,7 +216,7 @@ const Services = () => {
                         {card.price}
                       </p>
                       <p className="text-[11px] uppercase tracking-[0.18em] text-secondary mt-1">
-                        {card.save[lang]}
+                        {card.tagline[lang]}
                       </p>
                     </div>
                   </div>
