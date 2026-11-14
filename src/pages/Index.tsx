@@ -193,9 +193,10 @@ const Index = () => {
         <ImageMarquee />
 
         {/* ─────────── FEATURED PROJECT (parallax + asymmetric) ─────────── */}
-        {featured && (
+
           <section className="py-20 md:py-32 border-t border-border">
             <div className="container-wide">
+              {featured ? (
               <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
                 <div className="col-span-12 md:col-span-3 md:sticky md:top-32">
                   <span className="eyebrow">
@@ -255,9 +256,19 @@ const Index = () => {
                   </div>
                 </div>
               </div>
+              ) : (
+                <div className="grid grid-cols-12 gap-6 md:gap-10" aria-busy="true">
+                  <div className="col-span-12 md:col-span-3 space-y-4">
+                    <div className="h-3 w-24 bg-muted animate-pulse" />
+                    <div className="h-10 w-3/4 bg-muted animate-pulse" />
+                    <div className="h-20 w-full bg-muted animate-pulse" />
+                  </div>
+                  <div className="col-span-12 md:col-span-9 aspect-[4/3] md:aspect-[16/10] bg-muted animate-pulse" />
+                </div>
+              )}
             </div>
           </section>
-        )}
+
 
         {/* ─────────── PINNED PHILOSOPHY (richer scroll choreography) ─────────── */}
         <section className="js-philosophy bg-foreground text-background min-h-screen flex items-center relative overflow-hidden">
