@@ -75,7 +75,8 @@ const FeaturedRotator = () => {
     [items],
   );
 
-  const [index, setIndex] = useState(() => Math.floor(Math.random() * FEATURED_SLUGS.length));
+  // Always open on the first project (Yingting Smart), then rotate in list order.
+  const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const count = projects.length;
   const current = count ? projects[index % count] : undefined;
