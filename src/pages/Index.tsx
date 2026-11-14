@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,8 +17,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeContent, pageMeta, pageMetaZh, localBusinessJsonLd } from "@/i18n/pageContent";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { usePortfolioFeed } from "@/lib/portfolioFeed";
-import { categoryZhLookup, serviceLabel } from "@/lib/feedLabels";
+import FeaturedRotator from "@/components/FeaturedRotator";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,16 +34,8 @@ const Index = () => {
   const c = homeContent;
   const root = useRef<HTMLDivElement>(null);
 
-  // Featured project comes from the CMS: first project starred as featured.
-  const { items } = usePortfolioFeed();
-  const catLabel = categoryZhLookup(items);
-  const featured = useMemo(
-    () => items.find((i) => i.is_featured && i.featured_image_url) ?? items.find((i) => i.featured_image_url),
-    [items],
-  );
-  const featuredCategory = featured ? (featured.categories?.[0] ?? featured.category) : null;
 
-  // GSAP scroll choreography: pinned philosophy, parallax featured image,
+  // GSAP scroll choreography: pinned philosophy,
   // and horizontal capabilities ribbon.
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -52,25 +43,6 @@ const Index = () => {
     if (reduce) return;
 
     const ctx = gsap.context(() => {
-      // Featured image parallax
-      gsap.utils.toArray<HTMLElement>(".js-feature-img").forEach((img) => {
-        gsap.fromTo(
-          img,
-          { scale: 1.15, yPercent: -6 },
-          {
-            scale: 1,
-            yPercent: 6,
-            ease: "none",
-            scrollTrigger: {
-              trigger: img.parentElement,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          }
-        );
-      });
-
       // Pinned philosophy chapter — lines reveal + progress bar + counter
       const phil = document.querySelector<HTMLElement>(".js-philosophy");
       if (phil) {
@@ -122,7 +94,7 @@ const Index = () => {
     }, root);
 
     return () => ctx.revert();
-  }, [lang, featured?.id]);
+  }, [lang]);
 
   const heroLine1 = isZh ? "3 個工作天內" : "Get a Professional";
   const heroLine2 = isZh ? "獲得專業" : "Website in 3";
@@ -192,80 +164,11 @@ const Index = () => {
         {/* ─────────── MARQUEE STRIP (kept) ─────────── */}
         <ImageMarquee />
 
-        {/* ─────────── FEATURED PROJECT (parallax + asymmetric) ─────────── */}
+        {/* ─────────── FEATURED PROJECTS (rotating, hover scrolls the full page) ─────────── */}
 
           <section className="py-20 md:py-32 border-t border-border">
             <div className="container-wide">
-              {featured ? (
-              <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
-                <div className="col-span-12 md:col-span-3 md:sticky md:top-32">
-                  <span className="eyebrow">
-                    {isZh ? "近期作品 / 01" : "Recent work / 01"}
-                  </span>
-                  <h2
-                    data-reveal
-                    className="font-display text-3xl md:text-5xl leading-[1.05] tracking-tight mb-6"
-                  >
-                    {featured.title}
-                  </h2>
-                  <p
-                    data-reveal
-                    className="text-sm text-muted-foreground leading-[1.7] mb-6"
-                  >
-                    {featured.excerpt ||
-                      (featured.services ?? []).map((sv) => serviceLabel(sv, lang)).join(" · ")}
-                  </p>
-                  <dl className="grid grid-cols-2 gap-y-3 text-[11px] uppercase tracking-[0.18em]">
-                    <dt className="text-muted-foreground">
-                      {isZh ? "產業" : "Industry"}
-                    </dt>
-                    <dd>{featuredCategory ? catLabel(featuredCategory, lang) : "—"}</dd>
-                    <dt className="text-muted-foreground">
-                      {isZh ? "年份" : "Year"}
-                    </dt>
-                    <dd>{featured.project_year || featured.publish_date?.slice(0, 4) || "—"}</dd>
-                  </dl>
-                  <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
-                    <Link
-                      to={`/portfolio/${featured.slug}`}
-                      className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1 hover:opacity-70"
-                    >
-                      {isZh ? "查看作品" : "View project"} <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    {featured.live_url && (
-                      <a
-                        href={featured.live_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.22em] border-b border-foreground pb-1 hover:opacity-70"
-                      >
-                        {isZh ? "查看上線網站" : "View live"}{" "}
-                        <ArrowUpRight className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                <div className="col-span-12 md:col-span-9">
-                  <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10] bg-muted">
-                    <img
-                      src={featured.featured_image_url ?? undefined}
-                      alt={`${featured.title} website`}
-                      className="js-feature-img absolute inset-0 w-full h-full object-cover object-top"
-                    />
-                  </div>
-                </div>
-              </div>
-              ) : (
-                <div className="grid grid-cols-12 gap-6 md:gap-10" aria-busy="true">
-                  <div className="col-span-12 md:col-span-3 space-y-4">
-                    <div className="h-3 w-24 bg-muted animate-pulse" />
-                    <div className="h-10 w-3/4 bg-muted animate-pulse" />
-                    <div className="h-20 w-full bg-muted animate-pulse" />
-                  </div>
-                  <div className="col-span-12 md:col-span-9 aspect-[4/3] md:aspect-[16/10] bg-muted animate-pulse" />
-                </div>
-              )}
+              <FeaturedRotator />
             </div>
           </section>
 

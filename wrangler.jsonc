@@ -1,0 +1,17 @@
+{
+  // Cloudflare Workers deploy for sonykundesign.com
+  // Build: npm run build   Deploy: npx wrangler deploy
+  // Secret: npx wrangler secret put RESEND_API_KEY
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sonykundesign",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": ["/api/*", "/.netlify/*"]
+  }
+}

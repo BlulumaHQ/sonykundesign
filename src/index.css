@@ -577,3 +577,15 @@ body::before {
 }
 /* Remix: square, editorial preview frames */
 .portfolio-screenshot--card { border-radius: 0; }
+
+/* Homepage featured rotation: full first screen at rest, glide through the page on hover */
+.featured-scroll-img { transform: translateY(0); transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+@media (hover: hover) and (pointer: fine) {
+  .featured-scroll-frame:hover .featured-scroll-img { transform: translateY(var(--travel)); transition: transform var(--dur) cubic-bezier(0.45, 0, 0.55, 1); }
+}
+@keyframes featuredProgress { from { width: 0; } to { width: 100%; } }
+.featured-progress { animation: featuredProgress linear forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .featured-scroll-img { transition: none; }
+  .featured-scroll-frame:hover .featured-scroll-img { transform: none; }
+}
