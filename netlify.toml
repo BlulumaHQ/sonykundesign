@@ -9,6 +9,19 @@
   to = "/.netlify/functions/contact"
   status = 200
 
+# Mia AI receptionist: short link for the post-call details form (proxied to n8n).
+[[redirects]]
+  from = "/details"
+  to = "https://n8n-production-69d1bdd4.up.railway.app/webhook/sonykun-details"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/details/submit"
+  to = "https://n8n-production-69d1bdd4.up.railway.app/webhook/sonykun-details-submit"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/zh/*"
   to = "/zh.html"
