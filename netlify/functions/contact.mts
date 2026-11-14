@@ -1,10 +1,12 @@
 // Netlify Function (v2): contact
-// Accepts the form as FormData or JSON and emails every field to the owner via Resend.
+// Accepts the form as FormData or JSON, forwards it to the n8n lead workflow,
+// and falls back to emailing every field to the owner via Resend if n8n fails.
 // Required Netlify env var: RESEND_API_KEY (Sending access, domain send.sonykundesign.com)
 
 const TO = "sony@bluluma.com";
 const FROM = "Sonykun Design Website <noreply@send.sonykundesign.com>";
 const SITE = "Sonykun Design";
+const N8N_LEAD_WEBHOOK = "https://n8n-production-69d1bdd4.up.railway.app/webhook/lead?brand=Sonykun";
 
 const esc = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
@@ -58,6 +60,23 @@ export default async (req: Request) => {
 
   const email = (fields.email || "").trim();
   const name = (fields.name || [fields.firstName, fields.lastName].filter(Boolean).join(" ") || "Website visitor").trim();
+
+  // Primary path: n8n logs the lead to the client sheet, notifies Sony and auto-replies.
+  // If n8n is unreachable, fall through to the Resend email below so no lead is lost.
+  try {
+    const message = [fields.project_type && `Project type: ${fields.project_type}`, fields.message].filter(Boolean).join("\n\n");
+    const n8n = await fetch(N8N_LEAD_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, phone: fields.phone || "", message, page: fields.source || req.headers.get("referer") || "" }),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (n8n.ok) return json(200, { ok: true });
+    console.error("n8n lead webhook failed", n8n.status);
+  } catch (err) {
+    console.error("n8n lead webhook error", err);
+  }
+
   const rows = Object.entries(fields)
     .filter(([k, v]) => v && !k.startsWith("_") && k !== "website_hp")
     .map(([k, v]) => `<tr><td style="padding:6px 14px 6px 0;font-weight:bold;vertical-align:top">${esc(k)}</td><td style="padding:6px 0;white-space:pre-wrap">${esc(v.slice(0, 5000))}</td></tr>`)
