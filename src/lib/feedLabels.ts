@@ -20,3 +20,10 @@ export const categoryZhLookup = (items: FeedItem[]) => {
   }
   return (name: string, lang: "en" | "zh") => (lang === "zh" ? map.get(name) ?? name : name);
 };
+
+/** Public display title: strip internal concept suffixes ("TTOP Chicken - A") and fix CMS casing slips. */
+const TITLE_FIXES: Record<string, string> = { "Mh Group": "MH Group" };
+export const displayTitle = (title: string) => {
+  const t = title.replace(/\s+[-–—]\s*[A-Z]$/, "").trim();
+  return TITLE_FIXES[t] ?? t;
+};

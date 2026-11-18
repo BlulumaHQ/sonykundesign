@@ -176,10 +176,10 @@ export const translations = {
     },
   },
   contact: {
-    title: { en: "Start a\nProject", zh: "索取\n報價" },
+    title: { en: "Get Your Free\nWebsite Preview", zh: "取得您的\n免費網站預覽" },
     body: {
-      en: "If you are interested in working together or discussing a project, please get in touch.",
-      zh: "請簡單描述你的需求，我會盡快回覆並提供下一步建議。",
+      en: "A few details and we'll build a real, working preview of your site — no payment, no obligation.",
+      zh: "填幾個資料，我們就會為您打造一個真實可瀏覽的網站預覽 — 不用付款、沒有義務。",
     },
     name: { en: "Name", zh: "姓名" },
     email: { en: "Email", zh: "Email" },
@@ -191,7 +191,7 @@ export const translations = {
     optEcommerce: { en: "Ecommerce Website", zh: "電商網站" },
     optMarketing: { en: "Marketing Graphics", zh: "行銷視覺設計" },
     optOther: { en: "Other", zh: "其他" },
-    submit: { en: "Send Message", zh: "送出訊息" },
+    submit: { en: "Send & Get My Preview", zh: "送出，取得我的預覽" },
     responseTime: { en: "Typical response time: 1–2 business days", zh: "通常回覆時間：1–2 個工作天" },
   },
   work: {

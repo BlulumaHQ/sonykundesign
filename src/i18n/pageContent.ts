@@ -34,15 +34,15 @@ export const homeContent = {
   hero: {
     eyebrow: { en: "Vancouver Web Designer", zh: "溫哥華網站設計師" },
     headline: {
-      en: "Get a Professional Website in 3 Business Days.",
-      zh: "3 個工作天內\n獲得專業網站。",
+      en: "See Your New Website Before You Pay.",
+      zh: "付款前，\n先看到您的新網站。",
     },
     subhead: {
-      en: "You see your website preview before you pay — then we launch it. Websites starting at $375 CAD. No surprises, no hidden fees.",
-      zh: "付款前先看到網站預覽，確認後我們上線。網站起價 $375 加幣。沒有意外、沒有隱藏費用。",
+      en: "Vancouver web designer since 2005. Free preview in 1–2 business days, live in 3. From $375 CAD — you only pay when you love it.",
+      zh: "自 2005 年起的溫哥華網站設計師。1–2 個工作天內免費預覽，3 天上線。$375 加幣起 — 滿意了才付款。",
     },
-    ctaPrimary: { en: "Get Your Free Preview", zh: "取得免費預覽" },
-    ctaSecondary: { en: "See Website Packages", zh: "查看網站方案" },
+    ctaPrimary: { en: "Get My Free Preview", zh: "取得我的免費預覽" },
+    ctaSecondary: { en: "See Pricing", zh: "查看價格" },
     trust: {
       en: "500+ websites built · Since 2005 · Based in Vancouver, BC · 3-day delivery",
       zh: "500+ 網站完成 · 自 2005 年起 · 位於溫哥華 BC · 3 天交付",
@@ -81,7 +81,7 @@ export const homeContent = {
   },
   services: {
     eyebrow: { en: "What We Do", zh: "服務內容" },
-    title: { en: "Everything Your Business Needs Online", zh: "您的業務上線所需的一切" },
+    title: { en: "Pick what you need. Pay only when you love it.", zh: "選您需要的，滿意了才付款。" },
     cards: [
       {
         title: { en: "Website Design", zh: "網站設計" },
@@ -109,7 +109,7 @@ export const homeContent = {
           en: "Your website and brand identity designed together as one integrated project. Our most popular option for businesses launching from scratch.",
           zh: "網站與品牌識別作為一個整合專案一起設計。從零開始的客戶最常選擇的方案。",
         },
-        price: { en: "From $800 CAD", zh: "起價 $800 加幣" },
+        price: { en: "From $650 CAD · save $100+", zh: "起價 $650 加幣 · 省 $100 以上" },
         link: { en: "See bundle packages →", zh: "查看套裝方案 →" },
         href: "/pricing",
         badge: { en: "Best Value", zh: "最佳價值" },
@@ -133,10 +133,10 @@ export const homeContent = {
   },
   bundle: {
     eyebrow: { en: "Most Popular Package", zh: "最受歡迎方案" },
-    title: { en: "Business Bundle — $1,400 CAD", zh: "商業套裝 — $1,400 加幣" },
+    title: { en: "Website + Logo, designed together — $1,200 CAD", zh: "網站 + Logo 一起設計 — $1,200 加幣" },
     body: {
-      en: "A professional website and cohesive identity for your growing business — Business Website (up to 7 pages) with the Growth Logo package, designed together.",
-      zh: "為成長中的業務打造專業網站與一致的品牌識別 — 商業網站（最多 7 頁）搭配 Growth Logo 方案，整合設計。",
+      en: "Business Website (up to 7 pages) + Growth Logo, designed as one project. Bought separately: $1,400 — the bundle saves you $200 and adds a business card and mini brand guide.",
+      zh: "商業網站（最多 7 頁）+ Growth Logo，作為一個專案整合設計。分開買 $1,400 — 套裝省 $200，還加送名片與迷你品牌指南。",
     },
     checklist: {
       en: [
@@ -148,7 +148,7 @@ export const homeContent = {
       ],
       zh: ["商業網站方案", "Growth Logo 方案", "名片設計", "全站一致的品牌配色與字體", "迷你品牌風格指南"],
     },
-    cta: { en: "Get This Bundle", zh: "選擇此套裝" },
+    cta: { en: "Get a Free Preview of This Bundle", zh: "免費預覽此套裝" },
   },
   reviews: {
     eyebrow: { en: "Client Reviews", zh: "客戶評價" },
@@ -210,12 +210,12 @@ export const homeContent = {
     ],
   },
   finalCta: {
-    title: { en: "Ready to Get Started?", zh: "準備好開始了嗎？" },
+    title: { en: "Your free preview is one form away.", zh: "免費預覽，只差一張表單。" },
     body: {
       en: "Tell us about your business and we'll build you a free preview.",
       zh: "告訴我們您的業務，我們會為您打造免費預覽。",
     },
-    cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
+    cta: { en: "Get My Free Preview", zh: "取得我的免費預覽" },
   },
 } as const;
 
@@ -328,8 +328,10 @@ export const servicesContent = {
     cards: [
       {
         title: { en: "Starter Bundle", zh: "入門套裝" },
-        price: "$800 CAD",
+        price: "$650 CAD",
         tagline: { en: "Establish Your Business", zh: "建立您的業務" },
+        slug: "starter-bundle",
+        save: { en: "Save $100 vs. separately ($750)", zh: "比分開買省 $100（原 $750）" },
         subtitle: { en: "Everything you need to establish your business online.", zh: "建立線上業務所需的一切。" },
         items: {
           en: ["Basic Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
@@ -338,8 +340,10 @@ export const servicesContent = {
       },
       {
         title: { en: "Business Bundle", zh: "商業套裝" },
-        price: "$1,400 CAD",
+        price: "$1,200 CAD",
         tagline: { en: "Build a Professional Presence", zh: "建立專業形象" },
+        slug: "business-bundle",
+        save: { en: "Save $200 vs. separately ($1,400)", zh: "比分開買省 $200（原 $1,400）" },
         subtitle: { en: "A professional website and cohesive identity for your growing business.", zh: "為成長中的業務打造專業網站與一致的品牌識別。" },
         items: {
           en: ["Business Website package", "Growth Logo package", "Business card design", "Consistent brand colours and typography across the website", "Mini brand style guide", "Enhanced homepage presentation", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
@@ -349,8 +353,10 @@ export const servicesContent = {
       },
       {
         title: { en: "Premium Brand Launch", zh: "進階品牌啟動" },
-        price: "$2,400 CAD",
+        price: "$2,150 CAD",
         tagline: { en: "Complete Brand Experience", zh: "完整品牌體驗" },
+        slug: "premium-bundle",
+        save: { en: "Save $375 vs. separately ($2,525)", zh: "比分開買省 $375（原 $2,525）" },
         subtitle: { en: "A complete, professionally integrated brand and website experience.", zh: "完整、專業整合的品牌與網站體驗。" },
         premium: true,
         items: {
@@ -453,7 +459,7 @@ export const servicesContent = {
       en: "We'll build you a free preview so you can see your website before you commit.",
       zh: "我們會為您打造免費預覽，讓您在決定前先看到網站。",
     },
-    cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
+    cta: { en: "Get My Free Preview", zh: "取得我的免費預覽" },
   },
 } as const;
 
@@ -571,8 +577,10 @@ export const pricingContent = {
     cards: [
       {
         title: { en: "Starter Bundle", zh: "入門套裝" },
-        price: "$800 CAD",
+        price: "$650 CAD",
         tagline: { en: "Establish Your Business", zh: "建立您的業務" },
+        slug: "starter-bundle",
+        save: { en: "Save $100 vs. separately ($750)", zh: "比分開買省 $100（原 $750）" },
         subtitle: { en: "Everything you need to establish your business online.", zh: "建立線上業務所需的一切。" },
         items: {
           en: ["Basic Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
@@ -581,8 +589,10 @@ export const pricingContent = {
       },
       {
         title: { en: "Business Bundle", zh: "商業套裝" },
-        price: "$1,400 CAD",
+        price: "$1,200 CAD",
         tagline: { en: "Build a Professional Presence", zh: "建立專業形象" },
+        slug: "business-bundle",
+        save: { en: "Save $200 vs. separately ($1,400)", zh: "比分開買省 $200（原 $1,400）" },
         subtitle: { en: "A professional website and cohesive identity for your growing business.", zh: "為成長中的業務打造專業網站與一致的品牌識別。" },
         items: {
           en: ["Business Website package", "Growth Logo package", "Business card design", "Consistent brand colours and typography across the website", "Mini brand style guide", "Enhanced homepage presentation", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
@@ -592,8 +602,10 @@ export const pricingContent = {
       },
       {
         title: { en: "Premium Brand Launch", zh: "進階品牌啟動" },
-        price: "$2,400 CAD",
+        price: "$2,150 CAD",
         tagline: { en: "Complete Brand Experience", zh: "完整品牌體驗" },
+        slug: "premium-bundle",
+        save: { en: "Save $375 vs. separately ($2,525)", zh: "比分開買省 $375（原 $2,525）" },
         subtitle: { en: "A complete, professionally integrated brand and website experience.", zh: "完整、專業整合的品牌與網站體驗。" },
         premium: true,
         items: {
@@ -779,7 +791,7 @@ export const pricingContent = {
       en: "Fill out a short brief and we'll build you a free preview. No commitment required.",
       zh: "填寫簡短需求，我們會打造免費預覽。完全沒有任何承諾。",
     },
-    cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
+    cta: { en: "Get My Free Preview", zh: "取得我的免費預覽" },
   },
 } as const;
 
@@ -797,7 +809,7 @@ export const pageMeta = {
   pricing: {
     title: "Web Design Pricing Vancouver | Sonykun Design",
     description:
-      "Transparent web design and logo pricing in CAD. Websites from $375, logos from $375, bundles from $800. No hidden fees. Free preview before you pay.",
+      "Transparent web design and logo pricing in CAD. Websites from $375, logos from $375, bundles from $650. No hidden fees. Free preview before you pay.",
   },
 };
 
@@ -813,7 +825,7 @@ export const pageMetaZh: typeof pageMeta = {
   },
   pricing: {
     title: "溫哥華網站設計價格｜Sonykun Design",
-    description: "以加幣標示的透明價格：網站 $375 起、Logo $375 起、套裝 $800 起。沒有隱藏費用，付款前免費預覽。",
+    description: "以加幣標示的透明價格：網站 $375 起、Logo $375 起、套裝 $650 起。沒有隱藏費用，付款前免費預覽。",
   },
 };
 

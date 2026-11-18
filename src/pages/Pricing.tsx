@@ -10,6 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { pricingContent, pageMeta, pageMetaZh } from "@/i18n/pageContent";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { packageSlugFromTitle } from "@/lib/packages";
 
 interface RowProps {
   index: number;
@@ -20,6 +21,8 @@ interface RowProps {
   features?: readonly string[];
   badge?: string;
   save?: string;
+  ctaTo?: string;
+  ctaLabel?: string;
 }
 
 const PriceRow = ({
@@ -31,6 +34,8 @@ const PriceRow = ({
   features,
   badge,
   save,
+  ctaTo,
+  ctaLabel,
 }: RowProps) => (
   <div className="py-10 md:py-14 grid grid-cols-12 gap-6 md:gap-10 items-start group hover:bg-muted/30 transition-colors -mx-6 px-6 md:-mx-12 md:px-12">
     <div className="col-span-12 md:col-span-1 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
@@ -68,6 +73,15 @@ const PriceRow = ({
       {note && (
         <p className="text-[11px] text-muted-foreground mt-1">{note}</p>
       )}
+      {ctaTo && (
+        <Link
+          to={ctaTo}
+          className="group/cta mt-5 inline-flex w-full md:w-auto items-center justify-between gap-3 bg-foreground text-background px-4 py-3.5 text-[11px] uppercase tracking-[0.18em] hover:bg-[#5B7189] transition-colors"
+        >
+          {ctaLabel}
+          <ArrowUpRight className="w-3.5 h-3.5 shrink-0 transition-transform group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+        </Link>
+      )}
     </div>
   </div>
 );
@@ -76,6 +90,8 @@ const Pricing = () => {
   const { lang } = useLanguage();
   const isZh = lang === "zh";
   const c = pricingContent;
+  const ctaLabel = isZh ? "免費預覽" : "Free preview";
+  const ctaFor = (enTitle: string) => `/contact?package=${packageSlugFromTitle(enTitle)}`;
   usePageMeta({
     title: (isZh ? pageMetaZh : pageMeta).pricing.title,
     description: (isZh ? pageMetaZh : pageMeta).pricing.description,
@@ -139,6 +155,8 @@ const Pricing = () => {
                     description={card.description?.[lang]}
                     features={card.features[lang]}
                     badge={card.badge?.[lang]}
+                    ctaTo={ctaFor(card.title.en)}
+                    ctaLabel={ctaLabel}
                   />
                 );
               })}
@@ -174,7 +192,9 @@ const Pricing = () => {
                     description={card.subtitle[lang]}
                     features={card.items[lang]}
                     badge={card.badge?.[lang]}
-                    save={card.tagline[lang]}
+                    save={card.save[lang]}
+                    ctaTo={`/contact?package=${card.slug}`}
+                    ctaLabel={ctaLabel}
                   />
                 );
               })}
@@ -213,6 +233,8 @@ const Pricing = () => {
                     description={card.subtitle[lang]}
                     features={card.features[lang]}
                     badge={card.badge?.[lang]}
+                    ctaTo={ctaFor(card.title.en)}
+                    ctaLabel={ctaLabel}
                   />
                 );
               })}
@@ -315,7 +337,7 @@ const Pricing = () => {
 
         {/* FAQ */}
         <section className="py-24 md:py-32 border-t border-border">
-          <div className="container-wide grid grid-cols-12 gap-8 md:gap-16">
+          <div className="container-wide grid grid-cols-12 gap-y-8 gap-x-4 md:gap-16">
             <div className="col-span-12 md:col-span-4 md:sticky md:top-32 md:self-start">
               <span className="eyebrow">{isZh ? "常見問題" : "FAQ"}</span>
               <h2 className="heading-section">{c.faq.title[lang]}</h2>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Phone, Mail, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 /**
- * Mobile/tablet vertical floating CTA stack on the right side.
+ * Mobile/tablet back-to-top button (call + preview live in the sticky bottom bar).
  * Sits just above the bottom sticky CTA bar.
  * Hidden on desktop (md+) where the standard header CTAs are sufficient.
  */
@@ -27,20 +27,6 @@ const FloatingContactButton = () => {
       className="md:hidden fixed right-3 z-40 flex flex-col items-center gap-2.5"
       style={{ bottom: "calc(80px + env(safe-area-inset-bottom, 0px))" }}
     >
-      <a
-        href="tel:6042621168"
-        aria-label={isZh ? "致電 Sony" : "Call Sony"}
-        className={baseBtn}
-      >
-        <Phone className="w-5 h-5" strokeWidth={1.8} />
-      </a>
-      <a
-        href="mailto:support@sonykundesign.com"
-        aria-label={isZh ? "聯絡 Sony" : "Email Sony"}
-        className={baseBtn}
-      >
-        <Mail className="w-5 h-5" strokeWidth={1.8} />
-      </a>
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

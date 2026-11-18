@@ -216,8 +216,14 @@ const Services = () => {
                         {card.price}
                       </p>
                       <p className="text-[11px] uppercase tracking-[0.18em] text-secondary mt-1">
-                        {card.tagline[lang]}
+                        {card.save[lang]}
                       </p>
+                      <Link
+                        to={`/contact?package=${card.slug}`}
+                        className="mt-5 inline-flex w-full md:w-auto items-center justify-between gap-3 bg-foreground text-background px-4 py-3.5 text-[11px] uppercase tracking-[0.18em] hover:bg-[#5B7189] transition-colors"
+                      >
+                        {isZh ? "免費預覽" : "Free preview"} →
+                      </Link>
                     </div>
                   </div>
                 );
@@ -294,7 +300,7 @@ const Services = () => {
 
         {/* FAQ */}
         <section className="py-24 md:py-32">
-          <div className="container-wide grid grid-cols-12 gap-8 md:gap-16">
+          <div className="container-wide grid grid-cols-12 gap-y-8 gap-x-4 md:gap-16">
             <div className="col-span-12 md:col-span-4 md:sticky md:top-32 md:self-start">
               <span className="eyebrow">{isZh ? "常見問題" : "FAQ"}</span>
               <h2 className="heading-section">{c.faq.title[lang]}</h2>
