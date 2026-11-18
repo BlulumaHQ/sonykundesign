@@ -66,7 +66,7 @@ export const PortfolioProjectContent = ({ item }: { item: FeedItem }) => {
             {item.title}
           </h1>
 
-          <div className="mt-12 md:mt-16 grid grid-cols-12 gap-8 md:gap-12 pt-8 border-t border-border">
+          <div className="mt-12 md:mt-16 grid grid-cols-12 gap-y-8 gap-x-4 md:gap-12 pt-8 border-t border-border">
             <dl className="col-span-12 md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-y-6 gap-x-8 text-[11px] uppercase tracking-[0.18em]">
               {categoryName && (
                 <div>
