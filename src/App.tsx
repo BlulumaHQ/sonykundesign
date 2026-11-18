@@ -12,6 +12,16 @@ import MobileBottomCTA from "@/components/MobileBottomCTA";
 
 const queryClient = new QueryClient();
 
+// GA4: count phone and email taps as leads (form submits fire generate_lead in ContactSection).
+if (typeof window !== "undefined") {
+  document.addEventListener("click", (e) => {
+    const a = (e.target as HTMLElement | null)?.closest?.("a[href^='tel:'], a[href^='mailto:']") as HTMLAnchorElement | null;
+    if (!a) return;
+    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+    gtag?.("event", a.href.startsWith("tel:") ? "phone_click" : "email_click", { link_url: a.href, page_path: location.pathname });
+  }, { capture: true });
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>

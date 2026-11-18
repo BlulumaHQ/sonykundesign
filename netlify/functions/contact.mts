@@ -64,7 +64,7 @@ export default async (req: Request) => {
   // Primary path: n8n logs the lead to the client sheet, notifies Sony and auto-replies.
   // If n8n is unreachable, fall through to the Resend email below so no lead is lost.
   try {
-    const message = [fields.project_type && `Project type: ${fields.project_type}`, fields.message].filter(Boolean).join("\n\n");
+    const message = [fields.business && `Business: ${fields.business}`, fields.project_type && `Package: ${fields.project_type}`, fields.current_site && `Current website: ${fields.current_site}`, fields.message].filter(Boolean).join("\n\n") || "(no message — see package above)";
     const n8n = await fetch(N8N_LEAD_WEBHOOK, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
