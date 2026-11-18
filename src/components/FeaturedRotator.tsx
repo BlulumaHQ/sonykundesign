@@ -53,7 +53,7 @@ const ScrollFrame = ({ item, hint }: { item: FeedItem; hint: string }) => {
         className="featured-scroll-img block w-full h-auto"
       />
       {travel > 0 && (
-        <span className="pointer-events-none absolute bottom-4 right-4 bg-background/90 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-foreground transition-opacity duration-300 group-hover:opacity-0">
+        <span className="[@media(hover:none)]:hidden pointer-events-none absolute bottom-4 right-4 bg-background/90 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-foreground transition-opacity duration-300 group-hover:opacity-0">
           {hint}
         </span>
       )}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { cms } from "@/lib/cms";
+import { displayTitle } from "./feedLabels";
 
 export interface GalleryItem {
   url: string;
@@ -43,7 +44,7 @@ export function fetchFeed(): Promise<FeedItem[]> {
         .order("sort_order", { ascending: true, nullsFirst: false })
         .order("publish_date", { ascending: false, nullsFirst: false });
       if (error) throw error;
-      return (data ?? []) as FeedItem[];
+      return ((data ?? []) as FeedItem[]).map((it) => ({ ...it, title: displayTitle(it.title) }));
     })().catch((error: unknown) => {
       feedPromise = undefined;
       throw error;

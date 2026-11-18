@@ -36,7 +36,7 @@ const MobileBottomCTA = () => {
           to="/contact"
           className="flex-[1.4] flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold px-5 py-3 shadow-md hover:bg-primary-hover active:scale-[0.98] transition-all"
         >
-          <span>{isZh ? "免費取得報價" : "Get Free Quote"}</span>
+          <span>{isZh ? "免費預覽" : "Free Preview"}</span>
           <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
         </Link>
       </div>

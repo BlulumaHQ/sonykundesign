@@ -12,38 +12,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-charcoal text-white relative overflow-hidden">
-      {/* Top: Oversized contact CTA */}
-      <div className="container-wide pt-24 md:pt-32 pb-16 md:pb-20">
-        <div className="grid grid-cols-12 gap-8 md:gap-12 items-end">
-          <div className="col-span-12 md:col-span-8">
-            <p className="eyebrow !text-white/50 !mb-6">
-              <span className="inline-block w-8 h-px bg-[#5B7189] align-middle mr-3" />
-              {isZh ? "下一步 · 開始合作" : "Next · Let's collaborate"}
-            </p>
-            <h2 className="font-display font-medium leading-[0.92] tracking-[-0.035em] text-[clamp(2.5rem,9vw,8rem)]">
-              {isZh ? (
-                <>有想法嗎？<br /><span className="text-white/55">我們來實現它。</span></>
-              ) : (
-                <>Have an idea?<br /><span className="text-white/55">Let's build it.</span></>
-              )}
-            </h2>
-          </div>
-          <div className="col-span-12 md:col-span-4 flex md:justify-end">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-5 border border-white/30 px-7 py-5 text-[11px] uppercase tracking-[0.24em] hover:bg-white hover:text-charcoal transition-colors"
-            >
-              {isZh ? "索取免費預覽" : "Get a free preview"}
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Middle: directory grid */}
-      <div className="border-t border-white/10">
+      <div>
         <div className="container-wide py-16 md:py-20">
-          <div className="grid grid-cols-12 gap-10 md:gap-12">
+          <div className="grid grid-cols-12 gap-y-10 gap-x-4 md:gap-12">
             {/* Brand column */}
             <div className="col-span-12 md:col-span-5">
               <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-6">
@@ -55,12 +27,12 @@ const Footer = () => {
                   : "Building affordable, honest, trustworthy websites for small businesses out of Vancouver since 2005. From $375 CAD, delivered in 3 business days."}
               </p>
               <div className="flex flex-col gap-2 text-sm">
-                <a href="mailto:support@sonykundesign.com" className="group inline-flex items-center gap-3 text-white/85 hover:text-white">
+                <a href="mailto:support@sonykundesign.com" className="group inline-flex items-center gap-3 py-1.5 text-white/85 hover:text-white">
                   <span className="w-1.5 h-1.5 bg-[#5B7189] rounded-full" />
                   support@sonykundesign.com
                   <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition" />
                 </a>
-                <a href="tel:6042621168" className="group inline-flex items-center gap-3 text-white/85 hover:text-white">
+                <a href="tel:6042621168" className="group inline-flex items-center gap-3 py-1.5 text-white/85 hover:text-white">
                   <span className="w-1.5 h-1.5 bg-[#5B7189] rounded-full" />
                   (604) 262-1168
                   <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition" />
@@ -76,12 +48,12 @@ const Footer = () => {
               <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-5">
                 {isZh ? "工作室" : "Studio"}
               </p>
-              <ul className="space-y-3 text-sm">
-                <li><Link to="/portfolio" className="text-white/80 hover:text-white transition">{t(translations.nav.workPortfolio, lang)}</Link></li>
-                <li><Link to="/case-study" className="text-white/80 hover:text-white transition">{t(translations.nav.workCaseStudy, lang)}</Link></li>
-                <li><Link to="/services" className="text-white/80 hover:text-white transition">{t(translations.nav.services, lang)}</Link></li>
-                <li><Link to="/pricing" className="text-white/80 hover:text-white transition">{t(translations.nav.pricing, lang)}</Link></li>
-                <li><Link to="/contact" className="text-white/80 hover:text-white transition">{t(translations.nav.contact, lang)}</Link></li>
+              <ul className="space-y-1 text-sm">
+                <li><Link to="/portfolio" className="inline-block py-1.5 text-white/80 hover:text-white transition">{t(translations.nav.workPortfolio, lang)}</Link></li>
+                <li><Link to="/case-study" className="inline-block py-1.5 text-white/80 hover:text-white transition">{t(translations.nav.workCaseStudy, lang)}</Link></li>
+                <li><Link to="/services" className="inline-block py-1.5 text-white/80 hover:text-white transition">{t(translations.nav.services, lang)}</Link></li>
+                <li><Link to="/pricing" className="inline-block py-1.5 text-white/80 hover:text-white transition">{t(translations.nav.pricing, lang)}</Link></li>
+                <li><Link to="/contact" className="inline-block py-1.5 text-white/80 hover:text-white transition">{t(translations.nav.contact, lang)}</Link></li>
               </ul>
             </div>
 
@@ -89,11 +61,11 @@ const Footer = () => {
               <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-5">
                 {isZh ? "服務" : "Services"}
               </p>
-              <ul className="space-y-3 text-sm">
-                <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "網站設計" : "Web Design"}</Link></li>
-                <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "Logo 與品牌" : "Logo & Branding"}</Link></li>
-                <li><Link to="/services" className="text-white/80 hover:text-white transition">{isZh ? "網站 + 品牌套裝" : "Website + Brand Bundles"}</Link></li>
-                <li><Link to="/pricing" className="text-white/80 hover:text-white transition">{isZh ? "主機代管" : "Hosting"}</Link></li>
+              <ul className="space-y-1 text-sm">
+                <li><Link to="/services" className="inline-block py-1.5 text-white/80 hover:text-white transition">{isZh ? "網站設計" : "Web Design"}</Link></li>
+                <li><Link to="/services" className="inline-block py-1.5 text-white/80 hover:text-white transition">{isZh ? "Logo 與品牌" : "Logo & Branding"}</Link></li>
+                <li><Link to="/services" className="inline-block py-1.5 text-white/80 hover:text-white transition">{isZh ? "網站 + 品牌套裝" : "Website + Brand Bundles"}</Link></li>
+                <li><Link to="/pricing" className="inline-block py-1.5 text-white/80 hover:text-white transition">{isZh ? "主機代管" : "Hosting"}</Link></li>
               </ul>
             </div>
 
@@ -125,7 +97,7 @@ const Footer = () => {
               <img
                 src={logoWhite}
                 alt="Sonykun Design"
-                className="w-full h-auto select-none pointer-events-none opacity-70"
+                className="w-full max-w-[360px] h-auto select-none pointer-events-none opacity-70"
                 style={{ filter: "brightness(0.92) contrast(0.95)" }}
                 draggable={false}
               />
@@ -134,9 +106,9 @@ const Footer = () => {
           <div className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.24em] text-white/45">
             <span>© {year} Sonykun Design — {isZh ? "版權所有" : "All rights reserved"}</span>
             <div className="flex items-center gap-6">
-              <Link to="/privacy" className="hover:text-white transition">{t(translations.nav.privacy, lang)}</Link>
+              <Link to="/privacy" className="inline-block py-3 hover:text-white transition">{t(translations.nav.privacy, lang)}</Link>
               <span className="text-white/20">/</span>
-              <Link to="/terms" className="hover:text-white transition">{t(translations.nav.terms, lang)}</Link>
+              <Link to="/terms" className="inline-block py-3 hover:text-white transition">{t(translations.nav.terms, lang)}</Link>
               <span className="text-white/20">/</span>
               <span>v2026</span>
             </div>
