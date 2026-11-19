@@ -96,9 +96,9 @@ const Index = () => {
     return () => ctx.revert();
   }, [lang]);
 
-  const heroLine1 = isZh ? "3 個工作天內" : "Get a Professional";
-  const heroLine2 = isZh ? "獲得專業" : "Website in 3";
-  const heroLine3 = isZh ? "網站。" : "Business Days.";
+  const heroLine1 = isZh ? "我親手設計" : "I design";
+  const heroLine2 = isZh ? "您的網站" : "websites & brands";
+  const heroLine3 = isZh ? "與品牌。" : "for small business.";
 
   return (
     <div ref={root}>
@@ -119,7 +119,7 @@ const Index = () => {
               <SplitTextReveal
                 as="span"
                 text={heroLine2}
-                className="heading-hero block text-muted-foreground"
+                className="heading-hero heading-accent block text-muted-foreground"
                 delay={0.15}
               />
               <SplitTextReveal as="span" text={heroLine3} className="heading-hero block" delay={0.3} />

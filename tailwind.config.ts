@@ -55,8 +55,9 @@ export default {
         charcoal: "hsl(var(--charcoal))",
       },
       fontFamily: {
-        display: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Bricolage Grotesque', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         body: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        accent: ['Instrument Serif', 'Georgia', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

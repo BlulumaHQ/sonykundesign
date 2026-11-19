@@ -20,7 +20,7 @@ const Craigslist = () => {
 
   const pricingSummary = [
     {
-      title: isZh ? "基本網站" : "Basic Website",
+      title: isZh ? "單頁網站" : "One-Page Website",
       price: "$375",
       features: isZh
         ? ["單頁網站", "手機友好", "聯絡表單"]

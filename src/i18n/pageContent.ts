@@ -32,32 +32,32 @@ export type { Lang };
 
 export const homeContent = {
   hero: {
-    eyebrow: { en: "Vancouver Web Designer", zh: "溫哥華網站設計師" },
+    eyebrow: { en: "Vancouver Web & Brand Designer", zh: "溫哥華網站與品牌設計師" },
     headline: {
-      en: "Get a Professional Website in 3 Business Days.",
-      zh: "3 個工作天內\n獲得專業網站。",
+      en: "I design websites and brands for small businesses.",
+      zh: "我親手設計\n您的網站與品牌。",
     },
     subhead: {
-      en: "You see your website preview before you pay — then we launch it. Websites starting at $375 CAD. No surprises, no hidden fees.",
-      zh: "付款前先看到網站預覽，確認後我們上線。網站起價 $375 加幣。沒有意外、沒有隱藏費用。",
+      en: "20+ years and 500+ websites, based in Vancouver. You work directly with me — no account managers, no middlemen. Every price is public and every client pays the same. One-page sites from $375 CAD.",
+      zh: "20 多年經驗、500+ 個網站，位於溫哥華。您直接與我本人溝通 — 沒有業務、沒有中間人。所有價格公開，每位客戶都一樣。單頁網站起價 $375 加幣。",
     },
     ctaPrimary: { en: "Get Your Free Preview", zh: "取得免費預覽" },
     ctaSecondary: { en: "See Website Packages", zh: "查看網站方案" },
     trust: {
-      en: "500+ websites built · Since 2005 · Based in Vancouver, BC · 3-day delivery",
-      zh: "500+ 網站完成 · 自 2005 年起 · 位於溫哥華 BC · 3 天交付",
+      en: "500+ websites built · Since 2005 · Vancouver, BC · Free preview before you pay",
+      zh: "500+ 網站完成 · 自 2005 年起 · 溫哥華 BC · 付款前先看預覽",
     },
   },
   process: {
     eyebrow: { en: "The Process", zh: "工作流程" },
     title: { en: "Simple. Fast. No Technical Headaches.", zh: "簡單、快速、零技術負擔。" },
     subtext: {
-      en: "You focus on your business. We handle everything.",
-      zh: "您專注於業務，其他都交給我們。",
+      en: "You focus on your business. I handle everything.",
+      zh: "您專注於業務，其他都交給我。",
     },
     steps: [
       {
-        title: { en: "Tell Us About Your Business", zh: "告訴我們您的業務" },
+        title: { en: "Tell Me About Your Business", zh: "告訴我您的業務" },
         body: {
           en: "Fill out a short form with your business info, style preferences, and goals. Takes under 5 minutes.",
           zh: "填寫一份簡短表單，提供業務資訊、風格偏好與目標。不到 5 分鐘。",
@@ -66,21 +66,21 @@ export const homeContent = {
       {
         title: { en: "Review Your Free Preview", zh: "查看免費預覽" },
         body: {
-          en: "We build a real, working preview of your website. You see it before you pay a single dollar.",
-          zh: "我們會打造一個真實、可運作的網站預覽。您在付款前就能看到成果。",
+          en: "I build a real, working preview of your website. You see it before you pay a single dollar.",
+          zh: "我會打造一個真實、可運作的網站預覽。您在付款前就能看到成果。",
         },
       },
       {
         title: { en: "Launch in 3 Business Days", zh: "3 個工作天內上線" },
         body: {
-          en: "Once you approve and pay, we finalize everything and get your site live. We handle domain setup, hosting transfer, and all technical details.",
-          zh: "確認並付款後，我們會完成所有細節並讓網站上線。網域設定、主機轉移與所有技術環節都由我們處理。",
+          en: "Once you approve and pay, I finalize everything and get your site live. I handle domain setup, hosting transfer, and all technical details.",
+          zh: "確認並付款後，我會完成所有細節並讓網站上線。網域設定、主機轉移與所有技術環節都由我處理。",
         },
       },
     ],
   },
   services: {
-    eyebrow: { en: "What We Do", zh: "服務內容" },
+    eyebrow: { en: "What I Do", zh: "服務內容" },
     title: { en: "Everything Your Business Needs Online", zh: "您的業務上線所需的一切" },
     cards: [
       {
@@ -89,7 +89,7 @@ export const homeContent = {
           en: "Professional, mobile-friendly websites built for small businesses. From single-page sites to full multi-page builds.",
           zh: "為小型企業打造的專業、手機友善網站。從單頁網站到完整多頁建置。",
         },
-        price: { en: "From $375 CAD", zh: "起價 $375 加幣" },
+        price: { en: "One-page from $375 · Multi-page from $750", zh: "單頁 $375 起 · 多頁 $750 起" },
         link: { en: "See website packages →", zh: "查看網站方案 →" },
         href: "/pricing",
       },
@@ -106,7 +106,7 @@ export const homeContent = {
       {
         title: { en: "Website + Brand Bundle", zh: "網站 + 品牌套裝" },
         body: {
-          en: "Your website and brand identity designed together as one integrated project. Our most popular option for businesses launching from scratch.",
+          en: "Your website and brand identity designed together as one integrated project. My most popular option for businesses launching from scratch.",
           zh: "網站與品牌識別作為一個整合專案一起設計。從零開始的客戶最常選擇的方案。",
         },
         price: { en: "From $800 CAD", zh: "起價 $800 加幣" },
@@ -117,8 +117,8 @@ export const homeContent = {
       {
         title: { en: "Hosting & Maintenance", zh: "主機與維護" },
         body: {
-          en: "We handle all technical details — hosting, domain setup, transfers, and ongoing maintenance. You don't touch a thing.",
-          zh: "主機、網域、轉移與維護所有技術細節由我們處理。您完全不需要動手。",
+          en: "I handle all technical details — hosting, domain setup, transfers, and ongoing maintenance. You don't touch a thing.",
+          zh: "主機、網域、轉移與維護所有技術細節由我處理。您完全不需要動手。",
         },
         price: { en: "Free hosting available · Managed $18/mo", zh: "提供免費主機 · 代管 $18/月" },
         link: { en: "Learn more →", zh: "了解更多 →" },
@@ -152,7 +152,7 @@ export const homeContent = {
   },
   reviews: {
     eyebrow: { en: "Client Reviews", zh: "客戶評價" },
-    title: { en: "What Our Clients Say", zh: "客戶怎麼說" },
+    title: { en: "What My Clients Say", zh: "客戶怎麼說" },
   },
   faq: {
     eyebrow: { en: "FAQ", zh: "常見問題" },
@@ -161,29 +161,29 @@ export const homeContent = {
       {
         q: { en: "How does the website preview work?", zh: "網站預覽是怎麼運作的？" },
         a: {
-          en: "Before you pay anything, we build a real working preview of your website based on your brief. You review it, request any direction changes, and once you're happy with where it's going, you pay and we finalize it. You always see what you're getting before committing.",
-          zh: "付款前，我們會根據您提供的需求打造一個真實可運作的網站預覽。您審閱後可提出方向調整，滿意後再付款，我們完成最終版本。您永遠在確定方案前就能看到成果。",
+          en: "Before you pay anything, I build a real working preview of your website based on your brief. You review it, request any direction changes, and once you're happy with where it's going, you pay and I finalize it. You always see what you're getting before committing.",
+          zh: "付款前，我會根據您提供的需求打造一個真實可運作的網站預覽。您審閱後可提出方向調整，滿意後再付款，我完成最終版本。您永遠在確定方案前就能看到成果。",
         },
       },
       {
         q: { en: "I already have hosting — do I need to change it?", zh: "我已經有主機 — 需要更換嗎？" },
         a: {
-          en: "Not necessarily. If you prefer to keep your current hosting, we can work with it. If you'd like to move to our hosting platform, we handle the entire transfer for you — domain setup, DNS configuration, everything. You just provide your login credentials and we do the rest. Most transfers take less than 24 hours.",
-          zh: "不一定。若您想保留現有主機，我們可以配合。若您希望轉到我們的平台，整個轉移流程由我們處理 — 網域設定、DNS 設定，全部包辦。您只需提供登入資訊，其餘交給我們。多數轉移在 24 小時內完成。",
+          en: "Not necessarily. If you prefer to keep your current hosting, I can work with it. If you'd like to move to my hosting platform, I handle the entire transfer for you — domain setup, DNS configuration, everything. You just provide your login credentials and I do the rest. Most transfers take less than 24 hours.",
+          zh: "不一定。若您想保留現有主機，我可以配合。若您希望轉到我的平台，整個轉移流程由我處理 — 網域設定、DNS 設定，全部包辦。您只需提供登入資訊，其餘交給我。多數轉移在 24 小時內完成。",
         },
       },
       {
         q: { en: "How long does it take to build a website?", zh: "建一個網站需要多久？" },
         a: {
-          en: "We typically deliver the completed website within 3 business days of receiving your content and payment. Complex or larger projects may take slightly longer — we'll always let you know upfront.",
-          zh: "收到內容與付款後，通常 3 個工作天內完成網站。較大或較複雜的專案可能稍微長一些 — 我們會事先告知。",
+          en: "I typically deliver the completed website within 3 business days of receiving your content and payment. Complex or larger projects may take slightly longer — I'll always let you know upfront.",
+          zh: "收到內容與付款後，通常 3 個工作天內完成網站。較大或較複雜的專案可能稍微長一些 — 我會事先告知。",
         },
       },
       {
         q: { en: "What do I need to provide?", zh: "我需要準備什麼？" },
         a: {
-          en: "Your business name, logo (if you have one), any text content you want on the site, and any photos or images. If you don't have copy or photos, we offer copywriting as an add-on and can source free stock photography that fits your brand.",
-          zh: "業務名稱、Logo（如果有）、想放在網站上的文字內容，以及任何照片或圖片。若沒有文案或照片，我們提供文案撰寫加購服務，並能挑選符合品牌的免費圖庫照片。",
+          en: "Your business name, logo (if you have one), any text content you want on the site, and any photos or images. If you don't have copy or photos, I offer copywriting as an add-on and can source free stock photography that fits your brand.",
+          zh: "業務名稱、Logo（如果有）、想放在網站上的文字內容，以及任何照片或圖片。若沒有文案或照片，我提供文案撰寫加購服務，並能挑選符合品牌的免費圖庫照片。",
         },
       },
       {
@@ -196,15 +196,15 @@ export const homeContent = {
       {
         q: { en: "Will my website work on phones?", zh: "我的網站在手機上能正常顯示嗎？" },
         a: {
-          en: "Yes. Every website we build is fully responsive and tested on mobile, tablet, and desktop before delivery.",
-          zh: "可以。我們建的每個網站都完全響應式，交付前會在手機、平板與桌面測試。",
+          en: "Yes. Every website I build is fully responsive and tested on mobile, tablet, and desktop before delivery.",
+          zh: "可以。我建的每個網站都完全響應式，交付前會在手機、平板與桌面測試。",
         },
       },
       {
         q: { en: "Is the website mine after it's done?", zh: "完成後網站是我的嗎？" },
         a: {
-          en: "Absolutely. Once you pay, the website belongs entirely to you. We can continue hosting it for you, or hand over all the files if you prefer to manage it yourself.",
-          zh: "當然是。付款後網站完全歸您所有。我們可以繼續代管，或將所有檔案交給您自行管理。",
+          en: "Absolutely. Once you pay, the website belongs entirely to you. I can continue hosting it for you, or hand over all the files if you prefer to manage it yourself.",
+          zh: "當然是。付款後網站完全歸您所有。我可以繼續代管，或將所有檔案交給您自行管理。",
         },
       },
     ],
@@ -212,8 +212,8 @@ export const homeContent = {
   finalCta: {
     title: { en: "Ready to Get Started?", zh: "準備好開始了嗎？" },
     body: {
-      en: "Tell us about your business and we'll build you a free preview.",
-      zh: "告訴我們您的業務，我們會為您打造免費預覽。",
+      en: "Tell me about your business and I'll build you a free preview.",
+      zh: "告訴我您的業務，我會為您打造免費預覽。",
     },
     cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
   },
@@ -221,7 +221,7 @@ export const homeContent = {
 
 export const servicesContent = {
   hero: {
-    eyebrow: { en: "What We Offer", zh: "服務項目" },
+    eyebrow: { en: "What I Offer", zh: "服務項目" },
     title: { en: "Services", zh: "服務內容" },
     subtext: {
       en: "Professional design services for small businesses — from first logo to full website launch.",
@@ -231,8 +231,8 @@ export const servicesContent = {
   website: {
     title: { en: "Website Design", zh: "網站設計" },
     body: {
-      en: "We design and build professional, mobile-friendly websites that represent your business well and work hard for you. Whether you need a simple 5-page site or a full multi-page business presence, we handle the entire build — design, development, copy guidance, and launch.",
-      zh: "我們設計並建置專業、手機友善的網站，為您的業務認真服務。從簡單的 5 頁網站到完整的多頁企業形象，我們處理整個流程 — 設計、開發、文案建議與上線。",
+      en: "I design and build professional, mobile-friendly websites that represent your business well and work hard for you. Whether you need a simple 5-page site or a full multi-page business presence, I handle the entire build — design, development, copy guidance, and launch.",
+      zh: "我設計並建置專業、手機友善的網站，為您的業務認真服務。從簡單的 5 頁網站到完整的多頁企業形象，我處理整個流程 — 設計、開發、文案建議與上線。",
     },
     features: {
       en: [
@@ -257,14 +257,14 @@ export const servicesContent = {
         "Fully launched website (desktop + mobile)",
         "Contact form setup",
         "Basic SEO meta tags on all pages",
-        "Free hosting on our platform",
+        "Free hosting on my platform",
         "Domain and DNS setup assistance",
       ],
       zh: [
         "完整上線網站（桌面 + 手機）",
         "聯絡表單設定",
         "所有頁面基本 SEO Meta 標籤",
-        "我們平台的免費主機",
+        "我平台的免費主機",
         "網域與 DNS 設定協助",
       ],
     },
@@ -274,8 +274,8 @@ export const servicesContent = {
   logo: {
     title: { en: "Logo & Brand Identity", zh: "Logo 與品牌識別" },
     body: {
-      en: "A strong logo is the foundation of your brand. We create logos that are clean, versatile, and built to last — along with the full brand system your business needs to look consistent everywhere.",
-      zh: "強而有力的 Logo 是品牌的基礎。我們設計乾淨、多用途、耐用的 Logo — 並提供完整品牌系統，讓您的業務在所有場合都保持一致。",
+      en: "A strong logo is the foundation of your brand. I create logos that are clean, versatile, and built to last — along with the full brand system your business needs to look consistent everywhere.",
+      zh: "強而有力的 Logo 是品牌的基礎。我設計乾淨、多用途、耐用的 Logo — 並提供完整品牌系統，讓您的業務在所有場合都保持一致。",
     },
     features: {
       en: [
@@ -317,10 +317,10 @@ export const servicesContent = {
   midCta: {
     title: { en: "Not sure which service you need?", zh: "不確定需要哪種服務？" },
     body: {
-      en: "Send us a message and we'll recommend the right package for your budget and goals.",
-      zh: "傳訊息給我們，我們會根據您的預算與目標推薦合適的方案。",
+      en: "Send me a message and I'll recommend the right package for your budget and goals.",
+      zh: "傳訊息給我，我會根據您的預算與目標推薦合適的方案。",
     },
-    cta: { en: "Get in Touch", zh: "聯絡我們" },
+    cta: { en: "Get in Touch", zh: "聯絡我" },
   },
   bundles: {
     title: { en: "Website + Brand Bundles", zh: "網站 + 品牌套裝" },
@@ -332,8 +332,8 @@ export const servicesContent = {
         tagline: { en: "Establish Your Business", zh: "建立您的業務" },
         subtitle: { en: "Everything you need to establish your business online.", zh: "建立線上業務所需的一切。" },
         items: {
-          en: ["Basic Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
-          zh: ["基本網站方案", "Basic Logo 方案", "名片設計", "基本網站配色與字體協調", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
+          en: ["One-Page Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
+          zh: ["單頁網站方案", "Basic Logo 方案", "名片設計", "基本網站配色與字體協調", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
         },
       },
       {
@@ -363,23 +363,23 @@ export const servicesContent = {
   hosting: {
     title: { en: "Hosting & Maintenance", zh: "主機與維護" },
     body: {
-      en: "We take care of all the technical side so you don't have to think about it. Whether you're starting fresh or moving from an existing provider, we handle everything.",
-      zh: "我們處理所有技術細節，您完全不用煩惱。不論是全新開始或從現有供應商轉移，我們都包辦。",
+      en: "I take care of all the technical side so you don't have to think about it. Whether you're starting fresh or moving from an existing provider, I handle everything.",
+      zh: "我處理所有技術細節，您完全不用煩惱。不論是全新開始或從現有供應商轉移，我都包辦。",
     },
     handle: {
-      title: { en: "What we handle", zh: "我們處理的項目" },
+      title: { en: "What I handle", zh: "我處理的項目" },
       items: {
         en: [
-          "Website hosting on our platform",
+          "Website hosting on my platform",
           "Domain registration and DNS setup",
-          "Transfers from your existing hosting provider (we do all the work)",
+          "Transfers from your existing hosting provider (I do all the work)",
           "Basic maintenance and uptime monitoring",
           "Small revision support (Managed Hosting plan)",
         ],
         zh: [
-          "我們平台的網站主機",
+          "我平台的網站主機",
           "網域註冊與 DNS 設定",
-          "從現有主機商轉移（全部由我們處理）",
+          "從現有主機商轉移（全部由我處理）",
           "基本維護與可用性監控",
           "小幅修改支援（代管方案）",
         ],
@@ -390,8 +390,8 @@ export const servicesContent = {
       free: {
         title: { en: "Free Hosting — $0", zh: "免費主機 — $0" },
         body: {
-          en: "Your site hosted on our platform at no cost. You own the site. We keep it running.",
-          zh: "免費將您的網站架在我們平台上。網站歸您所有，我們維持運作。",
+          en: "Your site hosted on my platform at no cost. You own the site. I keep it running.",
+          zh: "免費將您的網站架在我的平台上。網站歸您所有，我維持運作。",
         },
       },
       managed: {
@@ -403,8 +403,8 @@ export const servicesContent = {
       },
     },
     note: {
-      en: "Already have hosting with GoDaddy, Squarespace, Wix, or another provider? No problem — we'll migrate your site for free as part of your project. Domain setup is a one-time $25.",
-      zh: "已經在 GoDaddy、Squarespace、Wix 或其他供應商有主機？沒問題 — 我們會在專案中免費為您轉移網站。網域設定為一次性 $25。",
+      en: "Already have hosting with GoDaddy, Squarespace, Wix, or another provider? No problem — I'll migrate your site for free as part of your project. Domain setup is a one-time $25.",
+      zh: "已經在 GoDaddy、Squarespace、Wix 或其他供應商有主機？沒問題 — 我會在專案中免費為您轉移網站。網域設定為一次性 $25。",
     },
   },
   faq: {
@@ -413,28 +413,28 @@ export const servicesContent = {
       {
         q: { en: "Do you work with clients outside Vancouver?", zh: "您接溫哥華以外的客戶嗎？" },
         a: {
-          en: "Yes. While we're based in Vancouver, BC, we work with small businesses across Canada entirely remotely. Everything is handled by email and online — no in-person meetings required.",
-          zh: "可以。雖然我們位於溫哥華 BC，但全程遠端服務全加拿大的小型企業。所有溝通透過 Email 與線上完成，不需要面對面會議。",
+          en: "Yes. While I'm based in Vancouver, BC, I work with small businesses across Canada entirely remotely. Everything is handled by email and online — no in-person meetings required.",
+          zh: "可以。雖然我位於溫哥華 BC，但全程遠端服務全加拿大的小型企業。所有溝通透過 Email 與線上完成，不需要面對面會議。",
         },
       },
       {
         q: { en: "Can I get just a logo without a website?", zh: "我可以只買 Logo 不要網站嗎？" },
         a: {
-          en: "Absolutely. Logo and brand identity design is available as a standalone service. See our logo pricing on the Pricing page.",
+          en: "Absolutely. Logo and brand identity design is available as a standalone service. See my logo pricing on the Pricing page.",
           zh: "當然可以。Logo 與品牌識別可獨立購買。請見價格頁的 Logo 價格。",
         },
       },
       {
         q: { en: "What if I already have a logo — can you still build my website?", zh: "如果我已經有 Logo — 您還能幫我做網站嗎？" },
         a: {
-          en: "Yes. If you have a logo, we'll use it as the foundation for your website design. If your logo is low-resolution or not in vector format, we offer a Vector Logo Fix for $100 to clean it up.",
-          zh: "可以。我們會以您現有的 Logo 為網站設計的基礎。若 Logo 解析度低或非向量格式，我們提供 $100 的向量 Logo 修復服務。",
+          en: "Yes. If you have a logo, I'll use it as the foundation for your website design. If your logo is low-resolution or not in vector format, I offer a Vector Logo Fix for $100 to clean it up.",
+          zh: "可以。我會以您現有的 Logo 為網站設計的基礎。若 Logo 解析度低或非向量格式，我提供 $100 的向量 Logo 修復服務。",
         },
       },
       {
         q: { en: "Do you offer ongoing support after the site launches?", zh: "上線後有持續支援嗎？" },
         a: {
-          en: "Yes. Our Managed Hosting plan at $18/month ($165/year) includes basic maintenance and small revision support. For larger updates, we're always available to quote on a per-project basis.",
+          en: "Yes. My Managed Hosting plan at $18/month ($165/year) includes basic maintenance and small revision support. For larger updates, I'm always available to quote on a per-project basis.",
           zh: "有。代管主機方案每月 $18（或每年 $165），包含基本維護與小幅修改。較大更新可依專案個別報價。",
         },
       },
@@ -450,8 +450,8 @@ export const servicesContent = {
   bottomCta: {
     title: { en: "Ready to get started?", zh: "準備好開始了嗎？" },
     body: {
-      en: "We'll build you a free preview so you can see your website before you commit.",
-      zh: "我們會為您打造免費預覽，讓您在決定前先看到網站。",
+      en: "I'll build you a free preview so you can see your website before you commit.",
+      zh: "我會為您打造免費預覽，讓您在決定前先看到網站。",
     },
     cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
   },
@@ -462,15 +462,15 @@ export const pricingContent = {
     eyebrow: { en: "Transparent Pricing", zh: "透明定價" },
     title: { en: "Full Pricing", zh: "完整價格" },
     subtext: {
-      en: "All prices in CAD. No hidden fees, no surprises. You see a preview of your website before you pay.",
-      zh: "所有價格以加幣計算。沒有隱藏費用、沒有意外。付款前先看到網站預覽。",
+      en: "All prices in CAD. Same price for every client — no hidden fees, no surprises. You see a preview of your website before you pay.",
+      zh: "所有價格以加幣計算。每位客戶同一個價格 — 沒有隱藏費用、沒有意外。付款前先看到網站預覽。",
     },
   },
   website: {
     title: { en: "Website Design", zh: "網站設計" },
     cards: [
       {
-        title: { en: "Basic Website", zh: "基本網站" },
+        title: { en: "One-Page Website", zh: "單頁網站" },
         price: "$375",
         description: {
           en: "A clean single-page landing website designed for conversion and a simple business presentation.",
@@ -575,8 +575,8 @@ export const pricingContent = {
         tagline: { en: "Establish Your Business", zh: "建立您的業務" },
         subtitle: { en: "Everything you need to establish your business online.", zh: "建立線上業務所需的一切。" },
         items: {
-          en: ["Basic Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
-          zh: ["基本網站方案", "Basic Logo 方案", "名片設計", "基本網站配色與字體協調", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
+          en: ["One-Page Website package", "Basic Logo package", "Business card design", "Basic website colour and typography coordination", "Mobile-responsive design", "Basic on-page SEO setup", "Website launch and testing"],
+          zh: ["單頁網站方案", "Basic Logo 方案", "名片設計", "基本網站配色與字體協調", "響應式手機設計", "基本頁面 SEO 設定", "網站上線與測試"],
         },
       },
       {
@@ -642,8 +642,8 @@ export const pricingContent = {
       title: { en: "Free Hosting", zh: "免費主機" },
       price: "$0",
       body: {
-        en: "Your website hosted on our platform at no cost. Fully managed by us.",
-        zh: "免費將您的網站架在我們平台上，全程由我們管理。",
+        en: "Your website hosted on my platform at no cost. Fully managed by me.",
+        zh: "免費將您的網站架在我的平台上，全程由我管理。",
       },
     },
     managed: {
@@ -655,8 +655,8 @@ export const pricingContent = {
       },
       note: { en: "Save $51 annually with yearly billing", zh: "年繳每年省 $51" },
       ownership: {
-        en: "Upon final payment, you own your completed website and design assets. Your domain can be registered under your own account. Websites are initially deployed through Sonykun Design's hosting environment. If you decide to move to another provider, we can provide the complete website source files for migration to a compatible hosting environment. Third-party migration, setup, and ongoing maintenance are separate services.",
-        zh: "付清尾款後，完成的網站與設計素材歸您所有。網域可註冊在您自己的帳戶下。網站初期部署於 Sonykun Design 的主機環境。若您決定轉到其他供應商，我們可提供完整網站原始檔，以轉移至相容的主機環境。第三方轉移、設定與持續維護為另計服務。",
+        en: "Upon final payment, you own your completed website and design assets. Your domain can be registered under your own account. Websites are initially deployed through Sonykun Design's hosting environment. If you decide to move to another provider, I can provide the complete website source files for migration to a compatible hosting environment. Third-party migration, setup, and ongoing maintenance are separate services.",
+        zh: "付清尾款後，完成的網站與設計素材歸您所有。網域可註冊在您自己的帳戶下。網站初期部署於 Sonykun Design 的主機環境。若您決定轉到其他供應商，我可提供完整網站原始檔，以轉移至相容的主機環境。第三方轉移、設定與持續維護為另計服務。",
       },
     },
   },
@@ -732,22 +732,22 @@ export const pricingContent = {
       {
         q: { en: "Do I pay upfront or after the website is done?", zh: "我是先付款還是完成後付款？" },
         a: {
-          en: "Neither. Here's how it works: after you fill out our brief, we build a real working preview of your website. You review the preview first — once you're happy with the direction, you pay and we finalize the site and launch it. You never pay for something you haven't seen.",
-          zh: "都不是。流程是：填寫需求後，我們先打造真實可運作的網站預覽。您先檢視預覽 — 滿意方向後再付款，我們完成最終版本並上線。您絕不會為沒看過的東西付款。",
+          en: "Neither. Here's how it works: after you fill out the brief, I build a real working preview of your website. You review the preview first — once you're happy with the direction, you pay and I finalize the site and launch it. You never pay for something you haven't seen.",
+          zh: "都不是。流程是：填寫需求後，我先打造真實可運作的網站預覽。您先檢視預覽 — 滿意方向後再付款，我完成最終版本並上線。您絕不會為沒看過的東西付款。",
         },
       },
       {
         q: { en: "Are there any ongoing fees?", zh: "有任何持續費用嗎？" },
         a: {
-          en: "Free hosting is truly free — no monthly charges. Managed Hosting is $18/month or $165/year (save $51 annually with yearly billing) if you want us to handle maintenance and minor updates. There are no other mandatory recurring fees.",
-          zh: "免費主機是真的免費 — 沒有月費。若需要我們處理維護與小幅更新，可選擇代管主機 $18/月 或 $165/年（年繳每年省 $51）。沒有其他強制性的持續費用。",
+          en: "Free hosting is truly free — no monthly charges. Managed Hosting is $18/month or $165/year (save $51 annually with yearly billing) if you want me to handle maintenance and minor updates. There are no other mandatory recurring fees.",
+          zh: "免費主機是真的免費 — 沒有月費。若需要我處理維護與小幅更新，可選擇代管主機 $18/月 或 $165/年（年繳每年省 $51）。沒有其他強制性的持續費用。",
         },
       },
       {
         q: { en: "What's included in the 'free hosting'?", zh: "「免費主機」包含什麼？" },
         a: {
-          en: "Your website is hosted on our platform at no cost to you. It stays live as long as you want. If you ever want to move it to your own hosting provider, we'll help with the migration.",
-          zh: "您的網站免費架在我們平台上，想保持上線多久都可以。若日後想搬到自己的主機商，我們會協助轉移。",
+          en: "Your website is hosted on my platform at no cost to you. It stays live as long as you want. If you ever want to move it to your own hosting provider, I'll help with the migration.",
+          zh: "您的網站免費架在我的平台上，想保持上線多久都可以。若日後想搬到自己的主機商，我會協助轉移。",
         },
       },
       {
@@ -760,8 +760,8 @@ export const pricingContent = {
       {
         q: { en: "Can I upgrade my package later?", zh: "之後可以升級方案嗎？" },
         a: {
-          en: "Yes. If you start with a Basic Website and later want to add more pages or upgrade features, we can quote the difference. It's always easier to plan ahead, but upgrading later is possible.",
-          zh: "可以。若先從基本網站開始，之後想加頁數或升級功能，我們會報差價。事先規劃當然更輕鬆，但之後升級也沒問題。",
+          en: "Yes. If you start with a One-Page Website and later want to add more pages or upgrade features, I can quote the difference. It's always easier to plan ahead, but upgrading later is possible.",
+          zh: "可以。若先從單頁網站開始，之後想加頁數或升級功能，我會報差價。事先規劃當然更輕鬆，但之後升級也沒問題。",
         },
       },
       {
@@ -776,8 +776,8 @@ export const pricingContent = {
   bottomCta: {
     title: { en: "See Your Website Before You Pay", zh: "付款前先看到網站" },
     body: {
-      en: "Fill out a short brief and we'll build you a free preview. No commitment required.",
-      zh: "填寫簡短需求，我們會打造免費預覽。完全沒有任何承諾。",
+      en: "Fill out a short brief and I'll build you a free preview. No commitment required.",
+      zh: "填寫簡短需求，我會打造免費預覽。完全沒有任何承諾。",
     },
     cta: { en: "Get Your Free Preview", zh: "取得免費預覽" },
   },

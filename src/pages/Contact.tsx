@@ -48,7 +48,7 @@ const Contact = () => {
             <div className="flex items-end justify-between mb-8">
               <span className="eyebrow !mb-0">
                 <span className="inline-block w-8 h-px bg-[#5B7189] align-middle mr-3" />
-                {isZh ? "聯絡我們" : "Get in touch"}
+                {isZh ? "聯絡我" : "Get in touch"}
               </span>
               <span className="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                 {isZh ? "免費預覽 · 不收訂金" : "Free preview · no deposit"}
@@ -62,12 +62,12 @@ const Contact = () => {
             <div className="mt-10 grid grid-cols-12 gap-6 md:gap-12 items-end">
               <p className="col-span-12 md:col-span-7 text-subtitle text-foreground/70 max-w-2xl">
                 {isZh
-                  ? "告訴我們您的業務與需求 — 我們會在 1–2 個工作天內回覆，並為您打造一個完全免費、可即時瀏覽的網站預覽。付款前先看到成果。"
-                  : "Tell us about your business and what you're looking for. We'll respond within 1–2 business days with a free, browseable preview of your website — you see the result before you pay."}
+                  ? "告訴我您的業務與需求 — 我會在 1–2 個工作天內回覆，並為您打造一個完全免費、可即時瀏覽的網站預覽。付款前先看到成果。"
+                  : "Tell me about your business and what you're looking for. I'll respond within 1–2 business days with a free, browseable preview of your website — you see the result before you pay."}
               </p>
               <div className="col-span-12 md:col-span-5 md:text-right">
                 <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-2">
-                  {isZh ? "或直接聯繫" : "Or reach us directly"}
+                  {isZh ? "或直接聯繫" : "Or reach me directly"}
                 </p>
                 <a href="tel:6042621168" className="font-display text-2xl md:text-3xl tracking-tight hover:text-[#5B7189] transition-colors">
                   (604) 262-1168
@@ -118,12 +118,12 @@ const Contact = () => {
                   {isZh ? "簡報" : "The brief"}
                 </span>
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight mb-8">
-                  {isZh ? "告訴我們關於\n您的專案。" : "Tell us about\nyour project."}
+                  {isZh ? "告訴我關於\n您的專案。" : "Tell me about\nyour project."}
                 </h2>
                 <p className="text-sm text-muted-foreground leading-[1.8] mb-10 max-w-sm">
                   {isZh
-                    ? "越多細節越好 — 不過幾句話也沒關係。我們會親自閱讀每一封訊息，並準備一份個人化的回覆。"
-                    : "The more detail the better — but a few sentences is fine too. We personally read every message and reply with a tailored response."}
+                    ? "越多細節越好 — 不過幾句話也沒關係。我會親自閱讀每一封訊息，並準備一份個人化的回覆。"
+                    : "The more detail the better — but a few sentences is fine too. I personally read every message and reply with a tailored response."}
                 </p>
                 <div className="border-t border-border pt-6 space-y-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   <div className="flex items-center justify-between"><span>{isZh ? "起價" : "Starting at"}</span><span className="text-foreground">$375 CAD</span></div>
@@ -152,8 +152,8 @@ const Contact = () => {
             <div className="grid grid-cols-12 gap-8 pt-10 border-t border-foreground/15 items-end">
               <p className="col-span-12 md:col-span-6 text-base md:text-lg text-foreground/75 leading-[1.6] max-w-xl">
                 {isZh
-                  ? "填寫上方表單，我們會為您打造一個免費預覽 — 不收訂金，看到成品再決定。"
-                  : "Fill out the form above and we'll build you a free preview — no deposit, decide once you see the result."}
+                  ? "填寫上方表單，我會為您打造一個免費預覽 — 不收訂金，看到成品再決定。"
+                  : "Fill out the form above and I'll build you a free preview — no deposit, decide once you see the result."}
               </p>
               <div className="col-span-12 md:col-span-6 md:justify-self-end">
                 <button
