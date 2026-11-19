@@ -1,0 +1,53 @@
+# Sonykun Design
+
+> Sonykun Design is the Vancouver freelance web design studio of designer Sony Lin, serving small businesses in British Columbia since 2005. It offers affordable website design, logo design and website + brand bundles with transparent CAD pricing — websites and logos from $375 — and clients see a live preview of their website before they pay.
+
+Sony Lin has designed 500+ websites over 20+ years for small businesses, clinics, contractors and restaurants. Sonykun Design handles the whole job: design, build, domain setup, hosting transfer and launch, in English or Traditional Chinese. Once a client pays, the website belongs to them; Sonykun can keep hosting it or hand over all the files.
+
+The site is also available in Traditional Chinese under /zh/, e.g. https://sonykundesign.com/zh/.
+
+## Pricing (CAD, no hidden fees)
+
+Websites:
+- Basic Website — $375: single-page landing website, mobile-friendly, contact form, free hosting available, basic brand setup.
+- Business Website — $750: up to 7 pages, mobile-optimised layout, SEO-friendly structure, contact form, free hosting available, basic branding integration.
+- Premium Website — $1,250: up to 10 pages, advanced layout design, custom styling, SEO-optimised structure, enhanced brand presentation.
+- E-commerce Basic — from $1,650: online store setup, payment integration, up to 10 products, mobile-friendly checkout (price varies with products and features).
+
+Logo & branding:
+- Basic Logo — $375: 2 initial concepts, 2 revision rounds, colour and monochrome versions, PNG and SVG files.
+- Growth Logo — $650: 3 concepts, 3 revision rounds, brand colour palette, typography recommendations, logo variations, mini brand style guide.
+- Premium Logo — $1,275: 4 revision rounds, extended variations, comprehensive brand guidelines, social media assets, business card design, brand templates.
+
+Website + brand bundles:
+- Starter Bundle — $800: Basic Website + Basic Logo + business card design + basic on-page SEO.
+- Business Bundle — $1,400: Business Website + Growth Logo + business card + mini brand style guide.
+- Premium Brand Launch — $2,400: Premium Website + Premium Logo + business card + complete brand guidelines and strategic homepage planning.
+
+Hosting: free hosting available on Sonykun's platform; managed hosting and maintenance is $18/month or $165/year (includes basic maintenance and small revision support).
+
+## How it works
+
+1. Tell Sonykun Design about your business.
+2. Get a free website preview — see it before you pay.
+3. Approve and pay; Sonykun finalizes everything, handles domain setup and hosting transfer, and launches the site.
+
+## Key pages
+
+- [Home](https://sonykundesign.com/)
+- [Services](https://sonykundesign.com/services): website design, logo design, brand identity and bundles.
+- [Pricing](https://sonykundesign.com/pricing): full CAD price list.
+- [Portfolio](https://sonykundesign.com/portfolio): small business websites designed and built by Sonykun Design.
+- [Case Studies](https://sonykundesign.com/case-study): the problem, the approach and the result.
+- [Contact](https://sonykundesign.com/contact)
+
+## Contact
+
+- Phone: (604) 262-1168
+- Email: support@sonykundesign.com
+- Location: Vancouver, British Columbia, Canada
+
+## Optional
+
+- [Privacy Policy](https://sonykundesign.com/privacy)
+- [Terms of Service](https://sonykundesign.com/terms)
