@@ -1,187 +1,61 @@
-import { motion, type Variants } from "framer-motion";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import FloatingContactButton from "@/components/FloatingContactButton";
-import ScrollToTop from "@/components/ScrollToTop";
-import { useLanguage } from "@/i18n/LanguageContext";
+import LegalDoc, { type LegalSection } from "@/components/LegalDoc";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-};
+const sections: LegalSection[] = [
+  {
+    title: { en: "Our services", zh: "服務內容" },
+    body: [{ en: "Sonykun Design provides website design, ecommerce websites, brand identity and logo design, website hosting and related digital services for small businesses.", zh: "Sonykun Design 為小型企業提供網站設計、電商網站、品牌識別與 Logo 設計、網站主機代管及相關數位服務。" }],
+  },
+  {
+    title: { en: "Quotes, previews and revisions", zh: "報價、預覽與修改" },
+    list: [
+      { en: "Every project starts with a confirmed scope and a written quote. Prices on our website are a guide; your emailed quote is final.", zh: "每個專案開始前都會確認範圍並提供書面報價。網站上的價格僅供參考，以電子郵件寄出的正式報價為準。" },
+      { en: "You see a live preview of your website before you pay.", zh: "付款前，您可以先看到網站的即時預覽。" },
+      { en: "Revision rounds are set by your package. Extra rounds and work outside the agreed scope are quoted separately.", zh: "修改輪數依您選擇的方案而定。額外修改輪數及超出約定範圍的工作將另行報價。" },
+      { en: "You are responsible for supplying your text, photos and other content on time. Timelines depend on scope and how quickly we receive feedback.", zh: "您需按時提供文字、照片等內容。專案時間取決於範圍及回覆速度。" },
+    ],
+  },
+  {
+    title: { en: "Payment and refunds", zh: "付款與退款" },
+    list: [
+      { en: "Payment is due once you have previewed and approved your design. Payments are processed securely by Stripe. Prices are in Canadian dollars unless stated otherwise.", zh: "您預覽並確認設計後即需付款。付款由 Stripe 安全處理。除非另有註明，價格以加幣計價。" },
+      { en: "Because you approve your website before paying, payments are final and non-refundable once made. Please raise any concerns before you pay.", zh: "由於您是在確認網站後才付款，款項一經支付概不退還。如有任何疑慮，請在付款前提出。" },
+    ],
+  },
+  {
+    title: { en: "Hosting and care", zh: "主機與維護" },
+    list: [
+      { en: "Your website is hosted on our platform. Free hosting is included; if you choose free hosting, changes after launch are quoted per request.", zh: "您的網站架設在我們的平台上，並包含免費主機。選擇免費主機的客戶，上線後的修改將按次報價。" },
+      { en: "Managed hosting is $20/month or $200/year and includes maintenance and up to 2 small edits per month (text, photos, small layout tweaks). New pages, new features and larger changes are quoted separately. Unused edits don't roll over.", zh: "代管主機為每月 $20 或每年 $200，包含維護及每月最多 2 次小修改（文字、照片、小幅版面調整）。新頁面、新功能及較大的修改另行報價。未使用的修改次數不累積。" },
+      { en: "Plans renew automatically until cancelled. You can cancel anytime; your plan runs to the end of the period you've paid for, with no partial refunds. If a plan is left unpaid, we may pause the website.", zh: "方案會自動續約直到取消。您可隨時取消，方案將持續至已付期間結束，不按比例退款。若方案逾期未付，我們可能暫停網站。" },
+      { en: "You can take your website files and host them elsewhere at any time.", zh: "您可隨時取得網站檔案，轉往其他地方架設。" },
+      { en: "Third-party fees, such as Shopify subscriptions or AI receptionist phone and usage costs, are paid by you directly to those providers.", zh: "第三方費用（例如 Shopify 月費、AI 電話接待的電話與使用費）由您直接支付給該供應商。" },
+    ],
+  },
+  {
+    title: { en: "Your domain, email and content", zh: "網域、電子郵件與內容" },
+    body: [{ en: "Your domain name, email and content always belong to you. You confirm you have the right to use any text, photos and logos you give us.", zh: "您的網域、電子郵件與內容永遠屬於您。您確認有權使用您提供給我們的文字、照片與標誌。" }],
+  },
+  {
+    title: { en: "Ownership of the design", zh: "設計所有權" },
+    body: [{ en: "Once paid in full, you own the final website and design work, excluding third-party fonts, images or software licensed separately. Until then, the work remains ours. We may show finished work in our portfolio.", zh: "全額付款後，最終網站與設計作品歸您所有，但不包括另行授權的第三方字型、圖片或軟體；付清前作品仍屬我們所有。我們可能會將完成的作品放入作品集。" }],
+  },
+  {
+    title: { en: "Limitation of liability", zh: "責任限制" },
+    body: [{ en: "Our total liability for any claim is limited to the amount you paid for the service in question. We are not liable for indirect or consequential losses, such as lost profits or business interruption.", zh: "我們對任何索賠的總責任以您為該項服務支付的金額為上限，對於間接或衍生性損失（例如利潤損失或營業中斷）不負責任。" }],
+  },
+  {
+    title: { en: "Changes and governing law", zh: "條款變更與準據法" },
+    body: [{ en: "We may update these terms from time to time; the version posted here applies. Changes that affect a plan you pay for will be emailed to you first. These terms are governed by the laws of British Columbia, Canada.", zh: "我們可能不時更新本條款，以本頁公布的版本為準。若變更影響您付費的方案，我們會先以電子郵件通知。本條款受加拿大卑詩省法律管轄。" }],
+  },
+];
 
-const lastUpdated = new Date().toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
-
-const lastUpdatedZh = new Date().toLocaleDateString("zh-TW", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
-
-const Terms = () => {
-  const { lang } = useLanguage();
-  const isZh = lang === "zh";
-
-  return (
-    <>
-      <Header />
-      <main className="pt-28 md:pt-32">
-        <section className="section-padding">
-          <div className="container-wide max-w-3xl mx-auto">
-            <h1 className="heading-section mb-2">
-              {isZh ? "服務條款" : "Terms of Service"}
-            </h1>
-            <p className="text-sm text-muted-foreground mb-10">
-              {isZh ? `最後更新：${lastUpdatedZh}` : `Last updated: ${lastUpdated}`}
-            </p>
-
-            <motion.div
-              className="prose prose-slate max-w-none space-y-8"
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
-            >
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "1. 服務概述" : "1. Overview of Services"}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {isZh
-                    ? "Sonykun Design 提供網站設計、品牌識別設計、Logo 設計、電商網站建置，以及相關的數位設計服務。使用我們的網站或委託我們的服務，即表示您同意遵守本服務條款。"
-                    : "Sonykun Design provides website design, brand identity design, logo design, ecommerce website development, and related digital design services. By using our website or engaging our services, you agree to these Terms of Service."}
-                </p>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "2. 專案條款與流程" : "2. Project Terms & Process"}
-                </h2>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>{isZh ? "所有專案在正式開始前需確認範圍和報價" : "All projects require a confirmed scope and quote before work begins"}</li>
-                  <li>{isZh ? "客戶將在付款前收到網站的即時預覽" : "Clients will receive a live website preview before payment"}</li>
-                  <li>{isZh ? "修改輪次視所選方案而定" : "Revision rounds are based on the selected package"}</li>
-                  <li>{isZh ? "專案時間取決於範圍和客戶的回覆速度" : "Project timelines depend on scope and client responsiveness"}</li>
-                  <li>{isZh ? "客戶須負責在約定的時間內提供所有必要內容（文字、圖片等）" : "Clients are responsible for providing all necessary content (text, images, etc.) within the agreed timeframe"}</li>
-                </ul>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "3. 定價與付款" : "3. Pricing & Payment"}
-                </h2>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>{isZh ? "價格如本網站定價頁面所列" : "Prices are as listed on our pricing page"}</li>
-                  <li>{isZh ? "客戶在預覽和批准設計後才需付款" : "Payment is due after the client previews and approves the design"}</li>
-                  <li>{isZh ? "付款可透過安全的第三方處理器（如 Stripe）進行" : "Payments may be processed through secure third-party processors such as Stripe"}</li>
-                  <li>{isZh ? "所有價格均以加幣（CAD）計算，除非另有說明" : "All prices are in Canadian Dollars (CAD) unless otherwise stated"}</li>
-                </ul>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "4. 退款政策" : "4. Refund Policy"}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {isZh
-                    ? "由於我們提供付款前的即時預覽，客戶可以在付款前查看設計。因此，一旦付款完成，通常不提供退款。如果您對交付的作品有任何疑慮，請在付款前與我們聯繫。"
-                    : "Because we offer a live preview before payment, clients can review the design before committing. As a result, refunds are generally not available once payment is made. If you have any concerns about the deliverables, please contact us before making payment."}
-                </p>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "5. 託管服務" : "5. Hosting"}
-                </h2>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>{isZh ? "我們的平台提供免費網站託管" : "Free website hosting is available on our platform"}</li>
-                  <li>{isZh ? "代管主機每月 $20 或每年 $200，包含維護與每月最多 2 次小幅修改" : "Managed hosting is available at $20/month or $200/year and includes maintenance and up to 2 small edits per month"}</li>
-                  <li>{isZh ? "客戶可以選擇將網站託管在自己的供應商上" : "Clients may choose to host their website with their own provider"}</li>
-                  <li>{isZh ? "Sonykun Design 保留在未付費代管託管到期後停止託管服務的權利" : "Sonykun Design reserves the right to discontinue hosting for unpaid managed hosting accounts"}</li>
-                </ul>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "6. 智慧財產權" : "6. Intellectual Property"}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {isZh
-                    ? "在收到全額付款後，客戶將獲得已完成設計作品的完整所有權和使用權。在收到全額付款之前，所有設計作品的所有權屬於 Sonykun Design。"
-                    : "Upon receipt of full payment, the client receives full ownership and usage rights to the completed design work. Until full payment is received, all design work remains the property of Sonykun Design."}
-                </p>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "7. 客戶責任" : "7. Client Responsibilities"}
-                </h2>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>{isZh ? "提供準確且合法的內容用於網站" : "Providing accurate and lawful content for the website"}</li>
-                  <li>{isZh ? "及時審核和提供反饋" : "Reviewing and providing feedback in a timely manner"}</li>
-                  <li>{isZh ? "確保提供的材料不侵犯第三方權利" : "Ensuring that provided materials do not infringe on third-party rights"}</li>
-                </ul>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "8. 責任限制" : "8. Limitation of Liability"}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {isZh
-                    ? "Sonykun Design 對因使用我們的服務或網站而產生的任何間接、附帶或後果性損害不承擔責任。我們的最大責任僅限於客戶為特定服務支付的金額。"
-                    : "Sonykun Design shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or website. Our maximum liability is limited to the amount paid by the client for the specific service."}
-                </p>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "9. 條款修改" : "9. Changes to Terms"}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {isZh
-                    ? "我們保留隨時修改本服務條款的權利。變更將在本頁面上公佈後生效。繼續使用我們的服務即表示您接受更新後的條款。"
-                    : "We reserve the right to modify these Terms of Service at any time. Changes will be effective when posted on this page. Continued use of our services constitutes acceptance of the updated terms."}
-                </p>
-              </motion.section>
-
-              <motion.section variants={fadeUp}>
-                <h2 className="font-display text-xl font-bold text-foreground mb-3">
-                  {isZh ? "10. 聯絡我們" : "10. Contact Us"}
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {isZh
-                    ? "如果您對本服務條款有任何疑問，請聯絡我們："
-                    : "If you have any questions about these Terms of Service, please contact us:"}
-                </p>
-                <ul className="list-none pl-0 mt-3 space-y-1 text-muted-foreground">
-                  <li>
-                    Email:{" "}
-                    <a href="mailto:support@sonykundesign.com" className="text-foreground hover:text-primary transition-colors">
-                      support@sonykundesign.com
-                    </a>
-                  </li>
-                  <li>
-                    {isZh ? "電話" : "Phone"}:{" "}
-                    <a href="tel:6042621168" className="text-foreground hover:text-primary transition-colors">
-                      (604) 262-1168
-                    </a>
-                  </li>
-                </ul>
-              </motion.section>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-      <FloatingContactButton />
-      <ScrollToTop />
-    </>
-  );
-};
+const Terms = () => (
+  <LegalDoc
+    title={{ en: "Terms of Service", zh: "服務條款" }}
+    updated={{ en: "Last updated: November 19, 2026", zh: "最後更新：2026年11月19日" }}
+    intro={{ en: "These terms apply when you use the Sonykun Design website or hire us for a project. By engaging our services, you agree to them.", zh: "當您使用 Sonykun Design 網站或委託我們進行專案時，適用本條款。委託我們的服務即表示您同意本條款。" }}
+    sections={sections}
+  />
+);
 
 export default Terms;
