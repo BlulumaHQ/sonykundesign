@@ -49,8 +49,8 @@ const TransparentPricing = () => {
             <p className="text-3xl font-bold text-foreground mb-2">$0</p>
             <p className="text-muted-foreground">
               {isZh
-                ? "您的網站可免費架設於我的平台上，因此不需要支付任何每月主機費用，除非您希望我管理您的網站並協助處理更新或小幅修改。"
-                : "Your website can be hosted on my platform at no cost, so there is no required monthly hosting fee unless you want me to manage your website and handle updates or small revisions."}
+                ? "網站免費放在我的平台上持續上線，不需要任何月費。檔案是您的，隨時可以拿走。每次修改 $50。"
+                : "Your website stays live on my platform at no cost — no monthly fee. Your files are yours, take them anywhere, anytime. Changes are $50 each."}
             </p>
           </motion.div>
 
@@ -72,18 +72,18 @@ const TransparentPricing = () => {
               </h3>
             </div>
             <p className="text-3xl font-bold text-foreground mb-1">
-              $18<span className="text-base font-normal text-muted-foreground">{isZh ? "/月" : "/month"}</span>
+              $20<span className="text-base font-normal text-muted-foreground">{isZh ? "/月" : "/month"}</span>
             </p>
-            <p className="text-sm text-muted-foreground mb-4">{isZh ? "或 $165/年（省 $51）" : "or $165/year (save $51)"}</p>
+            <p className="text-sm text-muted-foreground mb-4">{isZh ? "或 $200/年（送 2 個月）" : "or $200/year (2 months free)"}</p>
             <ul className="space-y-2 text-muted-foreground">
               <li className="flex items-start gap-2">
-                <span className="text-secondary mt-0.5">•</span> {isZh ? "託管管理" : "Hosting management"}
+                <span className="text-secondary mt-0.5">•</span> {isZh ? "我幫您管理網站" : "I manage your website for you"}
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-secondary mt-0.5">•</span> {isZh ? "基本維護" : "Basic maintenance"}
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-secondary mt-0.5">•</span> {isZh ? "每月一次小幅修改" : "One small revision per month"}
+                <span className="text-secondary mt-0.5">•</span> {isZh ? "每月最多 2 次小幅修改" : "Up to 2 small edits every month"}
               </li>
             </ul>
           </motion.div>

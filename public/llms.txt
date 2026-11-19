@@ -9,10 +9,10 @@ The site is also available in Traditional Chinese under /zh/, e.g. https://sonyk
 ## Pricing (CAD, no hidden fees)
 
 Websites:
-- Basic Website — $375: single-page landing website, mobile-friendly, contact form, free hosting available, basic brand setup.
+- One-Page Website — $375: single-page landing website, mobile-friendly, contact form, free hosting available, basic brand setup.
 - Business Website — $750: up to 7 pages, mobile-optimised layout, SEO-friendly structure, contact form, free hosting available, basic branding integration.
 - Premium Website — $1,250: up to 10 pages, advanced layout design, custom styling, SEO-optimised structure, enhanced brand presentation.
-- E-commerce Basic — from $1,650: online store setup, payment integration, up to 10 products, mobile-friendly checkout (price varies with products and features).
+- E-commerce Basic — $1,680: online store setup, payment integration, 20 products included (up to 3 variants and 5 images each), mobile-friendly checkout. Extra products $75 per 10; bulk upload from client spreadsheet (50+ products) $3 each. Shopify monthly plan paid directly by the client.
 
 Logo & branding:
 - Basic Logo — $375: 2 initial concepts, 2 revision rounds, colour and monochrome versions, PNG and SVG files.
@@ -20,11 +20,11 @@ Logo & branding:
 - Premium Logo — $1,275: 4 revision rounds, extended variations, comprehensive brand guidelines, social media assets, business card design, brand templates.
 
 Website + brand bundles:
-- Starter Bundle — $800: Basic Website + Basic Logo + business card design + basic on-page SEO.
+- Starter Bundle — $800: One-Page Website + Basic Logo + business card design + basic on-page SEO.
 - Business Bundle — $1,400: Business Website + Growth Logo + business card + mini brand style guide.
-- Premium Brand Launch — $2,400: Premium Website + Premium Logo + business card + complete brand guidelines and strategic homepage planning.
+- Premium Brand Launch — $2,400: Premium Website + Premium Logo (incl. business card) + complete brand guidelines and strategic homepage planning.
 
-Hosting: free hosting available on Sonykun's platform; managed hosting and maintenance is $18/month or $165/year (includes basic maintenance and small revision support).
+Hosting: free hosting on Sonykun's platform (client owns the files and can move them anytime; changes $50 each); Managed Hosting is $20/month or $200/year (2 months free) and includes maintenance and up to 2 small edits per month. Additional revision rounds during a project are $75 each. Same price for every client.
 
 ## How it works
 

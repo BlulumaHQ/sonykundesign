@@ -77,10 +77,10 @@ const PricingSection = () => {
     },
     {
       title: isZh ? "電商網站" : "Ecommerce Basic",
-      price: "$1,650",
+      price: "$1,680",
       features: isZh
-        ? ["線上商店", "付款整合", "最多 10 件商品"]
-        : ["Online store", "Payment integration", "Up to 10 products"],
+        ? ["線上商店", "付款整合", "包含 20 件商品"]
+        : ["Online store", "Payment integration", "20 products included"],
     },
   ];
 

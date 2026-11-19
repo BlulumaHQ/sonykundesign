@@ -42,7 +42,7 @@ const Craigslist = () => {
     },
     {
       title: isZh ? "電商網站" : "Ecommerce",
-      price: "$1,650",
+      price: "$1,680",
       features: isZh
         ? ["線上商店", "付款整合"]
         : ["Online store", "Payment integration"],

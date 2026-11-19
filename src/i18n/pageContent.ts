@@ -120,7 +120,7 @@ export const homeContent = {
           en: "I handle all technical details — hosting, domain setup, transfers, and ongoing maintenance. You don't touch a thing.",
           zh: "主機、網域、轉移與維護所有技術細節由我處理。您完全不需要動手。",
         },
-        price: { en: "Free hosting available · Managed $18/mo", zh: "提供免費主機 · 代管 $18/月" },
+        price: { en: "Free hosting available · Managed $20/mo", zh: "提供免費主機 · 代管 $20/月" },
         link: { en: "Learn more →", zh: "了解更多 →" },
         href: "/pricing",
       },
@@ -189,8 +189,8 @@ export const homeContent = {
       {
         q: { en: "How many revisions are included?", zh: "包含多少次修改？" },
         a: {
-          en: "Every project includes two rounds of revisions at no extra cost. Additional revision rounds are $25 each. Most clients are happy well within the two rounds.",
-          zh: "每個專案包含兩輪免費修改。額外修改每輪 $25。多數客戶在兩輪內就很滿意。",
+          en: "Every project includes two rounds of revisions at no extra cost. Additional revision rounds are $75 each. Most clients are happy well within the two rounds.",
+          zh: "每個專案包含兩輪免費修改。額外修改每輪 $75。多數客戶在兩輪內就很滿意。",
         },
       },
       {
@@ -354,8 +354,8 @@ export const servicesContent = {
         subtitle: { en: "A complete, professionally integrated brand and website experience.", zh: "完整、專業整合的品牌與網站體驗。" },
         premium: true,
         items: {
-          en: ["Premium Website package", "Premium Logo package", "Business card design", "Comprehensive brand identity integration", "Custom homepage visual direction", "Consistent brand typography, colour system, and graphic elements", "Strategic homepage content hierarchy and call-to-action planning", "Enhanced on-page SEO setup", "Mobile-responsive optimization", "Complete brand guidelines", "Final brand design assets", "Website launch and testing"],
-          zh: ["進階網站方案", "Premium Logo 方案", "名片設計", "全面品牌識別整合", "客製首頁視覺方向", "一致的品牌字體、配色系統與圖形元素", "策略性首頁內容層次與行動呼籲規劃", "強化頁面 SEO 設定", "響應式手機優化", "完整品牌規範", "最終品牌設計素材", "網站上線與測試"],
+          en: ["Premium Website package", "Premium Logo package", "Comprehensive brand identity integration", "Custom homepage visual direction", "Consistent brand typography, colour system, and graphic elements", "Strategic homepage content hierarchy and call-to-action planning", "Enhanced on-page SEO setup", "Mobile-responsive optimization", "Complete brand guidelines", "Final brand design assets", "Website launch and testing"],
+          zh: ["進階網站方案", "Premium Logo 方案", "全面品牌識別整合", "客製首頁視覺方向", "一致的品牌字體、配色系統與圖形元素", "策略性首頁內容層次與行動呼籲規劃", "強化頁面 SEO 設定", "響應式手機優化", "完整品牌規範", "最終品牌設計素材", "網站上線與測試"],
         },
       },
     ],
@@ -390,15 +390,15 @@ export const servicesContent = {
       free: {
         title: { en: "Free Hosting — $0", zh: "免費主機 — $0" },
         body: {
-          en: "Your site hosted on my platform at no cost. You own the site. I keep it running.",
-          zh: "免費將您的網站架在我的平台上。網站歸您所有，我維持運作。",
+          en: "Your site stays live on my platform at no cost. Your files are yours — take them anywhere, anytime. Changes are $50 each.",
+          zh: "網站免費放在我的平台上持續上線。檔案是您的，隨時可以拿走。每次修改 $50。",
         },
       },
       managed: {
-        title: { en: "Managed Website Hosting — $18/month or $165/year", zh: "代管網站主機 — $18/月 或 $165/年" },
+        title: { en: "Managed Website Hosting — $20/month or $200/year", zh: "代管網站主機 — $20/月 或 $200/年" },
         body: {
-          en: "Full hosting management, basic maintenance, and small revision support included. Save $51 annually with yearly billing.",
-          zh: "完整主機管理、基本維護與小幅修改支援。年繳每年省 $51。",
+          en: "I manage your website for you: hosting, maintenance and up to 2 small edits every month. Pay yearly and get 2 months free.",
+          zh: "我幫您管理網站：主機、維護，每月最多 2 次小幅修改。年繳等於送 2 個月。",
         },
       },
     },
@@ -434,8 +434,8 @@ export const servicesContent = {
       {
         q: { en: "Do you offer ongoing support after the site launches?", zh: "上線後有持續支援嗎？" },
         a: {
-          en: "Yes. My Managed Hosting plan at $18/month ($165/year) includes basic maintenance and small revision support. For larger updates, I'm always available to quote on a per-project basis.",
-          zh: "有。代管主機方案每月 $18（或每年 $165），包含基本維護與小幅修改。較大更新可依專案個別報價。",
+          en: "Yes. My Managed Hosting plan at $20/month ($200/year) includes maintenance and up to 2 small edits every month. For larger updates, I quote per project.",
+          zh: "有。代管主機方案每月 $20（或每年 $200），包含維護與每月最多 2 次小幅修改。較大更新依專案個別報價。",
         },
       },
       {
@@ -508,18 +508,18 @@ export const pricingContent = {
       },
       {
         title: { en: "E-commerce Basic", zh: "電商基本版" },
-        price: "$1,650",
+        price: "$1,680",
         note: {
-          en: "Pricing varies based on number of products and features",
-          zh: "價格依產品數量與功能而定",
+          en: "Shopify monthly plan is paid directly by you",
+          zh: "Shopify 月費由您直接支付",
         },
         description: {
           en: "Start selling online with a clean, simple e-commerce setup designed for small businesses.",
           zh: "為小型企業打造的乾淨、簡單電商方案，輕鬆開始線上銷售。",
         },
         features: {
-          en: ["Online store setup", "Payment integration", "Up to 10 products", "Mobile-friendly checkout", "Basic store branding"],
-          zh: ["線上商店建置", "金流整合", "最多 10 件商品", "手機友善結帳", "基本商店品牌設計"],
+          en: ["Online store setup", "Payment integration", "20 products included (up to 3 variants and 5 images each)", "Extra products: $75 per 10", "Bulk upload from your spreadsheet (50+ products): $3 each", "Mobile-friendly checkout", "Basic store branding"],
+          zh: ["線上商店建置", "金流整合", "包含 20 件商品（每件最多 3 種規格、5 張圖）", "額外商品：每 10 件 $75", "依您提供的試算表大量上架（50 件以上）：每件 $3", "手機友善結帳", "基本商店品牌設計"],
         },
       },
     ],
@@ -597,8 +597,8 @@ export const pricingContent = {
         subtitle: { en: "A complete, professionally integrated brand and website experience.", zh: "完整、專業整合的品牌與網站體驗。" },
         premium: true,
         items: {
-          en: ["Premium Website package", "Premium Logo package", "Business card design", "Comprehensive brand identity integration", "Custom homepage visual direction", "Consistent brand typography, colour system, and graphic elements", "Strategic homepage content hierarchy and call-to-action planning", "Enhanced on-page SEO setup", "Mobile-responsive optimization", "Complete brand guidelines", "Final brand design assets", "Website launch and testing"],
-          zh: ["進階網站方案", "Premium Logo 方案", "名片設計", "全面品牌識別整合", "客製首頁視覺方向", "一致的品牌字體、配色系統與圖形元素", "策略性首頁內容層次與行動呼籲規劃", "強化頁面 SEO 設定", "響應式手機優化", "完整品牌規範", "最終品牌設計素材", "網站上線與測試"],
+          en: ["Premium Website package", "Premium Logo package", "Comprehensive brand identity integration", "Custom homepage visual direction", "Consistent brand typography, colour system, and graphic elements", "Strategic homepage content hierarchy and call-to-action planning", "Enhanced on-page SEO setup", "Mobile-responsive optimization", "Complete brand guidelines", "Final brand design assets", "Website launch and testing"],
+          zh: ["進階網站方案", "Premium Logo 方案", "全面品牌識別整合", "客製首頁視覺方向", "一致的品牌字體、配色系統與圖形元素", "策略性首頁內容層次與行動呼籲規劃", "強化頁面 SEO 設定", "響應式手機優化", "完整品牌規範", "最終品牌設計素材", "網站上線與測試"],
         },
       },
     ],
@@ -642,18 +642,18 @@ export const pricingContent = {
       title: { en: "Free Hosting", zh: "免費主機" },
       price: "$0",
       body: {
-        en: "Your website hosted on my platform at no cost. Fully managed by me.",
-        zh: "免費將您的網站架在我的平台上，全程由我管理。",
+        en: "Your website stays live on my platform at no cost. Your files are yours — take them anywhere, anytime. Changes are $50 each.",
+        zh: "網站免費放在我的平台上持續上線。檔案是您的，隨時可以拿走。每次修改 $50。",
       },
     },
     managed: {
       title: { en: "Managed Hosting", zh: "代管主機" },
-      price: { en: "$18/month or $165/year", zh: "$18/月 或 $165/年" },
+      price: { en: "$20/month or $200/year", zh: "$20/月 或 $200/年" },
       features: {
-        en: ["Hosting management", "Basic maintenance", "One small revision per month"],
-        zh: ["主機管理", "基本維護", "每月一次小幅修改"],
+        en: ["I manage your website for you", "Hosting and maintenance", "Up to 2 small edits every month"],
+        zh: ["我幫您管理網站", "主機與維護", "每月最多 2 次小幅修改"],
       },
-      note: { en: "Save $51 annually with yearly billing", zh: "年繳每年省 $51" },
+      note: { en: "Pay yearly and get 2 months free", zh: "年繳等於送 2 個月" },
       ownership: {
         en: "Upon final payment, you own your completed website and design assets. Your domain can be registered under your own account. Websites are initially deployed through Sonykun Design's hosting environment. If you decide to move to another provider, I can provide the complete website source files for migration to a compatible hosting environment. Third-party migration, setup, and ongoing maintenance are separate services.",
         zh: "付清尾款後，完成的網站與設計素材歸您所有。網域可註冊在您自己的帳戶下。網站初期部署於 Sonykun Design 的主機環境。若您決定轉到其他供應商，我可提供完整網站原始檔，以轉移至相容的主機環境。第三方轉移、設定與持續維護為另計服務。",
@@ -739,22 +739,22 @@ export const pricingContent = {
       {
         q: { en: "Are there any ongoing fees?", zh: "有任何持續費用嗎？" },
         a: {
-          en: "Free hosting is truly free — no monthly charges. Managed Hosting is $18/month or $165/year (save $51 annually with yearly billing) if you want me to handle maintenance and minor updates. There are no other mandatory recurring fees.",
-          zh: "免費主機是真的免費 — 沒有月費。若需要我處理維護與小幅更新，可選擇代管主機 $18/月 或 $165/年（年繳每年省 $51）。沒有其他強制性的持續費用。",
+          en: "Free hosting is truly free — no monthly charges. Managed Hosting is $20/month or $200/year (2 months free with yearly billing) if you want me to manage your site, with up to 2 small edits every month. On free hosting, each change is $50. There are no other mandatory recurring fees.",
+          zh: "免費主機是真的免費 — 沒有月費。若需要我處理維護與小幅更新，可選擇代管主機 $20/月 或 $200/年（年繳等於送 2 個月），每月最多 2 次小幅修改。免費主機每次修改 $50。沒有其他強制性的持續費用。",
         },
       },
       {
         q: { en: "What's included in the 'free hosting'?", zh: "「免費主機」包含什麼？" },
         a: {
-          en: "Your website is hosted on my platform at no cost to you. It stays live as long as you want. If you ever want to move it to your own hosting provider, I'll help with the migration.",
-          zh: "您的網站免費架在我的平台上，想保持上線多久都可以。若日後想搬到自己的主機商，我會協助轉移。",
+          en: "Your website stays live on my platform at no cost, for as long as you want. Your files are yours — you can take them and deploy anywhere, anytime. Changes on free hosting are $50 each; Managed Hosting includes up to 2 small edits every month.",
+          zh: "網站免費放在我的平台上，想上線多久都可以。檔案是您的，隨時可以拿去任何地方架設。免費主機每次修改 $50；代管主機每月包含最多 2 次小幅修改。",
         },
       },
       {
         q: { en: "Do bundle prices include revisions?", zh: "套裝價格包含修改嗎？" },
         a: {
-          en: "Yes. All packages — including bundles — include two rounds of revisions at no extra cost. Additional revision rounds are $25 each.",
-          zh: "是的。所有方案 — 包含套裝 — 都包含兩輪免費修改。額外修改每輪 $25。",
+          en: "Yes. All packages — including bundles — include two rounds of revisions at no extra cost. Additional revision rounds are $75 each.",
+          zh: "是的。所有方案 — 包含套裝 — 都包含兩輪免費修改。額外修改每輪 $75。",
         },
       },
       {
