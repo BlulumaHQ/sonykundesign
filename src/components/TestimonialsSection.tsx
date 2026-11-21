@@ -5,6 +5,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 const testimonialData = {
   en: [
     { quote: "Sony Lin has managed our professional websites for years, and he’s always been punctual, dependable, and professional. Thank you, Sony, for taking such good care of our websites. I’d recommend him without hesitation to anyone looking for a web designer.", name: "Patrick Wu", company: "Friendly Dental", url: "https://friendlydental.ca/" },
+    { quote: "I highly recommend his web design and development services. Working with him has been a fantastic experience. He delivers not just a website, but a complete business solution designed to enhance your brand, generate leads, and support long-term growth. If you’re considering upgrading your online presence, I am confident that you’ll be impressed with both the process and the results.", name: "Eric Kim", company: "Eric Kim Realty", url: "https://erickimrealty.com/" },
     { quote: "Our old website looked outdated and Sony helped modernize it quickly. The new site looks far more professional and our patients find it much easier to use.", name: "Kevin Chen", company: "KChen Construction", url: "https://one-park-home.bluluma.com/" },
     { quote: "I appreciated the transparency about pricing. There were no hidden costs and the process was smooth from start to finish.", name: "Michael Tran", company: "Small Business Owner", url: null },
     { quote: "Sony redesigned our clinic website and it now looks clean and modern. Patients have commented that the site is easier to navigate.", name: "Dr. Sarah Kim", company: "Little Mountain Dental", url: "http://littlemountain.bluluma.com/" },
@@ -13,6 +14,7 @@ const testimonialData = {
   ],
   zh: [
     { quote: "Sony Lin 多年來一直負責管理我們診所的網站，他一向準時、可靠又專業。謝謝 Sony 把我們的網站照顧得這麼好，只要有人在找網頁設計師，我都會毫不猶豫地推薦他。", name: "Patrick Wu", company: "Friendly Dental", url: "https://friendlydental.ca/" },
+    { quote: "我非常推薦他的網站設計與開發服務，和他合作是一次很棒的經驗。他交付的不只是一個網站，而是一套完整的商業解決方案，能提升你的品牌、帶來潛在客戶，並支撐長期成長。如果你正考慮升級你的線上形象，我相信整個合作過程和最後的成果都會讓你印象深刻。", name: "Eric Kim", company: "Eric Kim Realty", url: "https://erickimrealty.com/" },
     { quote: "我們的舊網站看起來很過時，Sony 很快就幫我們完成了現代化。新網站看起來專業多了，病人也覺得更容易使用。", name: "Kevin Chen", company: "KChen Construction", url: "https://one-park-home.bluluma.com/" },
     { quote: "我很欣賞定價方面的透明度。沒有任何隱藏費用，整個過程從頭到尾都很順利。", name: "Michael Tran", company: "小型企業主", url: null },
     { quote: "Sony 重新設計了我們診所的網站，現在看起來乾淨又現代。病人們都說網站更容易瀏覽了。", name: "Dr. Sarah Kim", company: "Little Mountain Dental", url: "http://littlemountain.bluluma.com/" },
