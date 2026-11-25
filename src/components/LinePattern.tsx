@@ -11,7 +11,7 @@ type Props = {
 };
 
 const LinePattern = ({ variant = "light", opacity, className = "" }: Props) => {
-  const src = variant === "dark" ? "/linebg-dark.png" : "/linebg-light.png";
+  const src = variant === "dark" ? "/linebg-dark.webp" : "/linebg-light.png";
   const defaultOpacity = variant === "dark" ? 0.35 : 0.9;
   return (
     <div

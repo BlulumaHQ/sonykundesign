@@ -207,12 +207,13 @@ function sitemap(pages: Page[]) {
       `    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(p.path, "en")}"/>`,
       p.lastmod ? `    <lastmod>${p.lastmod}</lastmod>` : "",
       `    <priority>${p.priority.toFixed(1)}</priority>`,
+      p.image && /^https?:/.test(p.image) ? `    <image:image><image:loc>${esc(p.image)}</image:loc></image:image>` : "",
       "  </url>",
     ]
       .filter(Boolean)
       .join("\n"),
   );
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join("\n")}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
 export default function prerenderPlugin(): Plugin {
